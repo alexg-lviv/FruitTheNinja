@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjwhv82s87cxv"]
+
+[ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_j21a0"]
+[ext_resource type="Script" path="res://src/Projectiles/Grape/Grape.gd" id="2_ei172"]
+
+[node name="Grape" instance=ExtResource("1_j21a0")]
+script = ExtResource("2_ei172")
