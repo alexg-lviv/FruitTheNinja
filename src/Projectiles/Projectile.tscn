@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://vy6xu767jks6"]
+
+[ext_resource type="Script" path="res://src/Projectiles/Projectile.gd" id="1_8jjan"]
+[ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="2_s0yao"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u3las"]
+radius = 30.0
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_8jjan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u3las")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.359375, 0.359375)
+texture = ExtResource("2_s0yao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
