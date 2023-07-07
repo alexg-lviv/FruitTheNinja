@@ -19,8 +19,9 @@ func _process(delta):
 	elapsed_time += delta
 
 func _physics_process(delta):
-	update_position(delta)
-	handle_logic()
+	if (!is_dead):
+		update_position(delta)
+		handle_logic()
 	handle_death()
 
 func set_direction(dir: Vector2):
