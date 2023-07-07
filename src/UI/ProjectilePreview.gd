@@ -54,12 +54,13 @@ func _draw_line(pos):
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if _is_locked:
-				var direction = (_lock_position - get_global_mouse_position()).normalized()
-				emit_signal("spawn_projectile", load(_projectile_scene).instantiate(), _lock_position, direction)
-			else:
-				_is_locked = true
-				_lock_position = get_global_mouse_position()
+			_is_locked = true
+			_lock_position = get_global_mouse_position()
 		
 		if event.button_index == MOUSE_BUTTON_RIGHT:
+			queue_free()
+	
+	if event is InputEventMouseButton and not event.pressed:
+			var direction = (_lock_position - get_global_mouse_position()).normalized()
+			emit_signal("spawn_projectile", load(_projectile_scene).instantiate(), _lock_position, direction)
 			queue_free()

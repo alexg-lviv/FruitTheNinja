@@ -26,4 +26,3 @@ func _spawn_projectile(projectile, pos, direction):
 	projectile.position = pos
 	projectile.set_direction(direction)
 	Projectiles.spawned.append(projectile)
-	print(Projectiles.spawned)
