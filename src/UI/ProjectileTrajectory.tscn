@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3u33x7xoidys"]
+
+[ext_resource type="Shader" path="res://src/UI/shaders/ProjectileTrajectory.gdshader" id="1_0a4hc"]
+[ext_resource type="Texture2D" uid="uid://b70cn5lwpbkt7" path="res://assets/masks/trajectory_mask.png" id="1_0hh1x"]
+[ext_resource type="Script" path="res://src/UI/ProjectileTrajectory.gd" id="1_qr4xp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ix54a"]
+shader = ExtResource("1_0a4hc")
+shader_parameter/speed = 2.0
+shader_parameter/opacity = 0.5
+shader_parameter/color = Vector3(1, 1, 1)
+
+[node name="ProjectileTrajectory" type="Line2D"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ix54a")
+points = PackedVector2Array(648, 392)
+width = 100.0
+texture = ExtResource("1_0hh1x")
+texture_mode = 1
+script = ExtResource("1_qr4xp")
