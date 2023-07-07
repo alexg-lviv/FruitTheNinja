@@ -15,6 +15,10 @@ run/main_scene="res://src/GameField/MainScene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Projectiles="*res://src/Singletons/projectiles.gd"
+
 [display]
 
 window/size/viewport_width=1280
