@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1eme8vjjcd34"]
+
+[ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
+[ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="1_g6awj"]
+[ext_resource type="PackedScene" uid="uid://6ndjnwc5m1gp" path="res://src/UI/ProjectilesBar.tscn" id="2_mtayr"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fcdyl")
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.47451, 0.435294, 0.67451, 0.666667)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g6awj")
+
+[node name="AimField" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = -200.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="AimField"]
+self_modulate = Color(0.380392, 1, 1, 0.701961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g6awj")
+
+[node name="AiField" type="Control" parent="AimField"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = 100.0
+offset_right = -120.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="AimField/AiField"]
+self_modulate = Color(1, 1, 0.780392, 0.815686)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_g6awj")
+
+[node name="ProjectilesBar" parent="." instance=ExtResource("2_mtayr")]
+layout_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

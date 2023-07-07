@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://6ndjnwc5m1gp"]
+
+[ext_resource type="PackedScene" uid="uid://yc4radmgw7cm" path="res://src/UI/ProjectileButt.tscn" id="1_av76w"]
+
+[node name="ProjectilesBar" type="Control"]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = -50.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProjectileButt" parent="VBox" instance=ExtResource("1_av76w")]
+layout_mode = 2
+
+[node name="ProjectileButt2" parent="VBox" instance=ExtResource("1_av76w")]
+layout_mode = 2
+
+[node name="ProjectileButt3" parent="VBox" instance=ExtResource("1_av76w")]
+layout_mode = 2
