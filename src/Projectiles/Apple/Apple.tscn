@@ -6,6 +6,7 @@
 
 [node name="Apple" instance=ExtResource("1_6oulf")]
 script = ExtResource("2_63517")
+base_damage = 10
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.375, 3.375)
