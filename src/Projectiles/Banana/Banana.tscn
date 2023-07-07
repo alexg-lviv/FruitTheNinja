@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjrxlatq12cn"]
+[gd_scene load_steps=4 format=3 uid="uid://bjrxlatq12cn"]
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_0slcs"]
 [ext_resource type="Script" path="res://src/Projectiles/Banana/Banana.gd" id="2_dbq6w"]
+[ext_resource type="Texture2D" uid="uid://dj4u1k54fyqtg" path="res://assets/fruits/platano.png" id="3_lmx21"]
 
 [node name="Banana" instance=ExtResource("1_0slcs")]
 script = ExtResource("2_dbq6w")
 
 [node name="Sprite2D" parent="." index="1"]
-modulate = Color(0.858824, 0.698039, 0, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("3_lmx21")
