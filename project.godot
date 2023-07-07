@@ -19,3 +19,9 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[layer_names]
+
+2d_physics/layer_1="AI_Player"
+2d_physics/layer_2="Projectiles"
+2d_physics/layer_3="Obsticles"
