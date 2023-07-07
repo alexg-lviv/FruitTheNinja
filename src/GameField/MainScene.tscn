@@ -45,20 +45,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_g6awj")
 
-[node name="AiField" type="Control" parent="AimField"]
+[node name="AiField" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = 100.0
-offset_right = -120.0
-offset_bottom = -100.0
+offset_left = 350.0
+offset_top = 200.0
+offset_right = -350.0
+offset_bottom = -200.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="AimField/AiField"]
-self_modulate = Color(1, 1, 0.780392, 0.815686)
+[node name="Background" type="TextureRect" parent="AiField"]
+self_modulate = Color(1, 1, 0.027451, 0.815686)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,3 +71,5 @@ texture = ExtResource("1_g6awj")
 layout_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]

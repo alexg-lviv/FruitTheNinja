@@ -1,8 +1,9 @@
 extends Control
 
+signal spawn_projectile(projectile, pos, direction)
 
-const _valid_modulate = Color(1, 1, 1, 0.7)
-const _invalid_modulate = Color(1, 0.2, 0.2, 0.8)
+const _valid_modulate = Color.GREEN
+const _invalid_modulate = Color.RED
 
 var _projectile_scene
 
@@ -15,17 +16,19 @@ var _prev_mouse_position: Vector2
 var _aim_rect: Rect2
 var _ai_rect: Rect2
 
+
 func _physics_process(delta):
 	var _pos = get_global_mouse_position()
 	_update_validness(_pos)
 	
 	if _is_locked:
-		if _ai_rect.has_point(_pos):
-			pass
-		elif not _aim_rect.has_point(_pos):
-			_draw_line(_prev_mouse_position)
-		else:
-			_draw_line(_pos)
+		pass
+#		if _ai_rect.has_point(_pos):
+#			pass
+#		elif not _aim_rect.has_point(_pos):
+#			_draw_line(_prev_mouse_position)
+#		else:
+#			_draw_line(_pos)
 	else:
 		_draw_icon(_pos)
 
@@ -52,9 +55,11 @@ func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if _is_locked:
-				Projectiles.spawned_projectiles.append(_projectile_scene.instantiate())
+				var direction = (_lock_position - get_global_mouse_position()).normalized()
+				emit_signal("spawn_projectile", load(_projectile_scene).instantiate(), _lock_position, direction)
 			else:
 				_is_locked = true
 				_lock_position = get_global_mouse_position()
+		
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-				queue_free()
+			queue_free()

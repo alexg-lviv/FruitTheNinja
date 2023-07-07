@@ -11,15 +11,18 @@ config_version=5
 [application]
 
 config/name="HoydalkaGaem"
+run/main_scene="res://src/GameField/MainScene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-Projectiles="*res://src/Singletons/projectiles.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[layer_names]
+
+2d_physics/layer_1="AI_Player"
+2d_physics/layer_2="Projectiles"
+2d_physics/layer_3="Obsticles"

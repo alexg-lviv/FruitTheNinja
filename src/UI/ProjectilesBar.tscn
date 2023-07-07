@@ -23,9 +23,3 @@ grow_vertical = 2
 
 [node name="ProjectileButt" parent="VBox" instance=ExtResource("1_av76w")]
 layout_mode = 2
-
-[node name="ProjectileButt2" parent="VBox" instance=ExtResource("1_av76w")]
-layout_mode = 2
-
-[node name="ProjectileButt3" parent="VBox" instance=ExtResource("1_av76w")]
-layout_mode = 2
