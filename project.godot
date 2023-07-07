@@ -26,3 +26,7 @@ window/stretch/mode="canvas_items"
 2d_physics/layer_1="AI_Player"
 2d_physics/layer_2="Projectiles"
 2d_physics/layer_3="Obsticles"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
