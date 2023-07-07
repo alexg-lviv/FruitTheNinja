@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjglwbk2mn3ms"]
+
+[ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_a55c4"]
+[ext_resource type="Script" path="res://src/Projectiles/Pineapple/Pineapple.gd" id="2_3j7xm"]
+[ext_resource type="Texture2D" uid="uid://c7wdmyhjdch08" path="res://assets/fruits/Pinneaple.png" id="3_tqjlg"]
+
+[node name="Pineapple" instance=ExtResource("1_a55c4")]
+script = ExtResource("2_3j7xm")
+speed = 5000.0
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(3.375, 3.375)
+texture = ExtResource("3_tqjlg")
