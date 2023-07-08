@@ -22,13 +22,8 @@ func _physics_process(delta):
 	_update_validness(_pos)
 	
 	if _is_locked:
-		pass
-#		if _ai_rect.has_point(_pos):
-#			pass
-#		elif not _aim_rect.has_point(_pos):
-#			_draw_line(_prev_mouse_position)
-#		else:
-#			_draw_line(_pos)
+#		if not _ai_rect.has_point(_pos):
+		_draw_speed(_pos)
 	else:
 		_draw_icon(_pos)
 
@@ -44,23 +39,26 @@ func _update_validness(_pos):
 
 func _draw_icon(pos):
 	$Position.position = pos
-	$Position.self_modulate = _valid_modulate if _is_valid else _invalid_modulate
+	$Position/Icon.self_modulate = _valid_modulate if _is_valid else _invalid_modulate
 
-func _draw_line(pos):
-	_prev_mouse_position = pos
-#	draw_line(_lock_position, pos, Color.WHITE)
-
+func _draw_speed(pos):
+	var distance = _lock_position.distance_to(pos)
+	$Position/Speed.value = distance
+	var direction = (_lock_position - get_global_mouse_position()).normalized()
+	$Position.rotation = direction.angle()
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			_is_locked = true
-			_lock_position = get_global_mouse_position()
+			if _is_valid:
+				_is_locked = true
+				_lock_position = get_global_mouse_position()
 		
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			queue_free()
 	
 	if event is InputEventMouseButton and not event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and _is_locked:
 			var direction = (_lock_position - get_global_mouse_position()).normalized()
 			emit_signal("spawn_projectile", load(_projectile_scene).instantiate(), _lock_position, direction)
 			queue_free()
