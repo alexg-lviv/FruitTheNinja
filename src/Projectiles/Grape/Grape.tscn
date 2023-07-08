@@ -12,7 +12,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("3_dggtm")
 
 [node name="DieTimer" type="Timer" parent="." index="3"]
-wait_time = 1.5
+wait_time = 0.75
 one_shot = true
 autostart = true
 

@@ -1,6 +1,6 @@
 extends "res://src/Projectiles/Projectile.gd"
 
-const CHILD_NUM: int = 7
+const CHILD_NUM: int = 5
 const CHILD_SPEED: int = 300
 
 var is_supposed_to_die: bool = false
@@ -23,7 +23,7 @@ func _create_children():
 	for i in CHILD_NUM:
 		var ins = GrapeChild.instantiate()
 		var base_dir_ang = direction.angle()
-		base_dir_ang += rng.randf_range(-PI / 6.0, PI / 6.0)
+		base_dir_ang += rng.randf_range(-PI / 12.0, PI / 12.0)
 		ins.global_position = global_position
 		ins.direction = Vector2.RIGHT.rotated(base_dir_ang)
 		ins.speed = CHILD_SPEED + rng.randi_range(-75, 75)
