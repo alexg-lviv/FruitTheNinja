@@ -1,5 +1,6 @@
 extends "res://src/Projectiles/Projectile.gd"
 
+class_name Watermelon
 
 func _ready():
 	super._ready()

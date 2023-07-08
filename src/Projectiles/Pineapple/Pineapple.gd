@@ -1,12 +1,14 @@
 extends "res://src/Projectiles/Projectile.gd"
 
+class_name Pineapple
+
 var current_speed = 0
 
 func _ready():
 	super._ready()
-	rotation = direction.angle() + deg_to_rad(-90)
 
 func update_position(delta):
+	rotation = direction.angle() + deg_to_rad(-90)
 	position += direction * current_speed * delta
 
 func handle_logic():
