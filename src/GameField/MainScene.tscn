@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=22 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://vno74iskjocn" path="res://assets/aim_bar/under.png" id="8_jyixy"]
 [ext_resource type="Texture2D" uid="uid://g1imjaeflqxr" path="res://assets/aim_bar/over.png" id="9_ndt7q"]
 [ext_resource type="Texture2D" uid="uid://d144pu1ty6fx4" path="res://assets/aim_bar/progress.png" id="10_77g3h"]
+[ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -209,6 +210,10 @@ texture_over = ExtResource("9_ndt7q")
 texture_progress = ExtResource("10_77g3h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SlowMoEffect" parent="CanvasLayer" instance=ExtResource("11_0i5gp")]
+z_index = 10
+z_as_relative = false
 
 [node name="Projectiles" type="Node2D" parent="."]
 
