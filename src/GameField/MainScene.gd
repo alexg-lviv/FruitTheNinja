@@ -28,7 +28,6 @@ var _slowmo_tween
 
 func _ready():
 	slowmo_time *= slowmo_slow
-	print(slowmo_time)
 	_slowmo_timer.wait_time = slowmo_time
 	$SlowmoProgress.max_value = slowmo_time
 	set_physics_process(false)

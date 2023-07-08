@@ -60,9 +60,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcdyl")
-slowmo_time = 3.0
+slowmo_time = 5.0
 slowmo_slow = 0.1
-slowmo_cd = 3.0
+slowmo_cd = 5.0
 
 [node name="ShakeCamera2D" parent="." instance=ExtResource("2_ytone")]
 
