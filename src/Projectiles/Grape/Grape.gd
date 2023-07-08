@@ -27,6 +27,7 @@ func _create_children():
 		ins.global_position = global_position
 		ins.direction = Vector2.RIGHT.rotated(base_dir_ang)
 		ins.speed = CHILD_SPEED + rng.randi_range(-75, 75)
+		Projectiles.spawned.append(ins)
 		get_parent().add_child(ins)
 	
 
