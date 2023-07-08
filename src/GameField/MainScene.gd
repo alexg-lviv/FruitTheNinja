@@ -19,7 +19,6 @@ var _left_bar_tween
 
 
 func _ready():
-	print(_ai_rect)
 	for butt in _projectiles_butts:
 		butt.pressed.connect(_on_projectile_butt_pressed.bind(butt))
 
