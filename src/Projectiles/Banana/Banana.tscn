@@ -12,3 +12,7 @@ base_damage = 15
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3, 3)
 texture = ExtResource("3_lmx21")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+position = Vector2(-162.909, -162.909)
+scale = Vector2(2.90909, 2.90909)
