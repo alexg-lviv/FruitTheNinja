@@ -8,6 +8,7 @@ var current_velocity = Vector2.ZERO
 
 func _ready():
 	super._ready()
+	color = Color(1.00, 0.951, 0.0200)
 
 func update_position(delta):
 	current_velocity.x = speed * direction.x * clamp(TIME_TO_RETURN - elapsed_time, -1, 1)

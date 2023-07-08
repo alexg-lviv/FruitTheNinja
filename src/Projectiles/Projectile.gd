@@ -50,7 +50,7 @@ func die():
 	is_dead = true
 	AnimPlayer.play("simple_death")
 	DeathTimer.start()
-	DecalSystem.add_decals(global_position, color)
+	DecalSystem.add_decals(global_position, color, size)
 
 func _on_death_timer_timeout():
 	queue_free()

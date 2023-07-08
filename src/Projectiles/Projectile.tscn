@@ -28,6 +28,7 @@ _data = {
 }
 
 [node name="Projectile" type="Area2D"]
+z_index = 2
 script = ExtResource("1_8jjan")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

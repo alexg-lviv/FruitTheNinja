@@ -61,7 +61,7 @@ _data = {
 
 [node name="SplashDecal" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.501961)
-z_index = 50
+z_index = 1
 z_as_relative = false
 texture_filter = 2
 material = SubResource("ShaderMaterial_4kaqf")
