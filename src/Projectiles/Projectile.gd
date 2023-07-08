@@ -47,6 +47,7 @@ func update_rotation(delta):
 
 func handle_logic():
 	if bounce_count >= 1:
+		Signals.emit_signal("camera_shake_requested", size / 2, 0.3)
 		die()
 
 func handle_death():
