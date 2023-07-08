@@ -90,6 +90,16 @@ one_shot = true
 wait_time = 4.0
 one_shot = true
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 5
+offset_left = -10.0
+offset_top = -42.0
+offset_right = 10.0
+offset_bottom = -38.0
+value = 20.0
+allow_greater = true
+show_percentage = false
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="EnclosureTimer" to="." method="_on_enclosure_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
