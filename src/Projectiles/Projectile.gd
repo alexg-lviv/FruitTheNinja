@@ -23,6 +23,8 @@ var elapsed_time = 0
 
 func _ready():
 	size = $CollisionShape2D.shape.radius
+	$DeathParticles.emitting = false
+	$DeathTimer.wait_time = $DeathParticles.lifetime
 #	if FieldArea != null:
 #		FieldArea.connect("body_entered", _on_field_area_area_entered)
 
@@ -46,16 +48,20 @@ func update_rotation(delta):
 	rotation += rotation_speed * delta
 
 func handle_logic():
-	if bounce_count >= 1:
+	if bounce_count >= 1 and !is_dead:
 		die()
 
 func handle_death():
 	pass
 
 func die():
+	if is_dead:
+		return
+	
 	is_dead = true
 	AnimPlayer.play("simple_death")
 	DeathTimer.start()
+	$DeathParticles.emitting = true
 	DecalSystem.add_decals(global_position, color, size)
 
 func _on_death_timer_timeout():
