@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ulydrceem7fg"]
+[gd_scene load_steps=4 format=3 uid="uid://ulydrceem7fg"]
 
 [ext_resource type="Script" path="res://src/UI/ProjectileButt.gd" id="1_5nudt"]
-[ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="1_xv013"]
+[ext_resource type="Texture2D" uid="uid://dr2rewwi7jo0o" path="res://assets/butts/launch.png" id="1_yxtie"]
+[ext_resource type="Texture2D" uid="uid://dj4u1k54fyqtg" path="res://assets/fruits/Banana.png" id="2_j1m41"]
 
 [node name="ProjectileButt" type="TextureButton"]
 custom_minimum_size = Vector2(100, 100)
 pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("1_yxtie")
+stretch_mode = 5
 script = ExtResource("1_5nudt")
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -13,12 +16,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_xv013")
+texture = ExtResource("2_j1m41")
 expand_mode = 1
 stretch_mode = 5

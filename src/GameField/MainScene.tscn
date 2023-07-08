@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=12 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -19,6 +19,15 @@ shader = ExtResource("4_7j0s5")
 shader_parameter/deform = Vector2(2.08165e-12, 2.08165e-12)
 shader_parameter/offset = Vector2(3, 3)
 shader_parameter/modulate = Color(0.14902, 0.0666667, 0.239216, 0.392157)
+
+[sub_resource type="Gradient" id="Gradient_iwgk8"]
+offsets = PackedFloat32Array(0, 0.583871, 1)
+colors = PackedColorArray(1, 0.8, 0, 0.305882, 0.25098, 0.262745, 0.376471, 0.0745098, 0.231373, 0.145098, 0.439216, 0.654902)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rxtjk"]
+gradient = SubResource("Gradient_iwgk8")
+fill_from = Vector2(0.174312, 0.183486)
+fill_to = Vector2(1, 1)
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -60,10 +69,10 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -454.0
-offset_top = -3.0
-offset_right = 383.0
-offset_bottom = 70.0
+offset_left = -452.0
+offset_top = 15.0
+offset_right = 385.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.0996749
@@ -97,6 +106,15 @@ offset_right = -241.0
 offset_bottom = -192.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Gradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rxtjk")
 
 [node name="VBoxLeft" type="VBoxContainer" parent="."]
 layout_mode = 1
