@@ -39,9 +39,9 @@ func _input(event):
 func _on_projectile_butt_pressed(butt):
 	_preview = load("res://src/ProjectilesLauncher/Launcher.tscn").instantiate()
 	$CanvasLayer.add_child(_preview)
-	_preview.spawn_projectile.connect(_spawn_projectile)
 	_preview.init_set(butt.projectile_scene, butt.projectile_texture, _aim_rect, _ai_rect)
-
+	_preview.spawn_projectile.connect(_spawn_projectile)
+	
 	_hide_bars()
 	_preview.tree_exited.connect(_show_bars)
 	

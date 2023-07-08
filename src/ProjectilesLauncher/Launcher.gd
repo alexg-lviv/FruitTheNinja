@@ -34,7 +34,11 @@ func init_set(proj_scene, proj_texture, aim_rect, ai_rect):
 	_is_locked = false
 	_aim_rect = aim_rect
 	_ai_rect = ai_rect
+	
 	visible = true
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel()
+	tween.tween_property($Position/Icon, "scale", Vector2.ONE, 0.3).from(Vector2.ZERO)
+	tween.tween_property($Position/Icon, "rotation_degrees", 0, 0.3).from(120)
 
 func _update_validness(_pos):
 	_is_valid = _aim_rect.has_point(_pos) and not _ai_rect.has_point(_pos)
