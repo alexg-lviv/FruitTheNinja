@@ -6,6 +6,7 @@ const _valid_modulate = Color.GREEN
 const _invalid_modulate = Color.RED
 
 var _projectile_scene
+var _butt
 
 var _is_valid: bool
 var _is_locked: bool
@@ -28,9 +29,10 @@ func _physics_process(delta):
 func _ready():
 	visible = false
 
-func init_set(proj_scene, proj_texture, aim_rect, ai_rect):
-	_projectile_scene = proj_scene
-	$Position/Icon.texture_normal = proj_texture
+func init_set(butt, aim_rect, ai_rect):
+	_butt = butt
+	_projectile_scene = butt.projectile_scene
+	$Position/Icon.texture_normal = butt.projectile_texture
 	_is_locked = false
 	_aim_rect = aim_rect
 	_ai_rect = ai_rect
@@ -41,7 +43,7 @@ func init_set(proj_scene, proj_texture, aim_rect, ai_rect):
 	tween.tween_property($Position/Icon, "rotation_degrees", 0, 0.3).from(120)
 
 func _update_validness(_pos):
-	_is_valid = _aim_rect.has_point(_pos) and not _ai_rect.has_point(_pos)
+	_is_valid = _aim_rect.has_point(_pos) and not _ai_rect.has_point(_pos) and not _butt.disabled
 
 func _draw_icon(pos):
 	$Position.position = pos
