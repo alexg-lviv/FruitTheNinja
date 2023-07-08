@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjglwbk2mn3ms"]
+[gd_scene load_steps=8 format=3 uid="uid://bjglwbk2mn3ms"]
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_a55c4"]
 [ext_resource type="Script" path="res://src/Projectiles/Pineapple/Pineapple.gd" id="2_3j7xm"]
 [ext_resource type="Texture2D" uid="uid://c7wdmyhjdch08" path="res://assets/fruits/Pineapple.png" id="3_tqjlg"]
+[ext_resource type="AudioStream" uid="uid://b137kr1okyyvt" path="res://assets/sound/pineaple_explosion.mp3" id="4_jynp1"]
 
 [sub_resource type="Curve" id="Curve_51us0"]
 _data = [Vector2(0.777108, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -13,13 +14,16 @@ curve = SubResource("Curve_51us0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_llvc5"]
 emission_shape = 1
-emission_sphere_radius = 3.69
+emission_sphere_radius = 9.08
 particle_flag_disable_z = true
+spread = 81.47
 gravity = Vector3(0, -98, 0)
+initial_velocity_min = 52.63
+initial_velocity_max = 52.64
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_min = 3.0
-scale_max = 4.0
+scale_min = 9.0
+scale_max = 10.0
 scale_curve = SubResource("CurveTexture_b2bmu")
 
 [node name="Pineapple" instance=ExtResource("1_a55c4")]
@@ -30,10 +34,23 @@ speed = 5000.0
 scale = Vector2(3.375, 3.375)
 texture = ExtResource("3_tqjlg")
 
+[node name="VisibleOnScreenNotifier2D" parent="." index="4"]
+scale = Vector2(6.4, 6.4)
+
 [node name="DeathParticles" parent="." index="5"]
 modulate = Color(1, 0.960784, 0.25098, 1)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="6"]
+[node name="TrailParticles" type="GPUParticles2D" parent="." index="6"]
 position = Vector2(1, -20)
-amount = 64
+amount = 256
 process_material = SubResource("ParticleProcessMaterial_llvc5")
+
+[node name="HitPlayer" parent="." index="7"]
+stream = ExtResource("4_jynp1")
+volume_db = -3.0
+pitch_scale = 2.0
+
+[node name="DeathSound" parent="." index="8"]
+stream = ExtResource("4_jynp1")
+volume_db = -6.0
+pitch_scale = 2.0

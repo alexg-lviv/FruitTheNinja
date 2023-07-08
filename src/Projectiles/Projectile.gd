@@ -16,7 +16,6 @@ var bounce_count = 0
 
 @onready var AnimPlayer: AnimationPlayer = get_node("AnimationPlayer")
 @onready var DeathTimer: Timer = get_node("DeathTimer")
-#@onready var FieldArea: Area2D = get_tree().get_current_scene().get_node("FieldArea")
 
 # For calculating trajectory based on elapsed time
 var elapsed_time = 0
@@ -25,8 +24,6 @@ func _ready():
 	size = $CollisionShape2D.shape.radius
 	$DeathParticles.emitting = false
 	$DeathTimer.wait_time = $DeathParticles.lifetime
-#	if FieldArea != null:
-#		FieldArea.connect("body_entered", _on_field_area_area_entered)
 
 func _process(delta):
 	elapsed_time += delta
@@ -49,6 +46,7 @@ func update_rotation(delta):
 
 func handle_logic():
 	if bounce_count >= 1 and !is_dead:
+		$HitPlayer.play()
 		Signals.emit_signal("camera_shake_requested", size / 1.5, 0.3)
 		die()
 
@@ -59,6 +57,7 @@ func die():
 	if is_dead:
 		return
 	
+	$DeathSound.play()
 	is_dead = true
 	AnimPlayer.play("simple_death")
 	DeathTimer.start()

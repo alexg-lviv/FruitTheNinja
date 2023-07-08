@@ -25,3 +25,11 @@ func handle_logic():
 		current_speed += 30
 	
 	current_speed = min(speed, current_speed)
+
+func die():
+	super.die()
+	$TrailParticles.emitting = false
+	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	die()

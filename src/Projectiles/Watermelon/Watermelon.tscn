@@ -1,11 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjbtcfcs5b8ba"]
+[gd_scene load_steps=8 format=3 uid="uid://bjbtcfcs5b8ba"]
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_7r63x"]
 [ext_resource type="Script" path="res://src/Projectiles/Watermelon/Watermelon.gd" id="2_xo3ix"]
 [ext_resource type="Texture2D" uid="uid://r4mtddr7mo3a" path="res://assets/fruits/Watermelon.png" id="3_oomir"]
+[ext_resource type="AudioStream" uid="uid://dm24quwsu04jn" path="res://assets/sound/watermelon_hit.mp3" id="4_d8h7p"]
+[ext_resource type="AudioStream" uid="uid://c6vkay83p6100" path="res://assets/sound/squish.mp3" id="5_av6dn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7moqn"]
 radius = 24.0
+
+[sub_resource type="Curve" id="Curve_672nd"]
+_data = [Vector2(0.572289, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y5x5y"]
+curve = SubResource("Curve_672nd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_60c4f"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = -27.37
+linear_accel_max = -10.53
+damping_min = 64.21
+damping_max = 93.68
+angle_min = -229.3
+angle_max = 164.8
+scale_min = 8.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_y5x5y")
 
 [node name="Watermelon" instance=ExtResource("1_7r63x")]
 script = ExtResource("2_xo3ix")
@@ -20,3 +50,22 @@ texture = ExtResource("3_oomir")
 
 [node name="DeathParticles" parent="." index="5"]
 modulate = Color(0.996078, 0.196078, 0, 1)
+emitting = false
+
+[node name="CrashParticles" type="GPUParticles2D" parent="." index="6"]
+modulate = Color(0.996078, 0.196078, 0, 1)
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_60c4f")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+
+[node name="HitPlayer" parent="." index="6"]
+stream = ExtResource("4_d8h7p")
+volume_db = 3.0
+pitch_scale = 1.08
+
+[node name="DeathSound" parent="." index="7"]
+stream = ExtResource("5_av6dn")
+pitch_scale = 0.5
