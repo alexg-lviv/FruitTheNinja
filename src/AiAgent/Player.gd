@@ -85,3 +85,7 @@ func _on_enclosure_timer_timeout():
 	enclosure_steer_direction = Vector2.ZERO
 	do_enclosure_steer = false
 	
+
+
+func _on_area_entered(area):
+	area.die()
