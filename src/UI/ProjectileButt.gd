@@ -9,3 +9,4 @@ func _ready():
 	projectile_scene = "res://src/Projectiles/" + projectile + "/" + projectile + ".tscn"
 	$Icon.texture = load("res://assets/fruits/" + projectile + ".png")
 	projectile_texture = $Icon.texture
+

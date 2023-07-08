@@ -8,6 +8,10 @@ var damage = base_damage + speed * DAMAGE_COEFFICIENT
 var direction = Vector2.RIGHT
 var size = 1.0
 var is_dead = false
+var is_finished_dying: bool = false;
+
+@onready var AnimPlayer: AnimationPlayer = get_node("AnimationPlayer")
+@onready var DeathTimer: Timer = get_node("DeathTimer")
 
 # For calculating trajectory based on elapsed time
 var elapsed_time = 0
@@ -38,3 +42,12 @@ func handle_death():
 
 func die():
 	is_dead = true
+	AnimPlayer.play("simple_death")
+	DeathTimer.start()
+
+func _on_death_timer_timeout():
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()

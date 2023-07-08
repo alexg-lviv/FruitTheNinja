@@ -1,10 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://vy6xu767jks6"]
+[gd_scene load_steps=6 format=3 uid="uid://vy6xu767jks6"]
 
 [ext_resource type="Script" path="res://src/Projectiles/Projectile.gd" id="1_8jjan"]
 [ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="2_s0yao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3las"]
-radius = 30.0
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_wfxei"]
+resource_name = "simple_death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lf7hj"]
+_data = {
+"simple_death": SubResource("Animation_wfxei")
+}
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource("1_8jjan")
@@ -17,3 +38,15 @@ scale = Vector2(0.359375, 0.359375)
 texture = ExtResource("2_s0yao")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lf7hj")
+}
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

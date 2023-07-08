@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://yc4radmgw7cm"]
+[gd_scene load_steps=3 format=3 uid="uid://ulydrceem7fg"]
 
 [ext_resource type="Script" path="res://src/UI/ProjectileButt.gd" id="1_5nudt"]
 [ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="1_xv013"]
