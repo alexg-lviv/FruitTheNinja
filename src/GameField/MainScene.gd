@@ -92,6 +92,7 @@ func _input(event):
 		else:
 			if _slowmo_tween and _slowmo_tween.is_running():
 				_slowmo_tween.kill()
+			$CanvasLayer/SlowMoEffect.activate()
 			Engine.time_scale = slowmo_slow
 			_is_slowmo = true
 			set_physics_process(true)
@@ -103,6 +104,7 @@ func _on_slowmo_timer_timeout():
 
 
 func _reset_time_scale():
+	$CanvasLayer/SlowMoEffect.deactivate()
 	Engine.time_scale = 1
 	_is_slowmo = false
 	set_physics_process(false)
