@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqvwmo4c4e234"]
+
+[ext_resource type="Script" path="res://src/Camera/ShakeCamera2D.gd" id="1_fv34f"]
+
+[node name="ShakeCamera2D" type="Camera2D"]
+anchor_mode = 0
+script = ExtResource("1_fv34f")
+damp_easing = 2.0
+
+[node name="ShakeTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]
