@@ -1,6 +1,6 @@
 extends Control
 
-signal spawn_projectile(projectile, pos, direction)
+signal spawn_projectile(projectile, pos, direction, speed_coef)
 
 const _valid_modulate = Color.GREEN
 const _invalid_modulate = Color.RED
@@ -15,6 +15,8 @@ var _lock_position: Vector2
 
 var _aim_rect: Rect2
 var _ai_rect: Rect2
+
+@onready var _base_tint = $Position/Speed.tint_progress.g
 
 
 func _physics_process(delta):
@@ -54,6 +56,8 @@ func _draw_speed(pos, delta):
 	$Position/Speed.value = distance
 	var direction = (_lock_position - get_global_mouse_position()).normalized()
 	$Position.rotation = direction.angle()
+	print(clampf(distance, 1, 100))
+	$Position/Speed.tint_progress.g = _base_tint - clampf(distance, 1, 100) / 200
 	
 	$ProjectileTrajectory.global_position = _lock_position / 2
 	$ProjectileTrajectory.update_trajectory(direction, 500, 10, 0.1, delta)
@@ -68,5 +72,7 @@ func _on_gui_input(event):
 		if direction.length() <= 0.05:
 			_is_locked = false
 		else:
-			emit_signal("spawn_projectile", load(_projectile_scene).instantiate(), _lock_position, direction)
+			var distance = _lock_position.distance_to(get_global_mouse_position())
+			var speed_coef = clampf(0.01 * distance, 0.5, 1.2)
+			emit_signal("spawn_projectile", load(_projectile_scene).instantiate(), _lock_position, direction, speed_coef)
 			queue_free()

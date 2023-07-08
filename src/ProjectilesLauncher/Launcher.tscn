@@ -33,6 +33,7 @@ mouse_filter = 2
 fill_mode = 1
 nine_patch_stretch = true
 texture_progress = ExtResource("2_5jp8e")
+tint_progress = Color(1, 0.878431, 0.329412, 1)
 
 [node name="Icon" type="TextureButton" parent="Position"]
 layout_mode = 1

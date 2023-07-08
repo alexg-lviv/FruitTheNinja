@@ -47,9 +47,10 @@ func _on_projectile_butt_pressed(butt):
 	_preview.tree_exited.connect(_show_bars)
 	
 
-func _spawn_projectile(projectile, pos, direction, butt):
+func _spawn_projectile(projectile, pos, direction, speed_coef, butt):
 	$Projectiles.add_child(projectile)
 	projectile.position = pos
+	projectile.speed *= speed_coef
 	projectile.set_direction(direction)
 	Projectiles.spawned.append(projectile)
 	
