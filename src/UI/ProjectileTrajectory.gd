@@ -2,9 +2,6 @@ extends Line2D
 
 const MAX_POINTS: int = 200
 
-func _ready():
-	update_trajectory(Vector2(1, 1).normalized(), 10, 10, 0.5, 0)
-
 
 func update_trajectory(
 		dir: Vector2,
@@ -37,4 +34,4 @@ func update_trajectory(
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	show()
-	update_trajectory(Vector2(1, 1).normalized(), 500, 10, 0.5, delta)
+
