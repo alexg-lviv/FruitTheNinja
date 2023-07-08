@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjrxlatq12cn"]
+[gd_scene load_steps=8 format=3 uid="uid://bjrxlatq12cn"]
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_0slcs"]
 [ext_resource type="Script" path="res://src/Projectiles/Banana/Banana.gd" id="2_dbq6w"]
@@ -6,6 +6,35 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3fqu"]
 radius = 24.0
+
+[sub_resource type="Curve" id="Curve_672nd"]
+_data = [Vector2(0.572289, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y5x5y"]
+curve = SubResource("Curve_672nd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f4md3"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = -27.37
+linear_accel_max = -10.53
+damping_min = 64.21
+damping_max = 93.68
+angle_min = -229.3
+angle_max = 164.8
+scale_min = 8.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_y5x5y")
+color = Color(0.984314, 0.988235, 0.00784314, 1)
 
 [node name="Banana" instance=ExtResource("1_0slcs")]
 script = ExtResource("2_dbq6w")
@@ -22,3 +51,6 @@ texture = ExtResource("3_lmx21")
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]
 position = Vector2(-1.52588e-05, -1.00002)
 scale = Vector2(19.2, 19.1)
+
+[node name="DeathParticles" parent="." index="5"]
+process_material = SubResource("ParticleProcessMaterial_f4md3")
