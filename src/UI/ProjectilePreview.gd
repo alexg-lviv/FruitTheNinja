@@ -23,7 +23,7 @@ func _physics_process(delta):
 	
 	if _is_locked:
 #		if not _ai_rect.has_point(_pos):
-		_draw_speed(_pos)
+		_draw_speed(_pos, delta)
 	else:
 		_draw_icon(_pos)
 
@@ -41,11 +41,13 @@ func _draw_icon(pos):
 	$Position.position = pos
 	$Position/Icon.self_modulate = _valid_modulate if _is_valid else _invalid_modulate
 
-func _draw_speed(pos):
+func _draw_speed(pos, delta):
 	var distance = _lock_position.distance_to(pos)
 	$Position/Speed.value = distance
 	var direction = (_lock_position - get_global_mouse_position()).normalized()
 	$Position.rotation = direction.angle()
+	
+	$Position/Trajectory/ProjectileTrajectory.update_trajectory(direction, 500, 5, 0.1, delta)
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
