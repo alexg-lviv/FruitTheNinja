@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://crn3rf6fql7yv"]
+[gd_scene load_steps=8 format=3 uid="uid://crn3rf6fql7yv"]
 
 [ext_resource type="Shader" path="res://src/Effects/shaders/s.gdshader" id="1_rxccq"]
+[ext_resource type="Script" path="res://src/Effects/SlowMoEffect/SlowMoEffect.gd" id="2_bq4cc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8jdw0"]
 shader = ExtResource("1_rxccq")
@@ -68,6 +69,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_bq4cc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FUCK"
