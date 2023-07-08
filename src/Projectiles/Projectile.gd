@@ -2,6 +2,7 @@ extends Area2D
 
 const DAMAGE_COEFFICIENT = 0.1
 
+@export var rotation_speed = 5
 @export var base_damage = 20
 @export var speed = 500.0
 var damage = base_damage + speed * DAMAGE_COEFFICIENT
@@ -25,6 +26,7 @@ func _process(delta):
 func _physics_process(delta):
 	if (!is_dead):
 		update_position(delta)
+		update_rotation(delta)
 		handle_logic()
 	handle_death()
 
@@ -33,6 +35,9 @@ func set_direction(dir: Vector2):
 
 func update_position(delta):
 	position += direction * speed * delta
+	
+func update_rotation(delta):
+	rotation += rotation_speed * delta
 
 func handle_logic():
 	pass

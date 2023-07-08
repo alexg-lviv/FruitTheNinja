@@ -6,6 +6,7 @@
 
 [node name="Watermelon" instance=ExtResource("1_7r63x")]
 script = ExtResource("2_xo3ix")
+rotation_speed = 10
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.625, 3.625)
