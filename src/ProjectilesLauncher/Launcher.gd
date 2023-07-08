@@ -56,7 +56,6 @@ func _draw_speed(pos, delta):
 	$Position/Speed.value = distance
 	var direction = (_lock_position - get_global_mouse_position()).normalized()
 	$Position.rotation = direction.angle()
-	print(clampf(distance, 1, 100))
 	$Position/Speed.tint_progress.g = _base_tint - clampf(distance, 1, 100) / 200
 	
 	$ProjectileTrajectory.global_position = _lock_position / 2

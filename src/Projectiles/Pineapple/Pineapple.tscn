@@ -1,8 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjglwbk2mn3ms"]
+[gd_scene load_steps=7 format=3 uid="uid://bjglwbk2mn3ms"]
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_a55c4"]
 [ext_resource type="Script" path="res://src/Projectiles/Pineapple/Pineapple.gd" id="2_3j7xm"]
 [ext_resource type="Texture2D" uid="uid://c7wdmyhjdch08" path="res://assets/fruits/Pineapple.png" id="3_tqjlg"]
+
+[sub_resource type="Curve" id="Curve_51us0"]
+_data = [Vector2(0.777108, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b2bmu"]
+curve = SubResource("Curve_51us0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_llvc5"]
+emission_shape = 1
+emission_sphere_radius = 3.69
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_b2bmu")
 
 [node name="Pineapple" instance=ExtResource("1_a55c4")]
 script = ExtResource("2_3j7xm")
@@ -11,3 +29,11 @@ speed = 5000.0
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.375, 3.375)
 texture = ExtResource("3_tqjlg")
+
+[node name="DeathParticles" parent="." index="5"]
+modulate = Color(1, 0.960784, 0.25098, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="6"]
+position = Vector2(1, -20)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_llvc5")
