@@ -15,7 +15,6 @@ func _ready():
 	super._ready()
 	speed = 350
 
-
 func handle_logic():
 	if (is_supposed_to_die):
 		_create_children()
