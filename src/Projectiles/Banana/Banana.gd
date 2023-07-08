@@ -8,6 +8,7 @@ var current_velocity = Vector2.ZERO
 
 func _ready():
 	super._ready()
+	color = Color(1.00, 0.951, 0.0200)
 
 func handle_logic():
 	pass

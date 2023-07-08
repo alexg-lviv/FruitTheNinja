@@ -149,22 +149,27 @@ grow_vertical = 2
 layout_mode = 2
 mouse_filter = 1
 projectile = "Apple"
+cd = 0.5
 
 [node name="Banana" parent="VBoxLeft" instance=ExtResource("4_p185g")]
 layout_mode = 2
 projectile = "Banana"
+cd = 0.5
 
 [node name="Grape" parent="VBoxLeft" instance=ExtResource("4_p185g")]
 layout_mode = 2
 projectile = "Grape"
+cd = 1.0
 
 [node name="Pineapple" parent="VBoxLeft" instance=ExtResource("4_p185g")]
 layout_mode = 2
 projectile = "Pineapple"
+cd = 5.0
 
 [node name="Watermelon" parent="VBoxLeft" instance=ExtResource("4_p185g")]
 layout_mode = 2
 projectile = "Watermelon"
+cd = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

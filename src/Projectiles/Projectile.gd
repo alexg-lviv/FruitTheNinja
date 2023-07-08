@@ -9,6 +9,7 @@ var damage = base_damage + speed * DAMAGE_COEFFICIENT
 var direction = Vector2.RIGHT
 var size = 1.0
 var is_dead = false
+var color: Color = Color(1, 1, 1)
 var is_finished_dying: bool = false;
 var on_field = false
 var bounce_count = 0
@@ -55,10 +56,10 @@ func die():
 	is_dead = true
 	AnimPlayer.play("simple_death")
 	DeathTimer.start()
+	DecalSystem.add_decals(global_position, color, size)
 
 func _on_death_timer_timeout():
 	queue_free()
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

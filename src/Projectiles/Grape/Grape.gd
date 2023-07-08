@@ -14,6 +14,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	super._ready()
 	speed = 350
+	color = Color(0.445, 0.195, 0.750)
 
 func handle_logic():
 	if (is_supposed_to_die):

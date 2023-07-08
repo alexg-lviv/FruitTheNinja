@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="2_s0yao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3las"]
-radius = 29.0172
+radius = 16.0
 
 [sub_resource type="Animation" id="Animation_wfxei"]
 resource_name = "simple_death"
@@ -27,7 +27,8 @@ _data = {
 "simple_death": SubResource("Animation_wfxei")
 }
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" groups=["projectiles"]]
+z_index = 2
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_8jjan")

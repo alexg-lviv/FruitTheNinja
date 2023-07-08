@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn42rr42cahhm"]
+
+[ext_resource type="Script" path="res://src/Effects/DecalSystem.gd" id="1_5jkmg"]
+
+[node name="DecalSystem" type="Node2D"]
+script = ExtResource("1_5jkmg")
