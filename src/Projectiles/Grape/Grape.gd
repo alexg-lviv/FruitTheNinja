@@ -19,6 +19,8 @@ func _ready():
 func handle_logic():
 	if (is_supposed_to_die):
 		_create_children()
+		Signals.emit_signal("camera_shake_requested", size, 0.2)
+		Signals.emit_signal("frame_freeze_requested", 10)
 		die()
 
 func _create_children():

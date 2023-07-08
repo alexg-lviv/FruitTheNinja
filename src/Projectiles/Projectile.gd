@@ -49,6 +49,7 @@ func update_rotation(delta):
 
 func handle_logic():
 	if bounce_count >= 1 and !is_dead:
+		Signals.emit_signal("camera_shake_requested", size / 1.5, 0.3)
 		die()
 
 func handle_death():
@@ -63,7 +64,6 @@ func die():
 	DeathTimer.start()
 	$DeathParticles.emitting = true
 	DecalSystem.add_decals(global_position, color, size)
-	Signals.emit_signal("camera_shake_requested", 5.0, 0.2)
 
 func _on_death_timer_timeout():
 	queue_free()
