@@ -1,5 +1,9 @@
 extends Control
 
+@export var slowmo_time: float
+@export var slowmo_slow: float
+@export var slowmo_cd: float
+
 @onready var _projectiles_butts = $VBoxLeft.get_children()
 
 @onready var _aim_rect = $AimField.get_rect() as Rect2
@@ -17,10 +21,22 @@ var _left_bar_tween
 	"launch_watermelon": $VBoxLeft/Watermelon,
 }
 
+var _is_slowmo := false
+@onready var _slowmo_timer = $SlowmoTimer
+var _slowmo_tween
+
 
 func _ready():
+	slowmo_time *= slowmo_slow
+	_slowmo_timer.wait_time = slowmo_time
+	$SlowmoProgress.max_value = slowmo_time
+	set_physics_process(false)
 	for butt in _projectiles_butts:
 		butt.pressed.connect(_on_projectile_butt_pressed.bind(butt))
+
+
+func _physics_process(delta):
+	$SlowmoProgress.value = _slowmo_timer.time_left
 
 
 func _input(event):
@@ -34,7 +50,39 @@ func _input(event):
 	
 	if event.is_action_pressed("ui_cancel") and _preview != null:
 		_preview.queue_free()
-		
+	
+	if event.is_action_pressed("slowmo"):
+		if _is_slowmo:
+			_reset_time_scale()
+		else:
+			if _slowmo_tween and _slowmo_tween.is_running():
+				_slowmo_tween.kill()
+			Engine.time_scale = slowmo_slow
+			_is_slowmo = true
+			set_physics_process(true)
+			_slowmo_timer.start()
+
+
+func _on_slowmo_timer_timeout():
+	_reset_time_scale()
+
+
+func _reset_time_scale():
+	Engine.time_scale = 1
+	_is_slowmo = false
+	set_physics_process(false)
+	
+	_slowmo_timer.wait_time = clampf(_slowmo_timer.time_left, 0.00001, slowmo_time)
+	_slowmo_timer.stop()
+	_reload_slowmo_timer()
+
+
+func _reload_slowmo_timer():
+	if _slowmo_tween and _slowmo_tween.is_running():
+		_slowmo_tween.kill()
+	_slowmo_tween = get_tree().create_tween().set_parallel()
+	_slowmo_tween.tween_property(_slowmo_timer, "wait_time", slowmo_time, (1 - _slowmo_timer.wait_time / slowmo_time) * slowmo_cd)
+	_slowmo_tween.tween_property($SlowmoProgress, "value", slowmo_time, slowmo_cd)
 
 
 func _on_projectile_butt_pressed(butt):
