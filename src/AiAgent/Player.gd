@@ -1,14 +1,16 @@
 extends Area2D
 
-@export var _speed = 70
+@export var _speed = 100
 var velocity: Vector2 = Vector2.ZERO
 
-@export var enclosure_zone: Rect2 = Rect2(16, 16, 480, 256)
+#@export var enclosure_zone: Rect2 = Rect2(16, 16, 480, 256)
+@onready var enclosure_zone: Rect2 = get_node("../AiField").get_rect() as Rect2
+const ENCLOSURE_ZONE_PADDING: int = 40
 
 var wander_angle: float = 0
 
-const WANDER_RAND: float = 0.8
-const WANDER_CIRCLE_RADIUS: int = 2
+const WANDER_RAND: float = 0.4
+const WANDER_CIRCLE_RADIUS: int = 12
 
 
 func _process(delta):
@@ -35,13 +37,13 @@ func wander_steering() -> Vector2:
 func enclosure_steering() -> Vector2:
 	var steer_direction: Vector2 = Vector2.ZERO
 	
-	if position.x < enclosure_zone.position.x:
+	if position.x < enclosure_zone.position.x + ENCLOSURE_ZONE_PADDING:
 		steer_direction.x = 1
-	elif position.x > enclosure_zone.position.x + enclosure_zone.size.x:
+	elif position.x > enclosure_zone.position.x + enclosure_zone.size.x - ENCLOSURE_ZONE_PADDING:
 		steer_direction.x -= 1
-	if position.y < enclosure_zone.position.y:
+	if position.y < enclosure_zone.position.y + ENCLOSURE_ZONE_PADDING:
 		steer_direction.y = 1
-	elif position.y > enclosure_zone.position.y + enclosure_zone.size.y:
+	elif position.y > enclosure_zone.position.y + enclosure_zone.size.y - ENCLOSURE_ZONE_PADDING:
 		steer_direction.y -= 1
 	
 	steer_direction = steer_direction.normalized()
