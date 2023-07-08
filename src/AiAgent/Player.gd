@@ -87,10 +87,7 @@ func _on_enclosure_timer_timeout():
 	do_enclosure_steer = false
 
 func get_damaged(damage: int):
-	tween = create_tween()
-	tween.tween_property(self, "self_modulate.g", 0., 1)
-	tween.tween_property(self, "self_modulate.b", 0., 1)
-	tween.set_trans(Tween.TRANS_SINE)
+	$AnimationPlayer.play("damage")
 	
 func _on_area_entered(area):
 	get_damaged(area.damage)
