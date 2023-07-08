@@ -26,7 +26,6 @@ func _process(delta):
 	if(do_enclosure_steer):
 		velocity = enclosure_steer_direction
 	velocity += wander_steering() 
-	print(avoid_fruits_steering())
 	velocity = velocity.normalized() * delta * _speed
 
 	position += velocity
