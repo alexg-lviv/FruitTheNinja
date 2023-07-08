@@ -11,5 +11,3 @@ rotation_speed = 10
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.625, 3.625)
 texture = ExtResource("3_oomir")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

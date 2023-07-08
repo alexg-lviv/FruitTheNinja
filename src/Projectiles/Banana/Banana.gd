@@ -9,6 +9,9 @@ var current_velocity = Vector2.ZERO
 func _ready():
 	super._ready()
 
+func handle_logic():
+	pass
+
 func update_position(delta):
 	current_velocity.x = speed * direction.x * clamp(TIME_TO_RETURN - elapsed_time, -1, 1)
 	current_velocity.y = speed * direction.y * clamp(TIME_TO_RETURN - elapsed_time, -1, 1)
