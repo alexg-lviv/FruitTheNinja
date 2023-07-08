@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ulydrceem7fg"]
+[gd_scene load_steps=8 format=3 uid="uid://ulydrceem7fg"]
 
 [ext_resource type="Script" path="res://src/UI/ProjectileButt.gd" id="1_5nudt"]
-[ext_resource type="Shader" path="res://src/UI/shaders/shadow.gdshader" id="1_jso7q"]
 [ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="1_uqsn1"]
 [ext_resource type="Texture2D" uid="uid://byjui6chypx6j" path="res://assets/butts/Custom Button Normal 2.png" id="1_vyixy"]
 [ext_resource type="Texture2D" uid="uid://ctgmwm7jo8pyi" path="res://assets/butts/Custom Button Disable 2.png" id="2_2fv2n"]
@@ -13,10 +12,9 @@ shader_parameter/radius = 4.0
 shader_parameter/modulate = Color(0.215686, 0.239216, 0.568627, 0.521569)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rhivq"]
-shader = ExtResource("1_jso7q")
-shader_parameter/deform = Vector2(2.08165e-12, 1)
-shader_parameter/offset = Vector2(2.08165e-12, -0.5)
-shader_parameter/modulate = Color(0.501961, 0.168627, 0, 0.568627)
+shader = ExtResource("1_uqsn1")
+shader_parameter/radius = 1.0
+shader_parameter/modulate = Color(0.337255, 0.458824, 0, 0.65098)
 
 [node name="ProjectileButt" type="Control"]
 custom_minimum_size = Vector2(100, 100)

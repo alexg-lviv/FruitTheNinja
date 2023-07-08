@@ -39,7 +39,15 @@ func _ready():
 	_slowmo_timer.wait_time = slowmo_time
 	$SlowmoProgress.max_value = slowmo_time
 	set_physics_process(false)
-	_populate()
+	
+	for i in range(4):
+		var b = _butt.instantiate()
+		b.projectile = _projectiles[randi() % _projectiles.size()]
+		$VBoxLeft.get_node(str(i+1)).add_child(b)
+		var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		t.tween_property(b, "scale", Vector2.ONE, 0.8).from(Vector2.ZERO)
+		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
+		
 	$PopulateTimer.start()
 
 
@@ -48,33 +56,32 @@ func _physics_process(delta):
 
 
 func _populate():
-	for ch in $VBoxLeft.get_children():
-		if ch.butt.disabled:
-			_projectiles_butts.erase(ch)
+	for i in range(4):
+		var butt = $VBoxLeft.get_child(i).get_child(0)
+		if butt.butt.disabled:
+			_projectiles_butts.erase(butt)
 			var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-			t.tween_property(ch, "scale", Vector2.ZERO, 0.5)
-			t.tween_property(ch, "rotation_degrees", -90, 0.5)
+			t.tween_property(butt, "scale", Vector2.ZERO, 0.5)
+			t.tween_property(butt, "rotation_degrees", -90, 0.5)
 			await t.finished
-			ch.queue_free()
-	
-	var diff = 4 - $VBoxLeft.get_child_count()
-	for i in range(diff):
-		var b = _butt.instantiate()
-		b.projectile = _projectiles[randi() % _projectiles.size()]
-		$VBoxLeft.add_child(b)
-		var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		t.tween_property(b, "scale", Vector2.ONE, 0.8).from(Vector2.ZERO)
-		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
+			butt.queue_free()
+			
+			var b = _butt.instantiate()
+			b.projectile = _projectiles[randi() % _projectiles.size()]
+			$VBoxLeft.get_child(i).add_child(b)
+			var t2 = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			t2.tween_property(b, "scale", Vector2.ONE, 0.8).from(Vector2.ZERO)
+			t2.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
 
 
 func _input(event):
 	for action in _actions:
 		if event.is_action_pressed(action) and _actions[action] <= len(_projectiles) - 1:
-			if $VBoxLeft.get_child(_actions[action]) != null and not $VBoxLeft.get_child(_actions[action]).butt.disabled:
+			if $VBoxLeft.get_child(_actions[action]).get_child_count() > 0 and not $VBoxLeft.get_child(_actions[action]).get_child(0).butt.disabled:
 				if _preview != null:
 					_preview.queue_free()
 					await _preview.tree_exited
-				launch_butt($VBoxLeft.get_child(_actions[action]))
+				launch_butt($VBoxLeft.get_child(_actions[action]).get_child(0))
 	
 	if event.is_action_pressed("ui_cancel") and _preview != null:
 		_preview.queue_free()

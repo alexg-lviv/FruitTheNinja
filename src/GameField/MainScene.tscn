@@ -164,6 +164,22 @@ grow_vertical = 2
 theme_override_constants/separation = -20
 alignment = 1
 
+[node name="1" type="Control" parent="VBoxLeft"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="2" type="Control" parent="VBoxLeft"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="3" type="Control" parent="VBoxLeft"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="4" type="Control" parent="VBoxLeft"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
 [node name="SlowmoProgress" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = -1
