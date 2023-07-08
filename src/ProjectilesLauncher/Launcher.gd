@@ -60,7 +60,8 @@ func _draw_speed(pos, delta):
 	$Position/Speed.tint_progress.g = _base_tint - clampf(distance, 1, 100) / 200
 	
 	$ProjectileTrajectory.global_position = _lock_position / 2
-	$ProjectileTrajectory.update_trajectory(direction, 500, 10, 0.1, delta)
+	var speed_coef = clampf(0.005 * distance, 0.01, 0.25)
+	$ProjectileTrajectory.update_trajectory(direction, 500, 10, speed_coef, delta, 0.0, false, Vector3($Position/Speed.tint_progress.r, $Position/Speed.tint_progress.g, $Position/Speed.tint_progress.b))
 
 func _on_gui_input(event):
 	if event.is_action_pressed("aim") and _is_valid:
