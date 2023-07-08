@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=20 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://covhicrdu1iu0" path="res://assets/backgrounds/carpet.png" id="3_kc82t"]
 [ext_resource type="Shader" path="res://src/UI/shaders/shadow.gdshader" id="4_7j0s5"]
 [ext_resource type="Texture2D" uid="uid://gr8j8k68ub8o" path="res://assets/backgrounds/table.png" id="4_ixhuf"]
-[ext_resource type="PackedScene" uid="uid://ulydrceem7fg" path="res://src/UI/ProjectileButt.tscn" id="4_p185g"]
 [ext_resource type="PackedScene" uid="uid://meav3ml5vmta" path="res://src/AiAgent/Player.tscn" id="5_7y0iy"]
 [ext_resource type="Texture2D" uid="uid://vno74iskjocn" path="res://assets/aim_bar/under.png" id="8_jyixy"]
 [ext_resource type="Texture2D" uid="uid://g1imjaeflqxr" path="res://assets/aim_bar/over.png" id="9_ndt7q"]
@@ -60,6 +59,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcdyl")
+populate_time = 5.0
 slowmo_time = 5.0
 slowmo_slow = 0.1
 slowmo_cd = 5.0
@@ -161,32 +161,7 @@ offset_top = 100.0
 offset_right = 150.0
 offset_bottom = -100.0
 grow_vertical = 2
-
-[node name="Apple" parent="VBoxLeft" instance=ExtResource("4_p185g")]
-layout_mode = 2
-mouse_filter = 1
-projectile = "Apple"
-cd = 0.5
-
-[node name="Banana" parent="VBoxLeft" instance=ExtResource("4_p185g")]
-layout_mode = 2
-projectile = "Banana"
-cd = 0.5
-
-[node name="Grape" parent="VBoxLeft" instance=ExtResource("4_p185g")]
-layout_mode = 2
-projectile = "Grape"
-cd = 1.0
-
-[node name="Pineapple" parent="VBoxLeft" instance=ExtResource("4_p185g")]
-layout_mode = 2
-projectile = "Pineapple"
-cd = 5.0
-
-[node name="Watermelon" parent="VBoxLeft" instance=ExtResource("4_p185g")]
-layout_mode = 2
-projectile = "Watermelon"
-cd = 5.0
+alignment = 1
 
 [node name="SlowmoProgress" type="TextureProgressBar" parent="."]
 layout_mode = 1
@@ -260,4 +235,7 @@ shape = SubResource("RectangleShape2D_2hwli")
 [node name="SlowmoTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="PopulateTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
+[connection signal="timeout" from="PopulateTimer" to="." method="_on_populate_timer_timeout"]
