@@ -11,3 +11,6 @@ speed = 5000.0
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.375, 3.375)
 texture = ExtResource("3_tqjlg")
+
+[node name="DeathParticles" parent="." index="5"]
+modulate = Color(1, 0.960784, 0.25098, 1)

@@ -17,3 +17,6 @@ shape = SubResource("CircleShape2D_7moqn")
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.625, 3.625)
 texture = ExtResource("3_oomir")
+
+[node name="DeathParticles" parent="." index="5"]
+modulate = Color(0.996078, 0.196078, 0, 1)
