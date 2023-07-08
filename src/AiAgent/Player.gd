@@ -19,17 +19,27 @@ const ENCLOSURE_MUL: int = 10
 @onready var EnclosureTimer: Timer = get_node("EnclosureTimer") as Timer
 @onready var DashTimer: Timer = get_node("DashTimer") as Timer
 @onready var DashCooldown: Timer = get_node("DashCooldown") as Timer
+@onready var Progress: ProgressBar = get_node("ProgressBar")
 
 var in_dash: bool = false
 var can_dash: bool = true
 var dash_speed: int = _speed * 15
 var dash_direction: Vector2 = Vector2.ZERO
 @export var dash_time = 0.12
+@export var dash_cooldown: float = 3.
+
+func _ready():
+	Progress.max_value = dash_cooldown
 
 func _process(delta):
+	if DashCooldown.time_left == 0.:
+		Progress.visible = false
+	else:
+		Progress.visible = true
+		Progress.value = DashCooldown.time_left
 	if(handle_dash()):
 		position += dash_direction * dash_speed * delta
-		clamp(position, enclosure_zone.position, enclosure_zone.position + enclosure_zone.size)
+		position = clamp(position, enclosure_zone.position, enclosure_zone.position + enclosure_zone.size)
 	else:
 		velocity = Vector2.ZERO
 		velocity += avoid_fruits_steering() * AVOID_MULTIPLIER
@@ -41,6 +51,8 @@ func _process(delta):
 		velocity = velocity.normalized() * delta * _speed
 
 		position += velocity
+
+	
 
 
 func is_in_left(a: Vector2, b: Vector2, c: Vector2) -> bool:
@@ -116,11 +128,11 @@ func get_damaged(damage: int):
 	
 func _on_area_entered(area):
 	if(!in_dash): get_damaged(area.damage)
-	area.die()
+	if(!area.is_dead): area.die()
 
 func _on_dash_cooldown_timeout():
 	can_dash = true
 
 func _on_dash_timer_timeout():
 	in_dash = false
-	DashCooldown.start()
+	DashCooldown.start(dash_cooldown)
