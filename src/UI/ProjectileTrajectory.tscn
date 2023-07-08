@@ -13,7 +13,7 @@ shader_parameter/color = Vector3(1, 1, 1)
 [node name="ProjectileTrajectory" type="Line2D"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_ix54a")
-points = PackedVector2Array(648, 392)
+points = PackedVector2Array(0, 0)
 width = 100.0
 texture = ExtResource("1_0hh1x")
 texture_mode = 1

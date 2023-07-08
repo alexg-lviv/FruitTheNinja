@@ -53,6 +53,7 @@ func _draw_speed(pos, delta):
 	var direction = (_lock_position - get_global_mouse_position()).normalized()
 	$Position.rotation = direction.angle()
 	
+	$Position/Trajectory/ProjectileTrajectory.global_position = _lock_position
 	$Position/Trajectory/ProjectileTrajectory.update_trajectory(direction, 500, 5, 0.1, delta)
 
 func _on_gui_input(event):
