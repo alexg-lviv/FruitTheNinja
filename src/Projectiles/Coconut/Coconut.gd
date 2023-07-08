@@ -1,5 +1,7 @@
 extends "res://src/Projectiles/Projectile.gd"
 
+class_name Coconut
+
 func _ready():
 	super._ready()
 

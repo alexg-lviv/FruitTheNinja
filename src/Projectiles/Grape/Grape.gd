@@ -1,5 +1,7 @@
 extends "res://src/Projectiles/Projectile.gd"
 
+class_name Grape
+
 const CHILD_NUM: int = 5
 const CHILD_SPEED: int = 300
 
@@ -12,7 +14,6 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	super._ready()
 	speed = 350
-
 
 func handle_logic():
 	if (is_supposed_to_die):

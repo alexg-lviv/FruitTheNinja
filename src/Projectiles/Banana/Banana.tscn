@@ -6,6 +6,7 @@
 
 [node name="Banana" instance=ExtResource("1_0slcs")]
 script = ExtResource("2_dbq6w")
+rotation_speed = -10
 base_damage = 15
 
 [node name="Sprite2D" parent="." index="1"]
