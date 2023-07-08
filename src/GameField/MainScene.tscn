@@ -39,14 +39,14 @@ size = Vector2(864, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x7ff7"]
 resource_local_to_scene = true
-size = Vector2(32, 356)
+size = Vector2(32, 430)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7aihe"]
 resource_local_to_scene = true
-size = Vector2(32, 356)
+size = Vector2(32, 396)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hwli"]
-size = Vector2(730, 272)
+size = Vector2(792, 394)
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -185,7 +185,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
-position = Vector2(627, 168)
+position = Vector2(627, 138)
 shape = SubResource("RectangleShape2D_upxvy")
 
 [node name="Bottom" type="Area2D" parent="Bounds"]
@@ -193,7 +193,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
-position = Vector2(627, 514)
+position = Vector2(627, 549)
 shape = SubResource("RectangleShape2D_1w3m6")
 
 [node name="Right" type="Area2D" parent="Bounds"]
@@ -201,7 +201,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
-position = Vector2(1034, 345)
+position = Vector2(1043, 345)
 shape = SubResource("RectangleShape2D_x7ff7")
 
 [node name="Left" type="Area2D" parent="Bounds"]
@@ -209,11 +209,11 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
-position = Vector2(228, 345)
+position = Vector2(223, 345)
 shape = SubResource("RectangleShape2D_7aihe")
 
 [node name="FieldArea" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FieldArea"]

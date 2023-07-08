@@ -12,18 +12,19 @@ var is_dead = false
 var color: Color = Color(1, 1, 1)
 var is_finished_dying: bool = false;
 var on_field = false
+var bounce_count = 0
 
 @onready var AnimPlayer: AnimationPlayer = get_node("AnimationPlayer")
 @onready var DeathTimer: Timer = get_node("DeathTimer")
-@onready var FieldArea: Area2D = get_tree().get_current_scene().get_node("FieldArea")
+#@onready var FieldArea: Area2D = get_tree().get_current_scene().get_node("FieldArea")
 
 # For calculating trajectory based on elapsed time
 var elapsed_time = 0
 
 func _ready():
 	size = $CollisionShape2D.shape.radius
-	if FieldArea != null:
-		FieldArea.connect("area_entered", _on_field_area_area_entered)
+#	if FieldArea != null:
+#		FieldArea.connect("body_entered", _on_field_area_area_entered)
 
 func _process(delta):
 	elapsed_time += delta
@@ -45,7 +46,8 @@ func update_rotation(delta):
 	rotation += rotation_speed * delta
 
 func handle_logic():
-	pass
+	if bounce_count >= 1:
+		die()
 
 func handle_death():
 	pass
@@ -62,5 +64,8 @@ func _on_death_timer_timeout():
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
-func _on_field_area_area_entered(area: Area2D):
-	on_field = true
+func _on_area_entered(area: Area2D):
+	if area.name == "FieldArea":
+		on_field = true
+	if on_field and area.name != "FieldArea":
+		bounce_count += 1
