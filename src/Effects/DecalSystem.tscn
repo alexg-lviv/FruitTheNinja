@@ -2,5 +2,18 @@
 
 [ext_resource type="Script" path="res://src/Effects/DecalSystem.gd" id="1_5jkmg"]
 
-[node name="DecalSystem" type="Node2D"]
+[node name="DecalSystem" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -225.0
+offset_right = 400.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_5jkmg")

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var rng = RandomNumberGenerator.new()
 
@@ -10,10 +10,10 @@ func add_decals(global_pos: Vector2, color: Color, size: float):
 	for i in rng.randf_range(1, 4):
 		var decalIns = DecalObj.instantiate()
 		decalIns.set_lifetime(rng.randf_range(15, 30))
-		decalIns.global_position = global_pos + Vector2(rng.randf_range(-32, 32), rng.randf_range(-32, 32))
 		decalIns.set_color(color)
 		var scale = sizes
 		decalIns.scale = Vector2(scale, scale)
 		add_child(decalIns)
+		decalIns.global_position = global_pos + Vector2(rng.randf_range(-32, 32), rng.randf_range(-32, 32))
 		
 		sizes -= randf_range(0.002, sizes / 2.0)
