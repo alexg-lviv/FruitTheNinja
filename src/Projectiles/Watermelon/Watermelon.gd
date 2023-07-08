@@ -6,6 +6,7 @@ var bounce_count = 0
 
 func _ready():
 	super._ready()
+	color = Color(0.990, 0.109, 0.138)
 
 func handle_logic():
 	if bounce_count >= 5:
@@ -20,4 +21,3 @@ func _on_area_entered(area: Area2D):
 				direction.x *= -1
 				rotation_speed *= -1
 		bounce_count += 1
-

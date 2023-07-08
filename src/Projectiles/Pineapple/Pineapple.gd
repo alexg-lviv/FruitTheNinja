@@ -6,6 +6,7 @@ var current_speed = 0
 
 func _ready():
 	super._ready()
+	color = Color(0.837, 1.00, 0.0200)
 
 func update_position(delta):
 	position += direction * current_speed * delta
