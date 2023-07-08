@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="2_s0yao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3las"]
-radius = 6.0
+radius = 29.0172
 
 [sub_resource type="Animation" id="Animation_wfxei"]
 resource_name = "simple_death"
@@ -28,6 +28,8 @@ _data = {
 }
 
 [node name="Projectile" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_8jjan")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -47,6 +49,8 @@ wait_time = 1.5
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-56, -56)
+rect = Rect2(-10, -10, 132, 132)
 
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
