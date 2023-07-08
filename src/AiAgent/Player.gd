@@ -10,11 +10,12 @@ var wander_angle: float = 0
 var enclosure_steer_direction: Vector2 = Vector2.ZERO
 var do_enclosure_steer: bool = false
 
-const WANDER_RAND: float = 0.4
-const WANDER_CIRCLE_RADIUS: int = 12
+const WANDER_RAND: float = 0.1
+const WANDER_CIRCLE_RADIUS: int = 4
 const AVOID_MULTIPLIER: int = 1
 const ENCLOSURE_MUL: int = 10
 
+@onready var tween
 
 @onready var EnclosureTimer: Timer = get_node("EnclosureTimer") as Timer
 
@@ -38,7 +39,7 @@ func avoid_fruits_steering() -> Vector2:
 	var avoid_steering: Vector2 = Vector2.ZERO
 	var total_danger: int = 0
 	for fruit in Projectiles.spawned:
-		if(!is_instance_valid(fruit)): continue
+		if(!is_instance_valid(fruit) or position.distance_to(fruit.position) > 200): continue
 		var fruit_avoid_direction: Vector2 = Vector2.ZERO
 		var orth_dir: int = -1 if is_in_left(fruit.global_position, fruit.direction + fruit.global_position, global_position) else 1
 		fruit_avoid_direction = (fruit.direction.orthogonal() * orth_dir + fruit.direction * 0.4).normalized()
@@ -46,8 +47,8 @@ func avoid_fruits_steering() -> Vector2:
 		avoid_steering += fruit_avoid_direction * steer_strength
 		total_danger += fruit.damage
 	
-	if avoid_steering != Vector2.ZERO: 
-		wander_angle = lerp(wander_angle, avoid_steering.angle(), 0.2)
+#	if avoid_steering != Vector2.ZERO: 
+#		wander_angle = lerp(wander_angle, avoid_steering.angle(), 0.2)
 	return avoid_steering / 100.
 
 func wander_steering() -> Vector2:
@@ -84,8 +85,13 @@ func enclosure_steering() -> Vector2:
 func _on_enclosure_timer_timeout():
 	enclosure_steer_direction = Vector2.ZERO
 	do_enclosure_steer = false
+
+func get_damaged(damage: int):
+	tween = create_tween()
+	tween.tween_property(self, "self_modulate.g", 0., 1)
+	tween.tween_property(self, "self_modulate.b", 0., 1)
+	tween.set_trans(Tween.TRANS_SINE)
 	
-
-
 func _on_area_entered(area):
+	get_damaged(area.damage)
 	area.die()

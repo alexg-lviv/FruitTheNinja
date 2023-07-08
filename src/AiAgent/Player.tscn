@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://src/AiAgent/Player.gd" id="1_hrqhq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7qb6"]
-radius = 36.0
+radius = 32.0
 
 [node name="Player" type="Area2D"]
+z_index = 3
 collision_mask = 2
 script = ExtResource("1_hrqhq")
 
