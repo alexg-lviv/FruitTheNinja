@@ -34,6 +34,7 @@ func init_set(proj_scene, proj_texture, aim_rect, ai_rect):
 	_is_locked = false
 	_aim_rect = aim_rect
 	_ai_rect = ai_rect
+	_draw_icon(get_global_mouse_position())
 	visible = true
 
 func _update_validness(_pos):
