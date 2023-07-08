@@ -49,7 +49,7 @@ func _physics_process(delta):
 
 func _populate():
 	for ch in $VBoxLeft.get_children():
-		if ch.disabled:
+		if ch.butt.disabled:
 			_projectiles_butts.erase(ch)
 			var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 			t.tween_property(ch, "scale", Vector2.ZERO, 0.5)
@@ -70,7 +70,7 @@ func _populate():
 func _input(event):
 	for action in _actions:
 		if event.is_action_pressed(action) and _actions[action] <= len(_projectiles) - 1:
-			if $VBoxLeft.get_child(_actions[action]) != null and not $VBoxLeft.get_child(_actions[action]).disabled:
+			if $VBoxLeft.get_child(_actions[action]) != null and not $VBoxLeft.get_child(_actions[action]).butt.disabled:
 				if _preview != null:
 					_preview.queue_free()
 					await _preview.tree_exited
@@ -129,7 +129,7 @@ func _spawn_projectile(projectile, pos, direction, speed_coef, butt):
 	projectile.speed *= speed_coef
 	projectile.set_direction(direction)
 	Projectiles.spawned.append(projectile)
-	butt.disabled = true
+	butt.butt.disabled = true
 
 
 func _show_bars():

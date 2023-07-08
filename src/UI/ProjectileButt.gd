@@ -1,14 +1,14 @@
-extends TextureButton
+extends Control
 
 @export var projectile: String
+
+@onready var butt = $Butt
 
 var projectile_texture
 var projectile_scene: String
 
 
 func _ready():
-	set_physics_process(false)
 	projectile_scene = "res://src/Projectiles/" + projectile + "/" + projectile + ".tscn"
-	$Icon.texture = load("res://assets/fruits/" + projectile + ".png")
-	projectile_texture = $Icon.texture
-	$TextureProgressBar.value = 0
+	$Butt/Icon.texture = load("res://assets/fruits/" + projectile + ".png")
+	projectile_texture = $Butt/Icon.texture

@@ -32,7 +32,7 @@ func _ready():
 	visible = false
 
 func init_set(butt, aim_rect, ai_rect):
-	_butt = butt
+	_butt = butt.butt
 	_projectile_scene = butt.projectile_scene
 	$Position/Icon.texture_normal = butt.projectile_texture
 	_is_locked = false
