@@ -50,17 +50,14 @@ func _draw_speed(pos, delta):
 	$Position/Trajectory/ProjectileTrajectory.update_trajectory(direction, 500, 5, 0.1, delta)
 
 func _on_gui_input(event):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if _is_valid:
-				_is_locked = true
-				_lock_position = get_global_mouse_position()
-		
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			queue_free()
+	if event.is_action_pressed("aim") and _is_valid:
+		_is_locked = true
+		_lock_position = get_global_mouse_position()
 	
-	if event is InputEventMouseButton and not event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT and _is_locked:
-			var direction = (_lock_position - get_global_mouse_position()).normalized()
+	if event.is_action_released("aim") and _is_locked:
+		var direction = (_lock_position - get_global_mouse_position()).normalized()
+		if direction.length() <= 0.05:
+			_is_locked = false
+		else:
 			emit_signal("spawn_projectile", load(_projectile_scene).instantiate(), _lock_position, direction)
 			queue_free()

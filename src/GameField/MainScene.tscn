@@ -28,9 +28,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 200.0
+offset_left = 100.0
 offset_top = 50.0
-offset_right = -200.0
+offset_right = -100.0
 offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -50,10 +50,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 350.0
-offset_top = 200.0
-offset_right = -350.0
-offset_bottom = -200.0
+offset_left = 200.0
+offset_top = 150.0
+offset_right = -200.0
+offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -79,6 +79,7 @@ grow_vertical = 2
 
 [node name="Apple" parent="VBoxLeft" instance=ExtResource("4_p185g")]
 layout_mode = 2
+mouse_filter = 1
 projectile = "Apple"
 
 [node name="Banana" parent="VBoxLeft" instance=ExtResource("4_p185g")]
