@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwnjw0lf4283"]
+[gd_scene load_steps=2 format=3 uid="uid://cslbwr3bwybfe"]
 
 [ext_resource type="PackedScene" uid="uid://ulydrceem7fg" path="res://src/UI/ProjectileButt.tscn" id="1_av76w"]
 
