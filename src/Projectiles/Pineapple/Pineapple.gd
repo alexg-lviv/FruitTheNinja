@@ -25,3 +25,11 @@ func handle_logic():
 		current_speed += 30
 	
 	current_speed = min(speed, current_speed)
+
+func die():
+	super.die()
+	$TrailParticles.emitting = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	print("child call")
+	die()

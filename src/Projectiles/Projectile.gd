@@ -66,6 +66,7 @@ func die():
 	DecalSystem.add_decals(global_position, color, size)
 
 func _on_death_timer_timeout():
+	print("bruh")
 	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
