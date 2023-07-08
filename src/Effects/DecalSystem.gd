@@ -6,7 +6,7 @@ var DecalObj = preload("res://src/Effects/SplashDecal.tscn")
 
 func add_decals(global_pos: Vector2, color: Color, size: float):
 	
-	var sizes = 0.006 * (2 + size) / 2.0
+	var sizes = 0.0035 * (2 + size) / 2.0
 	for i in rng.randf_range(1, 4):
 		var decalIns = DecalObj.instantiate()
 		decalIns.set_lifetime(rng.randf_range(15, 30))

@@ -4,9 +4,12 @@ class_name Pineapple
 
 var current_speed = 0
 
+var time_til_mach10 = 0.7
+
 func _ready():
 	super._ready()
 	color = Color(0.837, 1.00, 0.0200)
+	Signals.emit_signal("camera_shake_requested", 1.5, time_til_mach10 * 8)
 
 func update_position(delta):
 	position += direction * current_speed * delta
@@ -16,7 +19,7 @@ func update_rotation(delta):
 
 func handle_logic():
 	damage = base_damage + current_speed * DAMAGE_COEFFICIENT
-	if elapsed_time < 0.7:
+	if elapsed_time < time_til_mach10:
 		current_speed += 3
 	else:
 		current_speed += 30
