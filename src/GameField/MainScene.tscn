@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=23 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://g1imjaeflqxr" path="res://assets/aim_bar/over.png" id="9_ndt7q"]
 [ext_resource type="Texture2D" uid="uid://d144pu1ty6fx4" path="res://assets/aim_bar/progress.png" id="10_77g3h"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
+[ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -264,5 +265,10 @@ shape = SubResource("RectangleShape2D_2hwli")
 
 [node name="SlowmoTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_i32sq")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
