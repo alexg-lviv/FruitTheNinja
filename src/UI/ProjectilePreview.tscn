@@ -50,5 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(40, 40)
 mouse_filter = 2
+ignore_texture_size = true
+stretch_mode = 5
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -21,5 +21,22 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProjectileButt" parent="VBox" instance=ExtResource("1_av76w")]
+[node name="Apple" parent="VBox" instance=ExtResource("1_av76w")]
 layout_mode = 2
+projectile = "Apple"
+
+[node name="Banana" parent="VBox" instance=ExtResource("1_av76w")]
+layout_mode = 2
+projectile = "Banana"
+
+[node name="Grape" parent="VBox" instance=ExtResource("1_av76w")]
+layout_mode = 2
+projectile = "Grape"
+
+[node name="Pineapple" parent="VBox" instance=ExtResource("1_av76w")]
+layout_mode = 2
+projectile = "Pineapple"
+
+[node name="Watermelon" parent="VBox" instance=ExtResource("1_av76w")]
+layout_mode = 2
+projectile = "Watermelon"
