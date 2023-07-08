@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=12 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="1_g6awj"]
@@ -6,6 +6,25 @@
 [ext_resource type="Texture2D" uid="uid://gr8j8k68ub8o" path="res://assets/backgrounds/table.png" id="4_ixhuf"]
 [ext_resource type="PackedScene" uid="uid://ulydrceem7fg" path="res://src/UI/ProjectileButt.tscn" id="4_p185g"]
 [ext_resource type="PackedScene" uid="uid://meav3ml5vmta" path="res://src/AiAgent/Player.tscn" id="5_7y0iy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upxvy"]
+resource_local_to_scene = true
+size = Vector2(864, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w3m6"]
+resource_local_to_scene = true
+size = Vector2(864, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7ff7"]
+resource_local_to_scene = true
+size = Vector2(32, 356)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7aihe"]
+resource_local_to_scene = true
+size = Vector2(32, 356)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hwli"]
+size = Vector2(730, 272)
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -107,4 +126,47 @@ projectile = "Watermelon"
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("5_7y0iy")]
+visible = false
 position = Vector2(548, 314)
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="Top" type="Area2D" parent="Bounds"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+position = Vector2(627, 168)
+shape = SubResource("RectangleShape2D_upxvy")
+
+[node name="Bottom" type="Area2D" parent="Bounds"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+position = Vector2(627, 514)
+shape = SubResource("RectangleShape2D_1w3m6")
+
+[node name="Right" type="Area2D" parent="Bounds"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
+position = Vector2(1034, 345)
+shape = SubResource("RectangleShape2D_x7ff7")
+
+[node name="Left" type="Area2D" parent="Bounds"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
+position = Vector2(228, 345)
+shape = SubResource("RectangleShape2D_7aihe")
+
+[node name="FieldArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FieldArea"]
+position = Vector2(630, 341)
+shape = SubResource("RectangleShape2D_2hwli")

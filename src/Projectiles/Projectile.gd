@@ -10,15 +10,19 @@ var direction = Vector2.RIGHT
 var size = 1.0
 var is_dead = false
 var is_finished_dying: bool = false;
+var on_field = false
 
 @onready var AnimPlayer: AnimationPlayer = get_node("AnimationPlayer")
 @onready var DeathTimer: Timer = get_node("DeathTimer")
+@onready var FieldArea: Area2D = get_tree().get_current_scene().get_node("FieldArea")
 
 # For calculating trajectory based on elapsed time
 var elapsed_time = 0
 
 func _ready():
 	size = $CollisionShape2D.shape.radius
+	if FieldArea != null:
+		FieldArea.connect("area_entered", _on_field_area_area_entered)
 
 func _process(delta):
 	elapsed_time += delta
@@ -56,3 +60,6 @@ func _on_death_timer_timeout():
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+func _on_field_area_area_entered(area: Area2D):
+	on_field = true
