@@ -11,7 +11,6 @@ var _is_valid: bool
 var _is_locked: bool
 
 var _lock_position: Vector2
-var _prev_mouse_position: Vector2
 
 var _aim_rect: Rect2
 var _ai_rect: Rect2
@@ -22,10 +21,12 @@ func _physics_process(delta):
 	_update_validness(_pos)
 	
 	if _is_locked:
-#		if not _ai_rect.has_point(_pos):
 		_draw_speed(_pos, delta)
 	else:
 		_draw_icon(_pos)
+
+func _ready():
+	visible = false
 
 func init_set(proj_scene, proj_texture, aim_rect, ai_rect):
 	_projectile_scene = proj_scene
@@ -33,6 +34,7 @@ func init_set(proj_scene, proj_texture, aim_rect, ai_rect):
 	_is_locked = false
 	_aim_rect = aim_rect
 	_ai_rect = ai_rect
+	visible = true
 
 func _update_validness(_pos):
 	_is_valid = _aim_rect.has_point(_pos) and not _ai_rect.has_point(_pos)
