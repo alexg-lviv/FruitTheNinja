@@ -48,9 +48,6 @@ func connect_to_shakers():
 
 
 func _on_camera_shake_requested(amp, dur):
-	if is_processing():
-		pass
-		#return
 	if !shake_enabled:
 		return
 	set_amplitude(amp)

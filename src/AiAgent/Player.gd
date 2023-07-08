@@ -111,11 +111,15 @@ func _on_enclosure_timer_timeout():
 	do_enclosure_steer = false
 
 func get_damaged(damage: int):
+	Signals.emit_signal("camera_shake_requested", 8.0, 0.7)
+	Signals.emit_signal("frame_freeze_requested", 200)
 	$AnimationPlayer.play("damage")
 
 	
 func _on_area_entered(area):
 	if(!in_dash): get_damaged(area.damage)
+	if in_dash:
+		Signals.emit_signal("camera_shake_requested", 8.0, 0.4)
 	area.die()
 
 func _on_dash_cooldown_timeout():

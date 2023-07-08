@@ -57,7 +57,6 @@ func die():
 	AnimPlayer.play("simple_death")
 	DeathTimer.start()
 	DecalSystem.add_decals(global_position, color, size)
-	Signals.emit_signal("camera_shake_requested", 5.0, 0.2)
 
 func _on_death_timer_timeout():
 	queue_free()

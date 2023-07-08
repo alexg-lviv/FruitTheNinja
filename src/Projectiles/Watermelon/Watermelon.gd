@@ -16,7 +16,9 @@ func _on_area_entered(area: Area2D):
 	if on_field:
 		match area.name:
 			"Top", "Bottom":
+				Signals.emit_signal("camera_shake_requested", 12.0, 0.5)
 				direction.y *= -1
 			"Left", "Right":
+				Signals.emit_signal("camera_shake_requested", 12.0, 0.5)
 				direction.x *= -1
 				rotation_speed *= -1
