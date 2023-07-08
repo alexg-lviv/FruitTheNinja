@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ix54a"]
 shader = ExtResource("1_0a4hc")
 shader_parameter/speed = 2.0
-shader_parameter/opacity = 0.5
+shader_parameter/opacity = 1.0
 shader_parameter/color = Vector3(1, 1, 1)
 
 [node name="ProjectileTrajectory" type="Line2D"]
