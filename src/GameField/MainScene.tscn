@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://bw4ti7ji6xg16" path="res://icon.svg" id="1_g6awj"]
-[ext_resource type="PackedScene" uid="uid://6ndjnwc5m1gp" path="res://src/UI/ProjectilesBar.tscn" id="2_mtayr"]
+[ext_resource type="PackedScene" uid="uid://dwnjw0lf4283" path="res://src/UI/ProjectilesBar.tscn" id="2_mtayr"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
