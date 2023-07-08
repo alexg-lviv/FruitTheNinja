@@ -49,6 +49,7 @@ func update_rotation(delta):
 
 func handle_logic():
 	if bounce_count >= 1 and !is_dead:
+		$HitPlayer.play()
 		Signals.emit_signal("camera_shake_requested", size / 1.5, 0.3)
 		die()
 
@@ -59,6 +60,7 @@ func die():
 	if is_dead:
 		return
 	
+	$DeathSound.play()
 	is_dead = true
 	AnimPlayer.play("simple_death")
 	DeathTimer.start()

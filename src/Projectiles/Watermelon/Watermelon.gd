@@ -8,6 +8,7 @@ func _ready():
 
 func handle_logic():
 	if bounce_count >= 5:
+		$DeathSound.play()
 		die()
 
 func _on_area_entered(area: Area2D):
@@ -16,9 +17,11 @@ func _on_area_entered(area: Area2D):
 	if on_field:
 		match area.name:
 			"Top", "Bottom":
+				$HitPlayer.play()
 				Signals.emit_signal("camera_shake_requested", 12.0, 0.5)
 				direction.y *= -1
 			"Left", "Right":
+				$HitPlayer.play()				
 				Signals.emit_signal("camera_shake_requested", 12.0, 0.5)
 				direction.x *= -1
 				rotation_speed *= -1
