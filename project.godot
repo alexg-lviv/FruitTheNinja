@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Projectiles="*res://src/Singletons/projectiles.gd"
 DecalSystem="*res://src/Effects/DecalSystem.tscn"
+Signals="*res://src/Singletons/signals.gd"
 
 [display]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=18 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
+[ext_resource type="PackedScene" uid="uid://cqvwmo4c4e234" path="res://src/Camera/ShakeCamera2D.tscn" id="2_ytone"]
 [ext_resource type="Texture2D" uid="uid://covhicrdu1iu0" path="res://assets/backgrounds/carpet.png" id="3_kc82t"]
 [ext_resource type="Shader" path="res://src/UI/shaders/shadow.gdshader" id="4_7j0s5"]
 [ext_resource type="Texture2D" uid="uid://gr8j8k68ub8o" path="res://assets/backgrounds/table.png" id="4_ixhuf"]
@@ -56,6 +57,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fcdyl")
+
+[node name="ShakeCamera2D" parent="." instance=ExtResource("2_ytone")]
 
 [node name="Background" type="TextureRect" parent="."]
 self_modulate = Color(0.678431, 0.541176, 0.529412, 1)
