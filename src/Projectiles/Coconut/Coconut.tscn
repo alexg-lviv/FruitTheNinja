@@ -6,6 +6,7 @@
 
 [node name="Coconut" instance=ExtResource("1_4ewcy")]
 script = ExtResource("2_71jp8")
+base_damage = null
 speed = 1000.0
 
 [node name="Sprite2D" parent="." index="1"]

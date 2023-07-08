@@ -1,5 +1,7 @@
 extends "res://src/Projectiles/Projectile.gd"
 
+class_name Grape
+
 const CHILD_NUM: int = 5
 const CHILD_SPEED: int = 300
 
