@@ -1,47 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://ulydrceem7fg"]
+[gd_scene load_steps=8 format=3 uid="uid://ulydrceem7fg"]
 
 [ext_resource type="Script" path="res://src/UI/ProjectileButt.gd" id="1_5nudt"]
-[ext_resource type="Texture2D" uid="uid://dr2rewwi7jo0o" path="res://assets/butts/launch.png" id="1_yxtie"]
+[ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="1_uqsn1"]
+[ext_resource type="Texture2D" uid="uid://byjui6chypx6j" path="res://assets/butts/Custom Button Normal 2.png" id="1_vyixy"]
+[ext_resource type="Texture2D" uid="uid://ctgmwm7jo8pyi" path="res://assets/butts/Custom Button Disable 2.png" id="2_2fv2n"]
 [ext_resource type="Texture2D" uid="uid://dj4u1k54fyqtg" path="res://assets/fruits/Banana.png" id="2_j1m41"]
 
-[node name="ProjectileButt" type="TextureButton"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxlic"]
+shader = ExtResource("1_uqsn1")
+shader_parameter/radius = 4.0
+shader_parameter/modulate = Color(0.215686, 0.239216, 0.568627, 0.521569)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhivq"]
+shader = ExtResource("1_uqsn1")
+shader_parameter/radius = 1.0
+shader_parameter/modulate = Color(0.337255, 0.458824, 0, 0.65098)
+
+[node name="ProjectileButt" type="Control"]
 custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
 pivot_offset = Vector2(50, 50)
-texture_normal = ExtResource("1_yxtie")
-stretch_mode = 5
 script = ExtResource("1_5nudt")
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Butt" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_pxlic")
+custom_minimum_size = Vector2(100, 100)
+rotation = -0.261799
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("1_vyixy")
+texture_disabled = ExtResource("2_2fv2n")
+stretch_mode = 5
+
+[node name="Icon" type="TextureRect" parent="Butt"]
+material = SubResource("ShaderMaterial_rhivq")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
+offset_left = 25.0
+offset_top = 15.0
 offset_right = -20.0
-offset_bottom = -20.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_j1m41")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 5.0
-step = 0.001
-value = 2.0
-fill_mode = 3
-nine_patch_stretch = true
-texture_progress = ExtResource("1_yxtie")
-tint_progress = Color(0.560784, 0.419608, 0.713726, 0.74902)
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

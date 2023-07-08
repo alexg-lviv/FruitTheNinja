@@ -1,10 +1,12 @@
 extends Control
 
+@export var populate_time: float
+
 @export var slowmo_time: float
 @export var slowmo_slow: float
 @export var slowmo_cd: float
 
-@onready var _projectiles_butts = $VBoxLeft.get_children()
+@onready var _projectiles_butts := []
 
 @onready var _aim_rect = $AimField.get_rect() as Rect2
 @onready var _ai_rect = $AiField.get_rect() as Rect2
@@ -13,13 +15,18 @@ var _preview
 
 var _left_bar_tween
 
-@onready var _launch_actions := {
-	"launch_apple": $VBoxLeft/Apple,
-	"launch_banana": $VBoxLeft/Banana,
-	"launch_grape": $VBoxLeft/Grape,
-	"launch_pineapple": $VBoxLeft/Pineapple,
-	"launch_watermelon": $VBoxLeft/Watermelon,
+var _projectiles := [
+	"Apple", "Banana", "Grape", "Pineapple", "Watermelon", "Coconut"
+	]
+
+var _actions := {
+	"projectile_1": 0,
+	"projectile_2": 1,
+	"projectile_3": 2,
+	"projectile_4": 3,
 }
+
+var _butt = preload("res://src/UI/ProjectileButt.tscn")
 
 var _is_slowmo := false
 @onready var _slowmo_timer = $SlowmoTimer
@@ -27,26 +34,54 @@ var _slowmo_tween
 
 
 func _ready():
+	$PopulateTimer.wait_time = populate_time
 	slowmo_time *= slowmo_slow
 	_slowmo_timer.wait_time = slowmo_time
 	$SlowmoProgress.max_value = slowmo_time
 	set_physics_process(false)
-	for butt in _projectiles_butts:
-		butt.pressed.connect(_on_projectile_butt_pressed.bind(butt))
+	
+	for i in range(4):
+		var b = _butt.instantiate()
+		b.projectile = _projectiles[randi() % _projectiles.size()]
+		$VBoxLeft.get_node(str(i+1)).add_child(b)
+		var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		t.tween_property(b, "scale", Vector2.ONE, 0.8).from(Vector2.ZERO)
+		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
+		
+	$PopulateTimer.start()
 
 
 func _physics_process(delta):
 	$SlowmoProgress.value = _slowmo_timer.time_left
 
 
+func _populate():
+	for i in range(4):
+		var butt = $VBoxLeft.get_child(i).get_child(0)
+		if butt.butt.disabled:
+			_projectiles_butts.erase(butt)
+			var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+			t.tween_property(butt, "scale", Vector2.ZERO, 0.5)
+			t.tween_property(butt, "rotation_degrees", -90, 0.5)
+			await t.finished
+			butt.queue_free()
+			
+			var b = _butt.instantiate()
+			b.projectile = _projectiles[randi() % _projectiles.size()]
+			$VBoxLeft.get_child(i).add_child(b)
+			var t2 = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			t2.tween_property(b, "scale", Vector2.ONE, 0.8).from(Vector2.ZERO)
+			t2.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
+
+
 func _input(event):
-	for action in _launch_actions:
-		if event.is_action_pressed(action):
-			if _preview != null:
-				_preview.queue_free()
-				await _preview.tree_exited
-			if not _launch_actions[action].disabled:
-				_launch_actions[action].emit_signal("pressed")
+	for action in _actions:
+		if event.is_action_pressed(action) and _actions[action] <= len(_projectiles) - 1:
+			if $VBoxLeft.get_child(_actions[action]).get_child_count() > 0 and not $VBoxLeft.get_child(_actions[action]).get_child(0).butt.disabled:
+				if _preview != null:
+					_preview.queue_free()
+					await _preview.tree_exited
+				launch_butt($VBoxLeft.get_child(_actions[action]).get_child(0))
 	
 	if event.is_action_pressed("ui_cancel") and _preview != null:
 		_preview.queue_free()
@@ -85,7 +120,7 @@ func _reload_slowmo_timer():
 	_slowmo_tween.tween_property($SlowmoProgress, "value", slowmo_time, slowmo_cd)
 
 
-func _on_projectile_butt_pressed(butt):
+func launch_butt(butt):
 	_preview = load("res://src/ProjectilesLauncher/Launcher.tscn").instantiate()
 	$CanvasLayer.add_child(_preview)
 	_preview.init_set(butt, _aim_rect, _ai_rect)
@@ -101,10 +136,7 @@ func _spawn_projectile(projectile, pos, direction, speed_coef, butt):
 	projectile.speed *= speed_coef
 	projectile.set_direction(direction)
 	Projectiles.spawned.append(projectile)
-	
-	butt._on_launch()
-	
-	_on_projectile_butt_pressed(butt)
+	butt.butt.disabled = true
 
 
 func _show_bars():
@@ -119,3 +151,7 @@ func _hide_bars():
 		_left_bar_tween.kill()
 	_left_bar_tween = get_tree().create_tween()
 	_left_bar_tween.tween_property($VBoxLeft, "position", Vector2(-50, 100), 0.3)
+
+
+func _on_populate_timer_timeout():
+	_populate()
