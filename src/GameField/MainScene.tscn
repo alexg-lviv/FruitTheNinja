@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=23 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -7,9 +7,9 @@
 [ext_resource type="Shader" path="res://src/UI/shaders/shadow.gdshader" id="4_7j0s5"]
 [ext_resource type="Texture2D" uid="uid://gr8j8k68ub8o" path="res://assets/backgrounds/table.png" id="4_ixhuf"]
 [ext_resource type="PackedScene" uid="uid://meav3ml5vmta" path="res://src/AiAgent/Player.tscn" id="5_7y0iy"]
-[ext_resource type="Texture2D" uid="uid://vno74iskjocn" path="res://assets/aim_bar/under.png" id="8_jyixy"]
-[ext_resource type="Texture2D" uid="uid://g1imjaeflqxr" path="res://assets/aim_bar/over.png" id="9_ndt7q"]
-[ext_resource type="Texture2D" uid="uid://d144pu1ty6fx4" path="res://assets/aim_bar/progress.png" id="10_77g3h"]
+[ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="7_a45ss"]
+[ext_resource type="Texture2D" uid="uid://bt7sexmkieosl" path="res://assets/butts/bbar_2.png" id="7_ldkyv"]
+[ext_resource type="Texture2D" uid="uid://yrbcvwshhrv8" path="res://assets/butts/bbar_1.png" id="8_pwgk6"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 
@@ -33,6 +33,11 @@ colors = PackedColorArray(1, 0.8, 0, 0.305882, 0.25098, 0.262745, 0.376471, 0.07
 gradient = SubResource("Gradient_iwgk8")
 fill_from = Vector2(0.174312, 0.183486)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tkkyi"]
+shader = ExtResource("7_a45ss")
+shader_parameter/radius = 25.0
+shader_parameter/modulate = Color(0.807843, 0.188235, 0.313726, 0.392157)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upxvy"]
 resource_local_to_scene = true
@@ -184,24 +189,26 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
 [node name="SlowmoProgress" type="TextureProgressBar" parent="."]
+material = SubResource("ShaderMaterial_tkkyi")
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = 100.0
-offset_right = -30.0
-offset_bottom = -100.0
+offset_left = -280.0
+offset_top = -138.0
+offset_right = 87.0
+offset_bottom = 138.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(183, 498)
 max_value = 1.0
 step = 0.001
+value = 0.5
 fill_mode = 3
-nine_patch_stretch = true
-texture_under = ExtResource("8_jyixy")
-texture_over = ExtResource("9_ndt7q")
-texture_progress = ExtResource("10_77g3h")
+texture_under = ExtResource("7_ldkyv")
+texture_progress = ExtResource("8_pwgk6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
