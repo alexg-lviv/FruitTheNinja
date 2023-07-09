@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://ulydrceem7fg"]
+[gd_scene load_steps=11 format=3 uid="uid://ulydrceem7fg"]
 
 [ext_resource type="Script" path="res://src/UI/ProjectileButt.gd" id="1_5nudt"]
 [ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="1_uqsn1"]
+[ext_resource type="Texture2D" uid="uid://cdclfbsj1vlv7" path="res://assets/butts/CGB02-orange_M_btn.png" id="2_2d0v2"]
 [ext_resource type="Texture2D" uid="uid://dj4u1k54fyqtg" path="res://assets/fruits/Banana.png" id="2_j1m41"]
 [ext_resource type="Texture2D" uid="uid://vbufaq48tshy" path="res://assets/butts/game ui jelly honey.png" id="3_81d6j"]
+[ext_resource type="FontFile" uid="uid://b0krhgcdr1bm0" path="res://assets/fonts/goo.regular.ttf" id="3_q831y"]
 [ext_resource type="Texture2D" uid="uid://svolto1s37m7" path="res://assets/butts/jelly_disable.png" id="4_ttw1a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rkgob"]
+font = ExtResource("3_q831y")
+font_size = 35
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pxlic"]
 shader = ExtResource("1_uqsn1")
@@ -24,6 +30,37 @@ offset_right = 100.0
 offset_bottom = 100.0
 pivot_offset = Vector2(50, 50)
 script = ExtResource("1_5nudt")
+
+[node name="T" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -36.0
+offset_right = 45.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_2d0v2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="T"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4"
+label_settings = SubResource("LabelSettings_rkgob")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Butt" type="TextureButton" parent="."]
 material = SubResource("ShaderMaterial_pxlic")

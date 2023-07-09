@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=42 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://meav3ml5vmta" path="res://src/AiAgent/Player.tscn" id="5_7y0iy"]
 [ext_resource type="Texture2D" uid="uid://dqmveqs4yxhti" path="res://assets/backgrounds/score.png" id="6_bm08y"]
 [ext_resource type="Texture2D" uid="uid://dru1bf1f6v1xd" path="res://assets/backgrounds/smol_carpet.png" id="6_hc4tc"]
-[ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="7_a45ss"]
+[ext_resource type="FontFile" uid="uid://b0krhgcdr1bm0" path="res://assets/fonts/goo.regular.ttf" id="9_kdmpj"]
 [ext_resource type="Texture2D" uid="uid://4ljabn6cn2ew" path="res://assets/butts/green_bg.png" id="10_mdowm"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
 [ext_resource type="Texture2D" uid="uid://cwjv2tkiea8dy" path="res://assets/butts/green_fg.png" id="11_c2f37"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cn2jakqvd7uo8" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
 [ext_resource type="AudioStream" uid="uid://did4nbqxpep0f" path="res://assets/sound/click.mp3" id="20_ch82q"]
 [ext_resource type="PackedScene" uid="uid://bcjb1fl863ih7" path="res://src/UI/StartMenu.tscn" id="21_m5yun"]
+[ext_resource type="Texture2D" uid="uid://cdclfbsj1vlv7" path="res://assets/butts/CGB02-orange_M_btn.png" id="23_sh71n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -54,11 +55,22 @@ gradient = SubResource("Gradient_iwgk8")
 fill_from = Vector2(0.174312, 0.183486)
 fill_to = Vector2(1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tkkyi"]
-resource_local_to_scene = true
-shader = ExtResource("7_a45ss")
-shader_parameter/radius = 25.0
-shader_parameter/modulate = Color(0.807843, 0.188235, 0.313726, 0.392157)
+[sub_resource type="LabelSettings" id="LabelSettings_xwrll"]
+font = ExtResource("9_kdmpj")
+font_size = 30
+
+[sub_resource type="Gradient" id="Gradient_w5imh"]
+offsets = PackedFloat32Array(0, 0.722581)
+colors = PackedColorArray(0.807843, 0.760784, 0.988235, 1, 0.968627, 0.670588, 0.407843, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_015or"]
+gradient = SubResource("Gradient_w5imh")
+fill_from = Vector2(0, 0.711009)
+fill_to = Vector2(0, 0.211009)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kh20c"]
+font = ExtResource("9_kdmpj")
+font_size = 32
 
 [sub_resource type="Animation" id="Animation_rmrdg"]
 length = 0.001
@@ -265,17 +277,69 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="SlowmoProgress" type="TextureProgressBar" parent="."]
-material = SubResource("ShaderMaterial_tkkyi")
+[node name="Label" type="Label" parent="."]
+clip_children = 1
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -206.0
-offset_top = 31.9999
-offset_right = 1794.0
-offset_bottom = 308.0
+offset_left = -73.0
+offset_right = -18.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "S
+L
+O
+W
+M
+O"
+label_settings = SubResource("LabelSettings_xwrll")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_015or")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1118.0
+offset_top = 585.0
+offset_right = 1259.0
+offset_bottom = 657.0
+rotation = -0.343361
+texture = ExtResource("23_sh71n")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "space"
+label_settings = SubResource("LabelSettings_kh20c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlowmoProgress" type="TextureProgressBar" parent="."]
+modulate = Color(0.82, 0.82, 0.82, 1)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -217.0
+offset_top = 43.0
+offset_right = 1783.0
+offset_bottom = -328.0
 grow_horizontal = 0
 grow_vertical = 2
 rotation = -1.5708
