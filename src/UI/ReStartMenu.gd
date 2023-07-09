@@ -5,7 +5,7 @@ func activate(score: int):
 	$AnimationPlayer.play("appear")
 	get_parent().visible = true
 	
-	$TextureRect/Label.text = "Score %s" % str(score)
+	$TextureRect/Label.text = "Your score: %s" % str(score)
 
 
 func _on_button_pressed():

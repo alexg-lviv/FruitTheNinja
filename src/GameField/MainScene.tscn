@@ -20,10 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 [ext_resource type="AudioStream" uid="uid://ivt3wq4v43hr" path="res://assets/sound/whoosh.mp3" id="14_dq7sr"]
-[ext_resource type="PackedScene" uid="uid://ooa5yatnjvtm" path="res://src/UI/ReStartMenu.tscn" id="16_74gi2"]
+[ext_resource type="PackedScene" uid="uid://y0waw7xow5wy" path="res://src/UI/ReStartMenu.tscn" id="16_74gi2"]
 [ext_resource type="PackedScene" uid="uid://cn2jakqvd7uo8" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
 [ext_resource type="AudioStream" uid="uid://did4nbqxpep0f" path="res://assets/sound/click.mp3" id="20_ch82q"]
-[ext_resource type="PackedScene" uid="uid://b6dxm3drhhceh" path="res://src/UI/StartMenu.tscn" id="21_m5yun"]
+[ext_resource type="PackedScene" uid="uid://bcjb1fl863ih7" path="res://src/UI/StartMenu.tscn" id="21_m5yun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
