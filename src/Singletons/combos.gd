@@ -5,7 +5,7 @@ var timer: SceneTreeTimer
 var is_combo_going: bool = false
 var combo: int = 0
 
-var combo_tolerance = 3.
+var combo_tolerance = 5.
 
 var score: int = 0
 

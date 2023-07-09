@@ -30,7 +30,7 @@ var is_stunned: bool = false
 var dash_speed: int = _speed * 15
 var dash_direction: Vector2 = Vector2.ZERO
 @export var dash_time = 0.12
-@export var dash_cooldown: float = 3.
+@export var dash_cooldown: float = 5.
 
 var prev_pos: Vector2 = Vector2.ZERO
 
