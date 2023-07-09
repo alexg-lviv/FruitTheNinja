@@ -1,23 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfo0bua2emarb"]
+[gd_scene load_steps=10 format=3 uid="uid://bcjb1fl863ih7"]
 
 [ext_resource type="Texture2D" uid="uid://sb1xs8vby8pl" path="res://assets/menu/Interface-1.png.png" id="1_iwhsx"]
 [ext_resource type="Script" path="res://src/UI/StartMenu.gd" id="1_vcxsx"]
-
-[sub_resource type="Animation" id="Animation_e4a12"]
-resource_name = "dissapear"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 4.59479),
-"update": 0,
-"values": [Vector2(390, 110), Vector2(390, -530)]
-}
+[ext_resource type="FontFile" uid="uid://dy8mn5yl5ls1" path="res://assets/fonts/bellbottom-laser-font/Bellbottomlaser-GKwg.ttf" id="3_x5a42"]
 
 [sub_resource type="Animation" id="Animation_oc7j2"]
 resource_name = "FUCK"
@@ -35,11 +20,48 @@ tracks/0/keys = {
 "values": [Vector2(390, 110)]
 }
 
+[sub_resource type="Animation" id="Animation_e4a12"]
+resource_name = "dissapear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 4.59479),
+"update": 0,
+"values": [Vector2(390, 110), Vector2(390, -530)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ld24k"]
 _data = {
 "FUCK": SubResource("Animation_oc7j2"),
 "dissapear": SubResource("Animation_e4a12")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_cifo6"]
+font = ExtResource("3_x5a42")
+font_size = 73
+font_color = Color(0.627451, 0.486275, 0.768627, 1)
+outline_size = 25
+outline_color = Color(0.627451, 0.352941, 0.768627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8pdlw"]
+font = ExtResource("3_x5a42")
+font_size = 50
+font_color = Color(0.752941, 0.92549, 0.611765, 1)
+outline_size = 20
+outline_color = Color(0.560784, 0.768627, 0.611765, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dhur0"]
+font = ExtResource("3_x5a42")
+font_size = 68
+font_color = Color(0.909804, 0.392157, 0.423529, 1)
+outline_size = 20
+outline_color = Color(0.760784, 0.333333, 0.423529, 1)
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -88,5 +110,64 @@ autoplay = "FUCK"
 libraries = {
 "": SubResource("AnimationLibrary_ld24k")
 }
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.623047
+anchor_top = 0.336111
+anchor_right = 0.644141
+anchor_bottom = 0.352778
+offset_left = -232.5
+offset_right = -116.5
+offset_bottom = 59.0
+grow_horizontal = 2
+pivot_offset = Vector2(58, 27)
+text = "Fruit"
+label_settings = SubResource("LabelSettings_cifo6")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.565234
+anchor_top = 0.418056
+anchor_right = 0.565234
+anchor_bottom = 0.430556
+offset_left = -232.5
+offset_right = -116.5
+offset_bottom = 59.0
+grow_horizontal = 2
+rotation = -0.337692
+pivot_offset = Vector2(58, 27)
+text = "The"
+label_settings = SubResource("LabelSettings_8pdlw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.652734
+anchor_top = 0.454167
+anchor_right = 0.685547
+anchor_bottom = 0.463889
+offset_left = -232.5
+offset_right = -116.5
+offset_bottom = 59.0
+grow_horizontal = 2
+rotation = 0.00124937
+pivot_offset = Vector2(58, 27)
+text = "Ninja"
+label_settings = SubResource("LabelSettings_dhur0")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]
