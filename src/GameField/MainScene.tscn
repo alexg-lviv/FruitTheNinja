@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=24 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="7_a45ss"]
 [ext_resource type="Texture2D" uid="uid://bt7sexmkieosl" path="res://assets/butts/bbar_2.png" id="7_ldkyv"]
 [ext_resource type="Texture2D" uid="uid://yrbcvwshhrv8" path="res://assets/butts/bbar_1.png" id="8_pwgk6"]
+[ext_resource type="Texture2D" uid="uid://cnj0a2fewj53i" path="res://assets/butts/icon.png" id="10_grbsc"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 
@@ -209,6 +210,24 @@ value = 0.5
 fill_mode = 3
 texture_under = ExtResource("7_ldkyv")
 texture_progress = ExtResource("8_pwgk6")
+
+[node name="TextureRect" type="TextureRect" parent="SlowmoProgress"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -337.167
+offset_top = -288.0
+offset_right = -14.1667
+offset_bottom = 30.0001
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.300517
+texture = ExtResource("10_grbsc")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
