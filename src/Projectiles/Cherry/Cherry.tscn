@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cr2a3ldhycnuw"]
+[gd_scene load_steps=15 format=3 uid="uid://bau1ce6c6wvu6"]
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_gw12d"]
 [ext_resource type="Shader" path="res://src/Projectiles/Slice.gdshader" id="2_pg3d8"]
 [ext_resource type="Script" path="res://src/Projectiles/Cherry/Cherry.gd" id="2_r0xsc"]
-[ext_resource type="Texture2D" uid="uid://x2553hfnolis" path="res://assets/fruits/Cereza.png" id="3_v3mq3"]
+[ext_resource type="Texture2D" uid="uid://52lxpnvb0bq" path="res://assets/fruits/Cherry-black.png" id="3_posar"]
 [ext_resource type="AudioStream" uid="uid://b137kr1okyyvt" path="res://assets/sound/pineaple_explosion.mp3" id="5_xkhct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_37mfg"]
@@ -22,6 +22,21 @@ shader_parameter/cut_start = Vector2(0.5, 0)
 shader_parameter/cut_end = Vector2(0.5, 1)
 shader_parameter/which_side = -1.0
 
+[sub_resource type="Animation" id="Animation_md7eo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_q7ysv"]
 resource_name = "detonating"
 length = 0.6
@@ -37,21 +52,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.713726, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_md7eo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kmy80"]
@@ -96,7 +96,7 @@ shape = SubResource("CircleShape2D_37mfg")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3, 3)
-texture = ExtResource("3_v3mq3")
+texture = ExtResource("3_posar")
 
 [node name="DeathParticles" parent="." index="5"]
 modulate = Color(0.835294, 0.117647, 0.352941, 1)
@@ -107,12 +107,12 @@ visible = false
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_uk32d")
 scale = Vector2(3, 3)
-texture = ExtResource("3_v3mq3")
+texture = ExtResource("3_posar")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
 material = SubResource("ShaderMaterial_jk681")
 scale = Vector2(3, 3)
-texture = ExtResource("3_v3mq3")
+texture = ExtResource("3_posar")
 
 [node name="DetonateAnimationPlayer" type="AnimationPlayer" parent="." index="10"]
 libraries = {
