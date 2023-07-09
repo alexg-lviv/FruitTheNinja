@@ -2,8 +2,8 @@ extends Control
 
 signal spawn_projectile(projectile, pos, direction, speed_coef)
 
-const _valid_modulate = Color.GREEN
-const _invalid_modulate = Color.RED
+const _valid_modulate = Color.WHITE
+const _invalid_modulate = Color("993234")
 
 var _projectile_scene
 var _butt

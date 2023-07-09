@@ -10,6 +10,7 @@ func _ready():
 	super._ready()
 	color = Color(0.837, 1.00, 0.0200)
 	Signals.emit_signal("camera_shake_requested", 1.5, time_til_mach10 * 8)
+	$LaunchSound.play()
 
 func update_position(delta):
 	position += direction * current_speed * delta
@@ -27,7 +28,31 @@ func handle_logic():
 	current_speed = min(speed, current_speed)
 
 func die():
-	super.die()
+	if is_dead:
+		return
+	
+	$DeathSound.play()
+	is_dead = true
+	AnimPlayer.play("simple_death")
+	DeathTimer.start()
+	$DeathParticles.emitting = true
+	DecalSystem.add_decals(global_position, color, size)
+
+	$TrailParticles.emitting = false
+	$LaunchSound.playing = false
+	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
+
+func die_from_slash():
+	if is_dead:
+		return
+	
+	$HitPlayer.play()
+	is_dead = true
+	AnimPlayer.play("simple_death")
+	DeathTimer.start()
+	$DeathParticles.emitting = true
+	DecalSystem.add_decals(global_position, color, size)
+
 	$TrailParticles.emitting = false
 	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
 

@@ -21,6 +21,7 @@ Projectiles="*res://src/Singletons/projectiles.gd"
 DecalSystem="*res://src/Effects/DecalSystem.tscn"
 Signals="*res://src/Singletons/signals.gd"
 FrameFreezer="*res://src/Effects/FrameFreezer/FrameFreezer.gd"
+Combos="*res://src/Singletons/combos.gd"
 
 [display]
 

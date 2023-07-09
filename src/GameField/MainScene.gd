@@ -31,6 +31,8 @@ var _butt = preload("res://src/UI/ProjectileButt.tscn")
 var _is_slowmo := false
 @onready var _slowmo_timer = $SlowmoTimer
 var _slowmo_tween
+var _slowmo_inter_tween
+var time_scalar: float = 10
 
 
 func _ready():
@@ -39,6 +41,8 @@ func _ready():
 	_slowmo_timer.wait_time = slowmo_time
 	$SlowmoProgress.max_value = slowmo_time
 	set_physics_process(false)
+	
+	Signals.fruit_hit.connect(_on_fruit_hit)
 	
 	for i in range(4):
 		var b = _butt.instantiate()
@@ -49,6 +53,10 @@ func _ready():
 		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
 		
 	$PopulateTimer.start()
+
+func _process(delta):
+	$LifetimeProgress.value = $LifetimeProgress.value - delta * time_scalar
+	time_scalar += delta
 
 
 func _physics_process(delta):
@@ -92,8 +100,15 @@ func _input(event):
 		else:
 			if _slowmo_tween and _slowmo_tween.is_running():
 				_slowmo_tween.kill()
+				
+			if _slowmo_inter_tween and _slowmo_inter_tween.is_running():
+				_slowmo_inter_tween.kill()
+			_slowmo_inter_tween = get_tree().create_tween().set_parallel()
+			_slowmo_inter_tween.tween_property(Engine, "time_scale", slowmo_slow, 0.1).from(0.7)
+			_slowmo_inter_tween.tween_property($AudioStreamPlayer, "pitch_scale", 0.8, 0.5)
+				
 			$CanvasLayer/SlowMoEffect.activate()
-			Engine.time_scale = slowmo_slow
+			
 			_is_slowmo = true
 			set_physics_process(true)
 			_slowmo_timer.start()
@@ -105,7 +120,13 @@ func _on_slowmo_timer_timeout():
 
 func _reset_time_scale():
 	$CanvasLayer/SlowMoEffect.deactivate()
-	Engine.time_scale = 1
+	
+	if _slowmo_inter_tween and _slowmo_inter_tween.is_running():
+		_slowmo_inter_tween.kill()
+	_slowmo_inter_tween = get_tree().create_tween().set_parallel()
+	_slowmo_inter_tween.tween_property(Engine, "time_scale", 1, 0.3)
+	_slowmo_inter_tween.tween_property($AudioStreamPlayer, "pitch_scale", 1, 0.3)
+	
 	_is_slowmo = false
 	set_physics_process(false)
 	
@@ -133,6 +154,7 @@ func launch_butt(butt):
 	
 
 func _spawn_projectile(projectile, pos, direction, speed_coef, butt):
+	$ThrowSound.play()
 	$Projectiles.add_child(projectile)
 	projectile.position = pos
 	projectile.speed *= speed_coef
@@ -154,6 +176,14 @@ func _hide_bars():
 	_left_bar_tween = get_tree().create_tween()
 	_left_bar_tween.tween_property($VBoxLeft, "position", Vector2(-50, 100), 0.3)
 
+func _on_fruit_hit(damage: int, impact_position: Vector2):
+	Combos.handle_hit(damage)
+	var combo = Combos.combo
+	$LifetimePlayer.play("add_hp")
+	var tween = create_tween()
+	tween.tween_property($LifetimeProgress, "value", $LifetimeProgress.value + damage * combo, 0.5)
+	time_scalar -= damage * combo / 50.
+	$Score.text = str(Combos.score)
 
 func _on_populate_timer_timeout():
 	_populate()
