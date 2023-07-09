@@ -41,6 +41,7 @@ var _pulse_count = 0
 
 
 func _ready():
+	Signals.menu_start_button_pressed.connect(_start)
 	$PopulateTimer.wait_time = populate_time
 	slowmo_time *= slowmo_slow
 	_slowmo_timer.wait_time = slowmo_time
@@ -48,6 +49,15 @@ func _ready():
 	set_physics_process(false)
 	
 	Signals.fruit_hit.connect(_on_fruit_hit)
+	
+	_stop()
+
+
+func _start():
+	Combos.score = 0
+	time_scalar = 10
+	$LifetimeProgress.value = 500
+	$ScoreLabel.get_node("Label").text = "0"
 	
 	for i in range(4):
 		var b = _butt.instantiate()
@@ -59,11 +69,23 @@ func _ready():
 		
 	$PopulateTimer.start()
 	$PulseTimer.start()
+	
+	set_process_input(true)
+	set_process(true)
+
+
+func _stop():
+	Combos.score = 0
+	set_process_input(false)
+	set_process(false)
 
 
 func _process(delta):
 	$LifetimeProgress.value = $LifetimeProgress.value - delta * time_scalar
 	time_scalar += delta
+	if $LifetimeProgress.value == 0:
+		$CanvasLayer2/ReStartMenu.activate(Combos.score)
+		_stop()
 
 
 func _physics_process(delta):
@@ -97,7 +119,6 @@ func _input(event):
 					$ChooseSound.play()
 					_preview.queue_free()
 					await _preview.tree_exited
-					$CanvasLayer2/ReStartMenu.activate(100)
 				launch_butt($VBoxLeft.get_child(_actions[action]).get_child(0))
 	
 	if event.is_action_pressed("ui_cancel") and _preview != null:
@@ -219,7 +240,6 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 
 func _on_populate_timer_timeout():
 	_populate()
-
 
 func _on_pulse_timer_timeout():
 	_pulse_count += 1

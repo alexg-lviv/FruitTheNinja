@@ -1,23 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfo0bua2emarb"]
+[gd_scene load_steps=6 format=3 uid="uid://b6dxm3drhhceh"]
 
 [ext_resource type="Texture2D" uid="uid://sb1xs8vby8pl" path="res://assets/menu/Interface-1.png.png" id="1_iwhsx"]
 [ext_resource type="Script" path="res://src/UI/StartMenu.gd" id="1_vcxsx"]
-
-[sub_resource type="Animation" id="Animation_e4a12"]
-resource_name = "dissapear"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 4.59479),
-"update": 0,
-"values": [Vector2(390, 110), Vector2(390, -530)]
-}
 
 [sub_resource type="Animation" id="Animation_oc7j2"]
 resource_name = "FUCK"
@@ -33,6 +17,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(390, 110)]
+}
+
+[sub_resource type="Animation" id="Animation_e4a12"]
+resource_name = "dissapear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 4.59479),
+"update": 0,
+"values": [Vector2(390, 110), Vector2(390, -530)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ld24k"]
