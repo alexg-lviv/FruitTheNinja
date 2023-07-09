@@ -78,11 +78,9 @@ pitch_scale = 1.11
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_c6nh2")
-position = Vector2(-23, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("3_yds8g")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
-position = Vector2(23, 7.15256e-07)
 scale = Vector2(3, 3)
 texture = ExtResource("3_yds8g")

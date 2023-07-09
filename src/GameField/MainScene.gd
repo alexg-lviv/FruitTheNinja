@@ -16,7 +16,7 @@ var _preview
 var _left_bar_tween
 
 var _projectiles := [
-	"Apple", "Banana", "Grape", "Pineapple", "Watermelon", "Coconut"
+	"Apple", "Banana", "Grape", "Pineapple", "Watermelon", "Coconut", "Cherry"
 	]
 
 var _actions := {
