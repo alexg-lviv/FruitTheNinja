@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=34 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -18,7 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 [ext_resource type="AudioStream" uid="uid://ivt3wq4v43hr" path="res://assets/sound/whoosh.mp3" id="14_dq7sr"]
-[ext_resource type="PackedScene" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
+[ext_resource type="PackedScene" uid="uid://tx554f4cglch" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
+[ext_resource type="AudioStream" uid="uid://did4nbqxpep0f" path="res://assets/sound/click.mp3" id="20_ch82q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -366,6 +367,11 @@ offset_bottom = 61.0
 [node name="ThrowSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_dq7sr")
 volume_db = 5.0
+
+[node name="ChooseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_ch82q")
+volume_db = -20.0
+pitch_scale = 1.24
 
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
 [connection signal="timeout" from="PopulateTimer" to="." method="_on_populate_timer_timeout"]
