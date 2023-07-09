@@ -43,7 +43,6 @@ stream = SubResource("AudioStreamMP3_fsq3p")
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_bhu0f")
-rotation = -0.453786
 scale = Vector2(3.375, 3.262)
 texture = ExtResource("3_d1571")
 

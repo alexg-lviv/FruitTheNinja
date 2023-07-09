@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=38 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -10,16 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://dqmveqs4yxhti" path="res://assets/backgrounds/score.png" id="6_bm08y"]
 [ext_resource type="Texture2D" uid="uid://dru1bf1f6v1xd" path="res://assets/backgrounds/smol_carpet.png" id="6_hc4tc"]
 [ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="7_a45ss"]
-[ext_resource type="Texture2D" uid="uid://bt7sexmkieosl" path="res://assets/butts/bbar_2.png" id="7_ldkyv"]
-[ext_resource type="Texture2D" uid="uid://yrbcvwshhrv8" path="res://assets/butts/bbar_1.png" id="8_pwgk6"]
-[ext_resource type="Texture2D" uid="uid://hoob3gcbgyn1" path="res://assets/butts/purple_bar_dark_inside.png" id="10_1gpi3"]
-[ext_resource type="Texture2D" uid="uid://cnj0a2fewj53i" path="res://assets/butts/icon.png" id="10_grbsc"]
-[ext_resource type="Texture2D" uid="uid://dkmytpbup7fwx" path="res://assets/butts/purple_bar_frame.png" id="10_or3n4"]
+[ext_resource type="Texture2D" uid="uid://4ljabn6cn2ew" path="res://assets/butts/green_bg.png" id="10_mdowm"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
-[ext_resource type="Texture2D" uid="uid://cv66hdbnwg8tc" path="res://assets/butts/purple_bar_inside.png" id="11_mbdww"]
-[ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
+[ext_resource type="Texture2D" uid="uid://cwjv2tkiea8dy" path="res://assets/butts/green_fg.png" id="11_c2f37"]
+[ext_resource type="Texture2D" uid="uid://cwokqxqkb5jil" path="res://assets/butts/purple_bg (1).png" id="13_0yrib"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 [ext_resource type="AudioStream" uid="uid://ivt3wq4v43hr" path="res://assets/sound/whoosh.mp3" id="14_dq7sr"]
+[ext_resource type="Texture2D" uid="uid://by0rttjqec8xm" path="res://assets/butts/purple_fg (1).png" id="14_kp7ua"]
+[ext_resource type="Texture2D" uid="uid://yjoivmarphjo" path="res://assets/butts/purple_white (1).png" id="15_dagkd"]
 [ext_resource type="PackedScene" uid="uid://y0waw7xow5wy" path="res://src/UI/ReStartMenu.tscn" id="16_74gi2"]
 [ext_resource type="PackedScene" uid="uid://cn2jakqvd7uo8" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
 [ext_resource type="AudioStream" uid="uid://did4nbqxpep0f" path="res://assets/sound/click.mp3" id="20_ch82q"]
@@ -274,64 +272,45 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -280.0
-offset_top = -138.0
-offset_right = 87.0
-offset_bottom = 138.0
+offset_left = -206.0
+offset_top = 32.0
+offset_right = 1794.0
+offset_bottom = 308.0
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.3, 0.3)
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
 pivot_offset = Vector2(183, 498)
 max_value = 1.0
 step = 0.001
 value = 0.5
-fill_mode = 3
-texture_under = ExtResource("7_ldkyv")
-texture_progress = ExtResource("8_pwgk6")
-
-[node name="TextureRect" type="TextureRect" parent="SlowmoProgress"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -337.167
-offset_top = -288.0
-offset_right = -14.1667
-offset_bottom = 30.0001
-grow_horizontal = 2
-grow_vertical = 0
-rotation = -0.300517
-texture = ExtResource("10_grbsc")
-expand_mode = 1
-stretch_mode = 5
+texture_under = ExtResource("10_mdowm")
+texture_progress = ExtResource("11_c2f37")
 
 [node name="LifetimeProgress" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -706.0
-offset_top = 29.0
-offset_right = 709.0
-offset_bottom = 162.0
+offset_left = -992.0
+offset_top = 24.0
+offset_right = 3008.0
+offset_bottom = 373.0
 grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.2, 0.2)
 pivot_offset = Vector2(730, 2.08165e-12)
 max_value = 1000.0
 step = 0.01
 value = 500.0
-texture_under = ExtResource("10_1gpi3")
-texture_over = ExtResource("10_or3n4")
-texture_progress = ExtResource("11_mbdww")
+texture_under = ExtResource("13_0yrib")
+texture_progress = ExtResource("14_kp7ua")
 
 [node name="TextureRect" type="TextureRect" parent="LifetimeProgress"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("13_cpx6l")
+texture = ExtResource("15_dagkd")
 
 [node name="LifetimePlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../LifetimeProgress")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x2553hfnolis"
-path="res://.godot/imported/Cereza.png-7c8f380132d79c2cab5b8b7c4e0fa00b.ctex"
+uid="uid://yjoivmarphjo"
+path="res://.godot/imported/purple_white (1).png-cdf030c5108fd2eba3ca8327aeba90d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fruits/Cereza.png"
-dest_files=["res://.godot/imported/Cereza.png-7c8f380132d79c2cab5b8b7c4e0fa00b.ctex"]
+source_file="res://assets/butts/purple_white (1).png"
+dest_files=["res://.godot/imported/purple_white (1).png-cdf030c5108fd2eba3ca8327aeba90d9.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
