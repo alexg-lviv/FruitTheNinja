@@ -350,5 +350,12 @@ stream = ExtResource("13_i32sq")
 volume_db = -15.0
 autoplay = true
 
+[node name="Score" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1170.0
+offset_top = 21.0
+offset_right = 1210.0
+offset_bottom = 61.0
+
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
 [connection signal="timeout" from="PopulateTimer" to="." method="_on_populate_timer_timeout"]
