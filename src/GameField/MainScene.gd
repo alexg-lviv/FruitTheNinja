@@ -133,6 +133,7 @@ func launch_butt(butt):
 	
 
 func _spawn_projectile(projectile, pos, direction, speed_coef, butt):
+	$ThrowSound.play()
 	$Projectiles.add_child(projectile)
 	projectile.position = pos
 	projectile.speed *= speed_coef

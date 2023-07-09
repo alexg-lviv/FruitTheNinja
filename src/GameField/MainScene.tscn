@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=25 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cnj0a2fewj53i" path="res://assets/butts/icon.png" id="10_grbsc"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
+[ext_resource type="AudioStream" uid="uid://ivt3wq4v43hr" path="res://assets/sound/whoosh.mp3" id="14_dq7sr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -287,6 +288,10 @@ one_shot = true
 stream = ExtResource("13_i32sq")
 volume_db = -15.0
 autoplay = true
+
+[node name="ThrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_dq7sr")
+volume_db = 5.0
 
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
 [connection signal="timeout" from="PopulateTimer" to="." method="_on_populate_timer_timeout"]
