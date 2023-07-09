@@ -39,6 +39,8 @@ var _combo_colors := [Color("00ffff"), Color("5482ff"), Color("d09aff"), Color("
 
 var _pulse_count = 0
 
+var _rrr := true
+
 
 func _ready():
 	Signals.menu_start_button_pressed.connect(_start)
@@ -106,7 +108,8 @@ func _populate():
 			t.tween_property(butt, "scale", Vector2.ZERO, 0.5)
 			t.tween_property(butt, "rotation_degrees", -90, 0.5)
 			await t.finished
-			butt.queue_free()
+			if is_instance_valid(butt):
+				butt.queue_free()
 			
 			var b = _butt.instantiate()
 			b.projectile = _projectiles[randi() % _projectiles.size()]
@@ -118,14 +121,18 @@ func _populate():
 
 
 func _input(event):
-	for action in _actions:
-		if event.is_action_pressed(action) and _actions[action] <= len(_projectiles) - 1:
-			if $VBoxLeft.get_child(_actions[action]).get_child_count() > 0 and not $VBoxLeft.get_child(_actions[action]).get_child(0).butt.disabled:
-				if _preview != null:
-					$ChooseSound.play()
-					_preview.queue_free()
-					await _preview.tree_exited
-				launch_butt($VBoxLeft.get_child(_actions[action]).get_child(0))
+	if _rrr:
+		for action in _actions:
+			if event.is_action_pressed(action) and _actions[action] <= len(_projectiles) - 1:
+				if $VBoxLeft.get_child(_actions[action]).get_child_count() > 0 and not $VBoxLeft.get_child(_actions[action]).get_child(0).butt.disabled:
+					if _preview != null:
+						$ChooseSound.play()
+						_preview.queue_free()
+						await _preview.tree_exited
+					_rrr = false
+					launch_butt($VBoxLeft.get_child(_actions[action]).get_child(0))
+					await get_tree().create_timer(0.001).timeout
+					_rrr = true
 	
 	if event.is_action_pressed("ui_cancel") and _preview != null:
 		_preview.queue_free()

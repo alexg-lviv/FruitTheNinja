@@ -41,8 +41,12 @@ func init_set(butt, aim_rect, ai_rect):
 	
 	visible = true
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel()
-	tween.tween_property($Position/Icon, "scale", Vector2.ONE, 0.3).from(Vector2.ZERO)
-	tween.tween_property($Position/Icon, "rotation_degrees", 0, 0.3).from(120)
+	var tim = 0.3
+	var from = Vector2.ZERO
+	if Engine.time_scale < 1:
+		from = 0.5 * Vector2.ONE
+	tween.tween_property($Position/Icon, "scale", Vector2.ONE, tim).from(from)
+	tween.tween_property($Position/Icon, "rotation_degrees", 0, tim).from(120)
 
 func _update_validness(_pos):
 	if (!is_instance_valid(_butt)):
