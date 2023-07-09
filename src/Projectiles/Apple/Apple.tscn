@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_6oulf"]
 [ext_resource type="Script" path="res://src/Projectiles/Apple/Apple.gd" id="2_63517"]
-[ext_resource type="Texture2D" uid="uid://d04jtvf4oy76m" path="res://assets/fruits/Apple.png" id="3_iivuj"]
+[ext_resource type="Texture2D" uid="uid://dlru3ffxjto54" path="res://assets/fruits/Apple_black.png" id="3_d1571"]
 [ext_resource type="Shader" path="res://src/Projectiles/Slice.gdshader" id="4_85338"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k8bav"]
@@ -30,7 +30,7 @@ shape = SubResource("CircleShape2D_k8bav")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.375, 3.375)
-texture = ExtResource("3_iivuj")
+texture = ExtResource("3_d1571")
 
 [node name="DeathParticles" parent="." index="5"]
 modulate = Color(0.94902, 0.172549, 0.0862745, 1)
@@ -44,8 +44,8 @@ stream = SubResource("AudioStreamMP3_fsq3p")
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_bhu0f")
 scale = Vector2(3.375, 3.262)
-texture = ExtResource("3_iivuj")
+texture = ExtResource("3_d1571")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
 scale = Vector2(3.375, 3.375)
-texture = ExtResource("3_iivuj")
+texture = ExtResource("3_d1571")

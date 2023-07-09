@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_a55c4"]
 [ext_resource type="Script" path="res://src/Projectiles/Pineapple/Pineapple.gd" id="2_3j7xm"]
-[ext_resource type="Texture2D" uid="uid://c7wdmyhjdch08" path="res://assets/fruits/Pineapple.png" id="3_tqjlg"]
+[ext_resource type="Texture2D" uid="uid://bnb3sxho6byet" path="res://assets/fruits/Pineapple-black.png" id="3_x0vik"]
 [ext_resource type="AudioStream" uid="uid://b137kr1okyyvt" path="res://assets/sound/pineaple_explosion.mp3" id="4_jynp1"]
 [ext_resource type="AudioStream" uid="uid://c6vkay83p6100" path="res://assets/sound/squish.mp3" id="4_od2mm"]
 [ext_resource type="Shader" path="res://src/Projectiles/Slice.gdshader" id="5_ekcdy"]
@@ -49,7 +49,7 @@ shape = SubResource("CircleShape2D_oilpu")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.375, 3.375)
-texture = ExtResource("3_tqjlg")
+texture = ExtResource("3_x0vik")
 
 [node name="TrailParticles" type="GPUParticles2D" parent="Sprite2D" index="0"]
 z_index = -1
@@ -82,8 +82,8 @@ pitch_scale = 0.86
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_2m1i1")
 scale = Vector2(3.375, 3.262)
-texture = ExtResource("3_tqjlg")
+texture = ExtResource("3_x0vik")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
 scale = Vector2(3.375, 3.375)
-texture = ExtResource("3_tqjlg")
+texture = ExtResource("3_x0vik")
