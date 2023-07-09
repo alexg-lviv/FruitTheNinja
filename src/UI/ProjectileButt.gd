@@ -11,4 +11,4 @@ var projectile_scene: String
 func _ready():
 	projectile_scene = "res://src/Projectiles/" + projectile + "/" + projectile + ".tscn"
 	$Butt/Icon.texture = load("res://assets/fruits/" + projectile + ".png")
-	projectile_texture = $Butt/Icon.texture
+	projectile_texture = load("res://assets/fruits/" + projectile + "-black.png")

@@ -7,6 +7,8 @@
 [ext_resource type="Shader" path="res://src/UI/shaders/shadow.gdshader" id="4_7j0s5"]
 [ext_resource type="Texture2D" uid="uid://gr8j8k68ub8o" path="res://assets/backgrounds/table.png" id="4_ixhuf"]
 [ext_resource type="PackedScene" uid="uid://meav3ml5vmta" path="res://src/AiAgent/Player.tscn" id="5_7y0iy"]
+[ext_resource type="Texture2D" uid="uid://dqmveqs4yxhti" path="res://assets/backgrounds/score.png" id="6_bm08y"]
+[ext_resource type="Texture2D" uid="uid://dru1bf1f6v1xd" path="res://assets/backgrounds/smol_carpet.png" id="6_hc4tc"]
 [ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="7_a45ss"]
 [ext_resource type="Texture2D" uid="uid://bt7sexmkieosl" path="res://assets/butts/bbar_2.png" id="7_ldkyv"]
 [ext_resource type="Texture2D" uid="uid://yrbcvwshhrv8" path="res://assets/butts/bbar_1.png" id="8_pwgk6"]
@@ -142,6 +144,30 @@ grow_vertical = 2
 rotation = -0.0996749
 texture = ExtResource("3_kc82t")
 expand_mode = 3
+stretch_mode = 5
+
+[node name="SmolCarpet" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 239.0
+offset_top = -145.0
+offset_right = 790.0
+offset_bottom = 632.0
+rotation = 0.466258
+texture = ExtResource("6_hc4tc")
+stretch_mode = 5
+
+[node name="ScoreBack" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -308.0
+offset_top = 98.0
+offset_right = -50.0
+offset_bottom = 217.0
+grow_horizontal = 0
+rotation = -0.359178
+texture = ExtResource("6_bm08y")
 stretch_mode = 5
 
 [node name="AimField" type="Control" parent="."]
@@ -304,6 +330,8 @@ layer = 100
 [node name="SlowMoEffect" parent="CanvasLayer" instance=ExtResource("11_0i5gp")]
 z_index = 10
 z_as_relative = false
+offset_top = -1.0
+offset_bottom = -1.0
 
 [node name="Projectiles" type="Node2D" parent="."]
 

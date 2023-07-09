@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g1xxf14f4g15"
-path="res://.godot/imported/Watermelon2.png-f73e020bffa43e0b6f3a3d0dea548240.ctex"
+uid="uid://dru1bf1f6v1xd"
+path="res://.godot/imported/smol_carpet.png-27b6022c8011202031fb0d3acf56f75d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fruits/Watermelon2.png"
-dest_files=["res://.godot/imported/Watermelon2.png-f73e020bffa43e0b6f3a3d0dea548240.ctex"]
+source_file="res://assets/backgrounds/smol_carpet.png"
+dest_files=["res://.godot/imported/smol_carpet.png-27b6022c8011202031fb0d3acf56f75d.ctex"]
 
 [params]
 
