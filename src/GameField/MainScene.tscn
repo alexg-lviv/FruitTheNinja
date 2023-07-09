@@ -330,8 +330,6 @@ layer = 100
 [node name="SlowMoEffect" parent="CanvasLayer" instance=ExtResource("11_0i5gp")]
 z_index = 10
 z_as_relative = false
-offset_top = -1.0
-offset_bottom = -1.0
 
 [node name="Projectiles" type="Node2D" parent="."]
 
