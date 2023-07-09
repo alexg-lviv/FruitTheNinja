@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://meav3ml5vmta"]
+[gd_scene load_steps=7 format=3 uid="uid://meav3ml5vmta"]
 
 [ext_resource type="Script" path="res://src/AiAgent/Player.gd" id="1_hrqhq"]
 
@@ -36,10 +36,27 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0.247059, 0.141176, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_h46rs"]
+resource_name = "stun"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.27451, 0.490196, 1, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g1706"]
 _data = {
 "RESET": SubResource("Animation_1kudc"),
-"damage": SubResource("Animation_uxwfr")
+"damage": SubResource("Animation_uxwfr"),
+"stun": SubResource("Animation_h46rs")
 }
 
 [node name="Player" type="Area2D"]
@@ -100,7 +117,12 @@ value = 20.0
 allow_greater = true
 show_percentage = false
 
+[node name="StunCooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="EnclosureTimer" to="." method="_on_enclosure_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="StunCooldown" to="." method="_on_stun_cooldown_timeout"]
