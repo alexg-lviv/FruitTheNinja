@@ -55,13 +55,14 @@ func handle_logic():
 func handle_death():
 	pass
 
-func die():
+func die(play_sound=true):
 	if is_dead:
 		return
 	
 	is_dead = true
 	DeathTimer.start()
-	$DeathSound.play()
+	if play_sound:
+		$DeathSound.play()
 	$DeathParticles.restart()
 	DecalSystem.add_decals(global_position, color, size)
 

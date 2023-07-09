@@ -27,34 +27,26 @@ func handle_logic():
 	
 	current_speed = min(speed, current_speed)
 
-func die():
-	if is_dead:
-		return
-	
-	$DeathSound.play()
-	is_dead = true
-	AnimPlayer.play("simple_death")
-	DeathTimer.start()
-	$DeathParticles.emitting = true
-	DecalSystem.add_decals(global_position, color, size)
-
+func die(play_sound=true):
+	super.die(false)
 	$TrailParticles.emitting = false
-	$LaunchSound.playing = false
 	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
 
-func die_from_slash():
+
+func slice():
 	if is_dead:
 		return
-	
+	$SplitPieces.visible = true
+	$SliceAnimationPlayer.play("split")
 	$HitPlayer.play()
-	is_dead = true
-	AnimPlayer.play("simple_death")
-	DeathTimer.start()
-	$DeathParticles.emitting = true
-	DecalSystem.add_decals(global_position, color, size)
+	die()
 
-	$TrailParticles.emitting = false
-	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
+func crash():
+	if is_dead:
+		return
+	AnimPlayer.play("simple_death")
+	$DeathSound.play()
+	die()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	crash()
