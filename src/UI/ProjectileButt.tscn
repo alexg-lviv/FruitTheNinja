@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://src/UI/ProjectileButt.gd" id="1_5nudt"]
 [ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="1_uqsn1"]
-[ext_resource type="Texture2D" uid="uid://byjui6chypx6j" path="res://assets/butts/Custom Button Normal 2.png" id="1_vyixy"]
-[ext_resource type="Texture2D" uid="uid://ctgmwm7jo8pyi" path="res://assets/butts/Custom Button Disable 2.png" id="2_2fv2n"]
 [ext_resource type="Texture2D" uid="uid://dj4u1k54fyqtg" path="res://assets/fruits/Banana.png" id="2_j1m41"]
+[ext_resource type="Texture2D" uid="uid://vbufaq48tshy" path="res://assets/butts/game ui jelly honey.png" id="3_81d6j"]
+[ext_resource type="Texture2D" uid="uid://svolto1s37m7" path="res://assets/butts/jelly_disable.png" id="4_ttw1a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pxlic"]
 shader = ExtResource("1_uqsn1")
-shader_parameter/radius = 4.0
-shader_parameter/modulate = Color(0.215686, 0.239216, 0.568627, 0.521569)
+shader_parameter/radius = 30.0
+shader_parameter/modulate = Color(0.745098, 0.239216, 0.568627, 0.690196)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rhivq"]
 shader = ExtResource("1_uqsn1")
@@ -28,22 +28,23 @@ script = ExtResource("1_5nudt")
 [node name="Butt" type="TextureButton" parent="."]
 material = SubResource("ShaderMaterial_pxlic")
 custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
 rotation = -0.261799
 pivot_offset = Vector2(50, 50)
-texture_normal = ExtResource("1_vyixy")
-texture_disabled = ExtResource("2_2fv2n")
+texture_normal = ExtResource("3_81d6j")
+texture_disabled = ExtResource("4_ttw1a")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Icon" type="TextureRect" parent="Butt"]
 material = SubResource("ShaderMaterial_rhivq")
+custom_minimum_size = Vector2(70, 60)
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 15.0
-offset_right = -20.0
-offset_bottom = -30.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_j1m41")
