@@ -45,6 +45,8 @@ func init_set(butt, aim_rect, ai_rect):
 	tween.tween_property($Position/Icon, "rotation_degrees", 0, 0.3).from(120)
 
 func _update_validness(_pos):
+	if (!is_instance_valid(_butt)):
+		return
 	_is_valid = _aim_rect.has_point(_pos) and not _ai_rect.has_point(_pos) and not _butt.disabled
 
 func _draw_icon(pos):
