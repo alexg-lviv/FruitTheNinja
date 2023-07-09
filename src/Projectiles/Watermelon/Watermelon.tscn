@@ -79,6 +79,7 @@ pitch_scale = 0.5
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_wtrvw")
+rotation = -0.453786
 scale = Vector2(3.625, 3.504)
 texture = ExtResource("3_oomir")
 

@@ -33,6 +33,7 @@ pitch_scale = 1.13
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_mw7b4")
+rotation = -0.453786
 scale = Vector2(3.625, 3.504)
 texture = ExtResource("2_rnmma")
 
