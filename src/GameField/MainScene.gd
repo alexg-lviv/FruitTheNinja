@@ -86,7 +86,7 @@ func _stop():
 
 func _process(delta):
 	$LifetimeProgress.value = $LifetimeProgress.value - delta * time_scalar
-	time_scalar += delta / 2.
+	time_scalar += delta
 	if $LifetimeProgress.value == 0:
 		$CanvasLayer2/ReStartMenu.activate(Combos.score)
 		_stop()
