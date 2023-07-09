@@ -125,15 +125,16 @@ func _on_enclosure_timer_timeout():
 	enclosure_steer_direction = Vector2.ZERO
 	do_enclosure_steer = false
 
-func get_damaged(damage: int):
+func get_damaged(damage: int, fruit):
 	Signals.emit_signal("camera_shake_requested", 8.0, 0.7)
 	Signals.emit_signal("frame_freeze_requested", 40)
 	$AnimationPlayer.play("damage")
+	Signals.emit_signal("fruit_hit", damage, fruit.position)
 	
 func _on_area_entered(area: Area2D):
 	if area.is_dead: return
 	if(!in_dash): 
-		get_damaged(area.damage)
+		get_damaged(area.damage, area)
 		if area.name == "Coconut":
 			stun()
 	if in_dash:

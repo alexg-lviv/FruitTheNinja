@@ -31,6 +31,7 @@ var _butt = preload("res://src/UI/ProjectileButt.tscn")
 var _is_slowmo := false
 @onready var _slowmo_timer = $SlowmoTimer
 var _slowmo_tween
+var time_scalar: float = 10
 
 
 func _ready():
@@ -39,6 +40,8 @@ func _ready():
 	_slowmo_timer.wait_time = slowmo_time
 	$SlowmoProgress.max_value = slowmo_time
 	set_physics_process(false)
+	
+	Signals.fruit_hit.connect(_on_fruit_hit)
 	
 	for i in range(4):
 		var b = _butt.instantiate()
@@ -49,6 +52,10 @@ func _ready():
 		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
 		
 	$PopulateTimer.start()
+
+func _process(delta):
+	$LifetimeProgress.value = $LifetimeProgress.value - delta * time_scalar
+	time_scalar += delta
 
 
 func _physics_process(delta):
@@ -155,6 +162,13 @@ func _hide_bars():
 	_left_bar_tween = get_tree().create_tween()
 	_left_bar_tween.tween_property($VBoxLeft, "position", Vector2(-50, 100), 0.3)
 
+func _on_fruit_hit(damage: int, impact_position: Vector2):
+	Combos.handle_hit()
+	var combo = Combos.combo
+	$LifetimePlayer.play("add_hp")
+	var tween = create_tween()
+	tween.tween_property($LifetimeProgress, "value", $LifetimeProgress.value + damage * combo, 0.5)
+	time_scalar -= damage * combo / 50.
 
 func _on_populate_timer_timeout():
 	_populate()
