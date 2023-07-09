@@ -35,6 +35,7 @@ var _slowmo_inter_tween
 var time_scalar: float = 10
 
 var _combo_text = preload("res://src/UI/ComboText.tscn")
+var _combo_colors := [Color("00ffff"), Color("5482ff"), Color("d09aff"), Color("9bff70"), Color("afff5e"), Color("ff9c6b"), Color("c387ff")]
 
 
 func _ready():
@@ -196,7 +197,8 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 		popup.get_node("Label").text = "HIT"
 	else:
 		popup.get_node("Label").text = "COMBO x" + str(combo)
-	popup.modulate = Color.from_hsv((randi() % 12) / 12.0, 1, 1)
+	popup.modulate = _combo_colors[randi() % len(_combo_colors)]
+#	popup.modulate = Color.from_hsv((randi() % 12) / 12.0, 1, 1)
 	
 	var popup_tween = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	popup_tween.tween_property(popup, "scale", Vector2.ONE + 0.1 * (combo-1+randf_range(1,5)) * Vector2.ONE, 0.5).from(Vector2.ZERO)
