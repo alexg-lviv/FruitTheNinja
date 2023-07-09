@@ -216,7 +216,7 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 	$LifetimePlayer.play("add_hp")
 	var tween = create_tween()
 	tween.tween_property($LifetimeProgress, "value", $LifetimeProgress.value + damage * combo, 0.5)
-	time_scalar -= damage * combo / 100.
+	time_scalar -= damage * combo / 40.
 	
 	$ScoreLabel.set_label(str(Combos.score))
 	
