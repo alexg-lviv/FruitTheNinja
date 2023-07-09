@@ -21,6 +21,8 @@ const ENCLOSURE_MUL: int = 10
 @onready var DashCooldown: Timer = get_node("DashCooldown") as Timer
 @onready var Progress: ProgressBar = get_node("ProgressBar")
 
+var current_trail: Trail
+
 var in_dash: bool = false
 var can_dash: bool = true
 var dash_speed: int = _speed * 15
@@ -67,6 +69,7 @@ func handle_dash() -> bool:
 		can_dash = false
 		dash_direction = position.direction_to(fruit.position)
 		DashTimer.start(dash_time)
+		make_trail()
 		return true	
 	return false
 
@@ -126,7 +129,6 @@ func get_damaged(damage: int):
 	Signals.emit_signal("camera_shake_requested", 8.0, 0.7)
 	Signals.emit_signal("frame_freeze_requested", 40)
 	$AnimationPlayer.play("damage")
-
 	
 func _on_area_entered(area):
 	if(!in_dash): get_damaged(area.damage)
@@ -140,4 +142,12 @@ func _on_dash_cooldown_timeout():
 
 func _on_dash_timer_timeout():
 	in_dash = false
+	current_trail.stop()
+	current_trail = null
 	DashCooldown.start(dash_cooldown)
+
+func make_trail():
+	if current_trail != null:
+		current_trail.stop()
+	current_trail = Trail.create()
+	add_child(current_trail)
