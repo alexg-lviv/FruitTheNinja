@@ -33,6 +33,7 @@ func _ready():
 
 func _process(delta):
 	elapsed_time += delta
+	damage = base_damage + speed * DAMAGE_COEFFICIENT
 
 func _physics_process(delta):
 	if (!is_dead):

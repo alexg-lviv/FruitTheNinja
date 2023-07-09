@@ -48,6 +48,7 @@ shader_parameter/which_side = 1.0
 [node name="Watermelon" instance=ExtResource("1_7r63x")]
 script = ExtResource("2_xo3ix")
 rotation_speed = 10
+base_damage = 30
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_7moqn")

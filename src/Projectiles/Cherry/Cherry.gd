@@ -39,4 +39,5 @@ func explode():
 	$CollisionShape2D.shape.radius = 150
 	$ExplosionParticles.restart()
 	$ExplosionSound.play()
+	damage = 50
 	Signals.emit_signal("camera_shake_requested", 50, 0.2)

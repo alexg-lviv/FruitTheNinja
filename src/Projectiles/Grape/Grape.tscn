@@ -52,6 +52,7 @@ shader_parameter/which_side = 1.0
 
 [node name="Grape" instance=ExtResource("1_j21a0")]
 script = ExtResource("2_ei172")
+base_damage = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_bcohw")
