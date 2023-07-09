@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cusbuk10xdh65"]
+
+[ext_resource type="Script" path="res://src/AiAgent/Trail.gd" id="1_2brwe"]
+
+[sub_resource type="Curve" id="Curve_4up2j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.475138, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Trail" type="Line2D"]
+top_level = true
+points = PackedVector2Array(0, 9, 170, -31, 278, -160)
+width = 24.0
+width_curve = SubResource("Curve_4up2j")
+script = ExtResource("1_2brwe")
