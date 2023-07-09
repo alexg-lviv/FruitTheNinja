@@ -18,6 +18,8 @@ var bounce_count = 0
 @onready var AnimPlayer: AnimationPlayer = get_node("AnimationPlayer")
 @onready var DeathTimer: Timer = get_node("DeathTimer")
 
+var animation_list
+
 # For calculating trajectory based on elapsed time
 var elapsed_time = 0
 
@@ -26,6 +28,8 @@ func _ready():
 	$DeathParticles.emitting = false
 #	$DeathTimer.wait_time = $DeathParticles.lifetime
 	$SplitPieces.visible = false
+	animation_list = $SliceAnimationPlayer.get_animation_list()
+	animation_list.remove_at(0)
 
 func _process(delta):
 	elapsed_time += delta
@@ -72,7 +76,8 @@ func slice():
 	if is_dead:
 		return
 	$SplitPieces.visible = true
-	$SliceAnimationPlayer.play("split")
+	var random_animation = animation_list[randi() % animation_list.size()]
+	$SliceAnimationPlayer.play(random_animation)
 	die()
 
 func crash():
