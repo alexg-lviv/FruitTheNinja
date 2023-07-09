@@ -34,11 +34,11 @@ func _ready():
 	Progress.max_value = dash_cooldown
 
 func _process(delta):
-	if DashCooldown.time_left == 0.:
+	if (DashCooldown.time_left - 1.) == 0.:
 		Progress.visible = false
 	else:
 		Progress.visible = true
-		Progress.value = DashCooldown.time_left
+		Progress.value = DashCooldown.time_left - 1.
 	if(handle_dash()):
 		position += dash_direction * dash_speed * delta
 		position = clamp(position, enclosure_zone.position, enclosure_zone.position + enclosure_zone.size)
@@ -53,8 +53,6 @@ func _process(delta):
 		velocity = velocity.normalized() * delta * _speed
 
 		position += velocity
-
-	
 
 
 func is_in_left(a: Vector2, b: Vector2, c: Vector2) -> bool:
