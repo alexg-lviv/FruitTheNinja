@@ -129,6 +129,7 @@ func get_damaged(damage: int):
 	Signals.emit_signal("camera_shake_requested", 8.0, 0.7)
 	Signals.emit_signal("frame_freeze_requested", 40)
 	$AnimationPlayer.play("damage")
+	Signals.emit_signal("fruit_hit", damage)
 	
 func _on_area_entered(area: Area2D):
 	if area.is_dead: return

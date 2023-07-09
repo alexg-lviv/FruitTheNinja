@@ -1,4 +1,5 @@
-[gd_scene load_steps=24 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=31 format=3 uid="uid://d1eme8vjjcd34"]
+
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -10,8 +11,12 @@
 [ext_resource type="Shader" path="res://src/UI/shadow_uniform.gdshader" id="7_a45ss"]
 [ext_resource type="Texture2D" uid="uid://bt7sexmkieosl" path="res://assets/butts/bbar_2.png" id="7_ldkyv"]
 [ext_resource type="Texture2D" uid="uid://yrbcvwshhrv8" path="res://assets/butts/bbar_1.png" id="8_pwgk6"]
+[ext_resource type="Texture2D" uid="uid://hoob3gcbgyn1" path="res://assets/butts/purple_bar_dark_inside.png" id="10_1gpi3"]
+[ext_resource type="Texture2D" uid="uid://dkmytpbup7fwx" path="res://assets/butts/purple_bar_frame.png" id="10_or3n4"]
 [ext_resource type="Texture2D" uid="uid://cnj0a2fewj53i" path="res://assets/butts/icon.png" id="10_grbsc"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
+[ext_resource type="Texture2D" uid="uid://cv66hdbnwg8tc" path="res://assets/butts/purple_bar_inside.png" id="11_mbdww"]
+[ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
@@ -36,9 +41,35 @@ fill_from = Vector2(0.174312, 0.183486)
 fill_to = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tkkyi"]
+resource_local_to_scene = true
 shader = ExtResource("7_a45ss")
 shader_parameter/radius = 25.0
 shader_parameter/modulate = Color(0.807843, 0.188235, 0.313726, 0.392157)
+
+[sub_resource type="Animation" id="Animation_dcdy6"]
+resource_name = "add_hp"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.631373), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rmrdg"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vg6rx"]
+_data = {
+"RESET": SubResource("Animation_rmrdg"),
+"add_hp": SubResource("Animation_dcdy6")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upxvy"]
 resource_local_to_scene = true
@@ -207,6 +238,37 @@ fill_mode = 3
 texture_under = ExtResource("7_ldkyv")
 texture_progress = ExtResource("8_pwgk6")
 
+[node name="LifetimeProgress" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -706.0
+offset_top = 29.0
+offset_right = 709.0
+offset_bottom = 162.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(730, 2.08165e-12)
+max_value = 1000.0
+step = 0.01
+value = 500.0
+texture_under = ExtResource("10_1gpi3")
+texture_over = ExtResource("10_or3n4")
+texture_progress = ExtResource("11_mbdww")
+
+[node name="TextureRect" type="TextureRect" parent="LifetimeProgress"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_cpx6l")
+
+[node name="LifetimePlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../LifetimeProgress")
+libraries = {
+"": SubResource("AnimationLibrary_vg6rx")
+}
 [node name="TextureRect" type="TextureRect" parent="SlowmoProgress"]
 layout_mode = 1
 anchors_preset = 7
