@@ -34,11 +34,11 @@ func _ready():
 	Progress.max_value = dash_cooldown
 
 func _process(delta):
-	if DashCooldown.time_left == 0.:
+	if (DashCooldown.time_left - 1.) == 0.:
 		Progress.visible = false
 	else:
 		Progress.visible = true
-		Progress.value = DashCooldown.time_left
+		Progress.value = DashCooldown.time_left - 1.
 	if(handle_dash()):
 		position += dash_direction * dash_speed * delta
 		position = clamp(position, enclosure_zone.position, enclosure_zone.position + enclosure_zone.size)
@@ -54,8 +54,6 @@ func _process(delta):
 
 		position += velocity
 
-	
-
 
 func is_in_left(a: Vector2, b: Vector2, c: Vector2) -> bool:
 	return (b.x - a.x)*(c.y-a.y) - (b.y-a.y)*(c.x-a.x) > 0
@@ -64,7 +62,7 @@ func handle_dash() -> bool:
 	if(!can_dash and !in_dash): return false
 	if(in_dash): return true
 	for fruit in Projectiles.spawned:
-		if(!is_instance_valid(fruit) or global_position.distance_to(fruit.global_position) > 150): continue
+		if(!is_instance_valid(fruit) or fruit.is_dead or global_position.distance_to(fruit.global_position) > 150): continue
 		in_dash = true
 		can_dash = false
 		dash_direction = position.direction_to(fruit.position)
@@ -78,7 +76,7 @@ func avoid_fruits_steering() -> Vector2:
 	var avoid_steering: Vector2 = Vector2.ZERO
 	var total_danger: int = 0
 	for fruit in Projectiles.spawned:
-		if(!is_instance_valid(fruit) or position.distance_to(fruit.position) > 200): continue
+		if(!is_instance_valid(fruit) or fruit.is_dead or position.distance_to(fruit.position) > 200): continue
 		var fruit_avoid_direction: Vector2 = Vector2.ZERO
 		var orth_dir: int = -1 if is_in_left(fruit.global_position, fruit.direction + fruit.global_position, global_position) else 1
 		fruit_avoid_direction = (fruit.direction.orthogonal() * orth_dir + fruit.direction * 0.4).normalized()
@@ -131,11 +129,12 @@ func get_damaged(damage: int):
 	$AnimationPlayer.play("damage")
 	
 func _on_area_entered(area):
+	if area.is_dead: return
 	if(!in_dash): get_damaged(area.damage)
 	if in_dash:
 		Signals.emit_signal("camera_shake_requested", 8.0, 0.4)
 		Signals.emit_signal("frame_freeze_requested", 20)
-	if(!area.is_dead): area.die()
+	area.die()
 
 func _on_dash_cooldown_timeout():
 	can_dash = true
