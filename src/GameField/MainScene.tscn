@@ -1,6 +1,5 @@
 [gd_scene load_steps=31 format=3 uid="uid://d1eme8vjjcd34"]
 
-
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
 [ext_resource type="PackedScene" uid="uid://cqvwmo4c4e234" path="res://src/Camera/ShakeCamera2D.tscn" id="2_ytone"]
@@ -12,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bt7sexmkieosl" path="res://assets/butts/bbar_2.png" id="7_ldkyv"]
 [ext_resource type="Texture2D" uid="uid://yrbcvwshhrv8" path="res://assets/butts/bbar_1.png" id="8_pwgk6"]
 [ext_resource type="Texture2D" uid="uid://hoob3gcbgyn1" path="res://assets/butts/purple_bar_dark_inside.png" id="10_1gpi3"]
-[ext_resource type="Texture2D" uid="uid://dkmytpbup7fwx" path="res://assets/butts/purple_bar_frame.png" id="10_or3n4"]
 [ext_resource type="Texture2D" uid="uid://cnj0a2fewj53i" path="res://assets/butts/icon.png" id="10_grbsc"]
+[ext_resource type="Texture2D" uid="uid://dkmytpbup7fwx" path="res://assets/butts/purple_bar_frame.png" id="10_or3n4"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
 [ext_resource type="Texture2D" uid="uid://cv66hdbnwg8tc" path="res://assets/butts/purple_bar_inside.png" id="11_mbdww"]
 [ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
@@ -46,6 +45,9 @@ shader = ExtResource("7_a45ss")
 shader_parameter/radius = 25.0
 shader_parameter/modulate = Color(0.807843, 0.188235, 0.313726, 0.392157)
 
+[sub_resource type="Animation" id="Animation_rmrdg"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_dcdy6"]
 resource_name = "add_hp"
 length = 0.4
@@ -61,9 +63,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.631373), Color(1, 1, 1, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_rmrdg"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vg6rx"]
 _data = {
@@ -129,10 +128,10 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -452.0
-offset_top = 65.0
-offset_right = 385.0
-offset_bottom = 138.0
+offset_left = -461.0
+offset_top = 16.0
+offset_right = 376.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.0996749
@@ -238,6 +237,24 @@ fill_mode = 3
 texture_under = ExtResource("7_ldkyv")
 texture_progress = ExtResource("8_pwgk6")
 
+[node name="TextureRect" type="TextureRect" parent="SlowmoProgress"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -337.167
+offset_top = -288.0
+offset_right = -14.1667
+offset_bottom = 30.0001
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.300517
+texture = ExtResource("10_grbsc")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="LifetimeProgress" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -269,23 +286,6 @@ root_node = NodePath("../LifetimeProgress")
 libraries = {
 "": SubResource("AnimationLibrary_vg6rx")
 }
-[node name="TextureRect" type="TextureRect" parent="SlowmoProgress"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -337.167
-offset_top = -288.0
-offset_right = -14.1667
-offset_bottom = 30.0001
-grow_horizontal = 2
-grow_vertical = 0
-rotation = -0.300517
-texture = ExtResource("10_grbsc")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
