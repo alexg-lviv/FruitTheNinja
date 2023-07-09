@@ -53,7 +53,7 @@ shader_parameter/which_side = 1.0
 [node name="Banana" instance=ExtResource("1_0slcs")]
 script = ExtResource("2_dbq6w")
 rotation_speed = -10
-base_damage = 15
+base_damage = 10
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_i3fqu")
