@@ -67,6 +67,7 @@ func _start():
 		var b = _butt.instantiate()
 		b.projectile = _projectiles[randi() % _projectiles.size()]
 		$VBoxLeft.get_node(str(i+1)).add_child(b)
+		b.get_node("T/Label").text = str(i+1)
 		var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		t.tween_property(b, "scale", Vector2.ONE, 0.8).from(Vector2.ZERO)
 		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
@@ -110,6 +111,7 @@ func _populate():
 			var b = _butt.instantiate()
 			b.projectile = _projectiles[randi() % _projectiles.size()]
 			$VBoxLeft.get_child(i).add_child(b)
+			b.get_node("T/Label").text = str(i+1)
 			var t2 = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 			t2.tween_property(b, "scale", Vector2.ONE, 0.8).from(Vector2.ZERO)
 			t2.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
