@@ -94,6 +94,7 @@ func _input(event):
 					$ChooseSound.play()
 					_preview.queue_free()
 					await _preview.tree_exited
+					$CanvasLayer2/ReStartMenu.activate(100)
 				launch_butt($VBoxLeft.get_child(_actions[action]).get_child(0))
 	
 	if event.is_action_pressed("ui_cancel") and _preview != null:
