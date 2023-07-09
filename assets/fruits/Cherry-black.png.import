@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x2553hfnolis"
-path="res://.godot/imported/Cereza.png-7c8f380132d79c2cab5b8b7c4e0fa00b.ctex"
+uid="uid://52lxpnvb0bq"
+path="res://.godot/imported/Cherry-black.png-f4f317761223d02abbda4a2f47ead9c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fruits/Cereza.png"
-dest_files=["res://.godot/imported/Cereza.png-7c8f380132d79c2cab5b8b7c4e0fa00b.ctex"]
+source_file="res://assets/fruits/Cherry-black.png"
+dest_files=["res://.godot/imported/Cherry-black.png-f4f317761223d02abbda4a2f47ead9c8.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
