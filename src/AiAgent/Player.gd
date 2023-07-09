@@ -139,7 +139,9 @@ func _on_area_entered(area: Area2D):
 	if in_dash:
 		Signals.emit_signal("camera_shake_requested", 8.0, 0.4)
 		Signals.emit_signal("frame_freeze_requested", 20)
-	area.die()
+		area.slice()
+	else:
+		area.crash()
 
 func _on_dash_cooldown_timeout():
 	can_dash = true

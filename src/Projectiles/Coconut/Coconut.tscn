@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct6hmkkamsgw"]
+[gd_scene load_steps=7 format=3 uid="uid://ct6hmkkamsgw"]
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_4ewcy"]
 [ext_resource type="Script" path="res://src/Projectiles/Coconut/Coconut.gd" id="2_71jp8"]
 [ext_resource type="Texture2D" uid="uid://b8ujnopyg58gq" path="res://assets/fruits/Coconut.png" id="2_rnmma"]
+[ext_resource type="Shader" path="res://src/Projectiles/Slice.gdshader" id="4_q6nid"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0dlj5"]
 radius = 24.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mw7b4"]
+resource_local_to_scene = true
+shader = ExtResource("4_q6nid")
+shader_parameter/cut_start = Vector2(0.5, 0)
+shader_parameter/cut_end = Vector2(0.5, 2)
+shader_parameter/which_side = 1.0
 
 [node name="Coconut" instance=ExtResource("1_4ewcy")]
 script = ExtResource("2_71jp8")
@@ -15,5 +23,14 @@ speed = 1000.0
 shape = SubResource("CircleShape2D_0dlj5")
 
 [node name="Sprite2D" parent="." index="1"]
+scale = Vector2(3.625, 3.625)
+texture = ExtResource("2_rnmma")
+
+[node name="LeftPiece" parent="SplitPieces" index="0"]
+material = SubResource("ShaderMaterial_mw7b4")
+scale = Vector2(3.625, 3.504)
+texture = ExtResource("2_rnmma")
+
+[node name="RightPiece" parent="SplitPieces" index="1"]
 scale = Vector2(3.625, 3.625)
 texture = ExtResource("2_rnmma")

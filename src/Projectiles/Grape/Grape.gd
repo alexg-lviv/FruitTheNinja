@@ -21,7 +21,7 @@ func handle_logic():
 		_create_children()
 		Signals.emit_signal("camera_shake_requested", size, 0.2)
 		Signals.emit_signal("frame_freeze_requested", 10)
-		die()
+		crash()
 
 func _create_children():
 	for i in CHILD_NUM:

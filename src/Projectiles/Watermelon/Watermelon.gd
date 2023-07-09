@@ -14,7 +14,7 @@ func _ready():
 func handle_logic():
 	if bounce_count >= MAX_BOUNCE_COUNT:
 		$DeathSound.play()
-		die()
+		crash()
 
 func _on_area_entered(area: Area2D):
 	super._on_area_entered(area)

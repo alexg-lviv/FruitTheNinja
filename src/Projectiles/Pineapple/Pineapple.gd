@@ -15,7 +15,7 @@ func update_position(delta):
 	position += direction * current_speed * delta
 
 func update_rotation(delta):
-	rotation = direction.angle() + deg_to_rad(-90)
+	MainSprite.rotation = direction.angle() + deg_to_rad(-90)
 
 func handle_logic():
 	damage = base_damage + current_speed * DAMAGE_COEFFICIENT
@@ -32,4 +32,4 @@ func die():
 	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	die()
+	crash()

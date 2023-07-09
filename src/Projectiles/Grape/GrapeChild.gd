@@ -11,4 +11,7 @@ func _ready():
 
 func _on_die_timer_timeout():
 	Signals.emit_signal("camera_shake_requested", size / 1.5, 0.3)
-	die()
+	crash()
+
+func slice():
+	pass
