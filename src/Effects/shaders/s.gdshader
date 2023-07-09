@@ -2,6 +2,8 @@ shader_type canvas_item;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 
+uniform float alpha = 0.0f;
+
 void fragment() {
 	vec4 bg = texture(SCREEN_TEXTURE, SCREEN_UV);
 	bg.r *= 0.9;
@@ -16,4 +18,5 @@ void fragment() {
 	vig = pow(vig, 0.5); // change pow for modifying the extend of the  vignette
 	
 	COLOR.xyz = bg.xyz * vig;
+	COLOR.a = alpha;
 }

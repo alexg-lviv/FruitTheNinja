@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_7r63x"]
 [ext_resource type="Script" path="res://src/Projectiles/Watermelon/Watermelon.gd" id="2_xo3ix"]
-[ext_resource type="Texture2D" uid="uid://r4mtddr7mo3a" path="res://assets/fruits/Watermelon.png" id="3_oomir"]
+[ext_resource type="Texture2D" uid="uid://b4kramh7j4suw" path="res://assets/fruits/Watermelon-black.png" id="3_6hl77"]
 [ext_resource type="AudioStream" uid="uid://dm24quwsu04jn" path="res://assets/sound/watermelon_hit.mp3" id="4_d8h7p"]
 [ext_resource type="AudioStream" uid="uid://c6vkay83p6100" path="res://assets/sound/squish.mp3" id="5_av6dn"]
 [ext_resource type="Shader" path="res://src/Projectiles/Slice.gdshader" id="6_s78od"]
@@ -54,7 +54,7 @@ shape = SubResource("CircleShape2D_7moqn")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.625, 3.625)
-texture = ExtResource("3_oomir")
+texture = ExtResource("3_6hl77")
 
 [node name="DeathParticles" parent="." index="5"]
 modulate = Color(0.996078, 0.196078, 0, 1)
@@ -79,9 +79,10 @@ pitch_scale = 0.5
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_wtrvw")
+rotation = -0.453786
 scale = Vector2(3.625, 3.504)
-texture = ExtResource("3_oomir")
+texture = ExtResource("3_6hl77")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
 scale = Vector2(3.625, 3.625)
-texture = ExtResource("3_oomir")
+texture = ExtResource("3_6hl77")

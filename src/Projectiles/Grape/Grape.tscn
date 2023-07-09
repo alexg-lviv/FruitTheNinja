@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_j21a0"]
 [ext_resource type="Script" path="res://src/Projectiles/Grape/Grape.gd" id="2_ei172"]
-[ext_resource type="Texture2D" uid="uid://dfe7pohk566gt" path="res://assets/fruits/Grape.png" id="3_dggtm"]
+[ext_resource type="Texture2D" uid="uid://dyhgydj28lmmm" path="res://assets/fruits/Grape-black.png" id="3_7bf0w"]
 [ext_resource type="Shader" path="res://src/Projectiles/Slice.gdshader" id="4_66lih"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcohw"]
@@ -58,7 +58,7 @@ shape = SubResource("CircleShape2D_bcohw")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3, 3)
-texture = ExtResource("3_dggtm")
+texture = ExtResource("3_7bf0w")
 
 [node name="DieTimer" type="Timer" parent="." index="3"]
 wait_time = 0.75
@@ -77,11 +77,12 @@ pitch_scale = 0.85
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_74d14")
+rotation = -0.453786
 scale = Vector2(3, 3)
-texture = ExtResource("3_dggtm")
+texture = ExtResource("3_7bf0w")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
 scale = Vector2(3, 3)
-texture = ExtResource("3_dggtm")
+texture = ExtResource("3_7bf0w")
 
 [connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

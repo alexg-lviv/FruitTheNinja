@@ -91,6 +91,7 @@ func _input(event):
 		if event.is_action_pressed(action) and _actions[action] <= len(_projectiles) - 1:
 			if $VBoxLeft.get_child(_actions[action]).get_child_count() > 0 and not $VBoxLeft.get_child(_actions[action]).get_child(0).butt.disabled:
 				if _preview != null:
+					$ChooseSound.play()
 					_preview.queue_free()
 					await _preview.tree_exited
 				launch_butt($VBoxLeft.get_child(_actions[action]).get_child(0))

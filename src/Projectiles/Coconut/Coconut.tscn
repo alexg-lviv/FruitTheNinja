@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vy6xu767jks6" path="res://src/Projectiles/Projectile.tscn" id="1_4ewcy"]
 [ext_resource type="Script" path="res://src/Projectiles/Coconut/Coconut.gd" id="2_71jp8"]
-[ext_resource type="Texture2D" uid="uid://b8ujnopyg58gq" path="res://assets/fruits/Coconut.png" id="2_rnmma"]
+[ext_resource type="Texture2D" uid="uid://dvwweincjjx3u" path="res://assets/fruits/Coconut-black.png" id="3_8y7p3"]
 [ext_resource type="Shader" path="res://src/Projectiles/Slice.gdshader" id="4_q6nid"]
 [ext_resource type="AudioStream" uid="uid://o5tt4kn1nhfv" path="res://assets/sound/coconut_hit.mp3" id="4_yj63a"]
 
@@ -25,7 +25,7 @@ shape = SubResource("CircleShape2D_0dlj5")
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(3.625, 3.625)
-texture = ExtResource("2_rnmma")
+texture = ExtResource("3_8y7p3")
 
 [node name="DeathSound" parent="." index="7"]
 stream = ExtResource("4_yj63a")
@@ -33,9 +33,10 @@ pitch_scale = 1.13
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_mw7b4")
+rotation = -0.453786
 scale = Vector2(3.625, 3.504)
-texture = ExtResource("2_rnmma")
+texture = ExtResource("3_8y7p3")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
 scale = Vector2(3.625, 3.625)
-texture = ExtResource("2_rnmma")
+texture = ExtResource("3_8y7p3")
