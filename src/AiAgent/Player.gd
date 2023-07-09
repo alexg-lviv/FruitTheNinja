@@ -19,12 +19,14 @@ const ENCLOSURE_MUL: int = 10
 @onready var EnclosureTimer: Timer = get_node("EnclosureTimer") as Timer
 @onready var DashTimer: Timer = get_node("DashTimer") as Timer
 @onready var DashCooldown: Timer = get_node("DashCooldown") as Timer
+@onready var StunCoolDown: Timer = get_node("StunCooldown") as Timer
 @onready var Progress: ProgressBar = get_node("ProgressBar")
 
 var current_trail: Trail
 
 var in_dash: bool = false
 var can_dash: bool = true
+var is_stunned: bool = false
 var dash_speed: int = _speed * 15
 var dash_direction: Vector2 = Vector2.ZERO
 @export var dash_time = 0.12
@@ -42,7 +44,7 @@ func _process(delta):
 	if(handle_dash()):
 		position += dash_direction * dash_speed * delta
 		position = clamp(position, enclosure_zone.position, enclosure_zone.position + enclosure_zone.size)
-	else:
+	elif (!is_stunned):
 		velocity = Vector2.ZERO
 		velocity += avoid_fruits_steering() * AVOID_MULTIPLIER
 		if(!do_enclosure_steer):
@@ -129,9 +131,12 @@ func get_damaged(damage: int):
 	$AnimationPlayer.play("damage")
 	Signals.emit_signal("fruit_hit", damage)
 	
-func _on_area_entered(area):
+func _on_area_entered(area: Area2D):
 	if area.is_dead: return
-	if(!in_dash): get_damaged(area.damage)
+	if(!in_dash): 
+		get_damaged(area.damage)
+		if area.name == "Coconut":
+			stun()
 	if in_dash:
 		Signals.emit_signal("camera_shake_requested", 8.0, 0.4)
 		Signals.emit_signal("frame_freeze_requested", 20)
@@ -151,3 +156,11 @@ func make_trail():
 		current_trail.stop()
 	current_trail = Trail.create()
 	add_child(current_trail)
+
+func stun():
+	is_stunned = true
+	$AnimationPlayer.play("stun")
+	StunCoolDown.start()
+
+func _on_stun_cooldown_timeout():
+	is_stunned = false

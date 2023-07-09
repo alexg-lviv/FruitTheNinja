@@ -1,4 +1,5 @@
-[gd_scene load_steps=30 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=31 format=3 uid="uid://d1eme8vjjcd34"]
+
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -12,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://yrbcvwshhrv8" path="res://assets/butts/bbar_1.png" id="8_pwgk6"]
 [ext_resource type="Texture2D" uid="uid://hoob3gcbgyn1" path="res://assets/butts/purple_bar_dark_inside.png" id="10_1gpi3"]
 [ext_resource type="Texture2D" uid="uid://dkmytpbup7fwx" path="res://assets/butts/purple_bar_frame.png" id="10_or3n4"]
+[ext_resource type="Texture2D" uid="uid://cnj0a2fewj53i" path="res://assets/butts/icon.png" id="10_grbsc"]
 [ext_resource type="PackedScene" uid="uid://crn3rf6fql7yv" path="res://src/Effects/SlowMoEffect/SlowMoEffect.tscn" id="11_0i5gp"]
 [ext_resource type="Texture2D" uid="uid://cv66hdbnwg8tc" path="res://assets/butts/purple_bar_inside.png" id="11_mbdww"]
 [ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
@@ -119,19 +121,7 @@ grow_vertical = 2
 texture = ExtResource("2_vflbv")
 stretch_mode = 1
 
-[node name="AimField" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = 50.0
-offset_right = -100.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Carpet" type="TextureRect" parent="AimField"]
+[node name="Carpet" type="TextureRect" parent="."]
 self_modulate = Color(0.721569, 0.721569, 0.721569, 1)
 material = SubResource("ShaderMaterial_3y4aj")
 layout_mode = 1
@@ -140,15 +130,23 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -452.0
-offset_top = 15.0
+offset_top = 65.0
 offset_right = 385.0
-offset_bottom = 88.0
+offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.0996749
 texture = ExtResource("3_kc82t")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="AimField" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Table" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_cig82")
@@ -271,6 +269,23 @@ root_node = NodePath("../LifetimeProgress")
 libraries = {
 "": SubResource("AnimationLibrary_vg6rx")
 }
+[node name="TextureRect" type="TextureRect" parent="SlowmoProgress"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -337.167
+offset_top = -288.0
+offset_right = -14.1667
+offset_bottom = 30.0001
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.300517
+texture = ExtResource("10_grbsc")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
