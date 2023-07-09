@@ -16,19 +16,14 @@ func update_trajectory(
 	clear_points()
 	width = size
 	var mat = get_material()
-	mat.set_shader_parameter("speed", power * 10)
 	mat.set_shader_parameter("color", color)
+	mat.set_shader_parameter("speed", power * 10)
 	
 	var point_pos: Vector2 = global_position
-	
-	for i in MAX_POINTS:
-		var velocity: Vector2 = dir * speed;
-		
-		# Some shit with velocity maybe
-		
-		point_pos += velocity * delta
-		
-		add_point(point_pos);
+	# Some shit with velocity maybe
+	add_point(point_pos);
+	point_pos += dir * 1000
+	add_point(point_pos);
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
