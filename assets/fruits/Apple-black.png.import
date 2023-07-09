@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bttocv7axr5u3"
-path="res://.godot/imported/Banana-blackt.png-50e542227da6351834b5a0af6363cef4.ctex"
+uid="uid://dlru3ffxjto54"
+path="res://.godot/imported/Apple-black.png-2683a78c6bec0279ffe09eb79b6ad3dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fruits/Banana-blackt.png"
-dest_files=["res://.godot/imported/Banana-blackt.png-50e542227da6351834b5a0af6363cef4.ctex"]
+source_file="res://assets/fruits/Apple-black.png"
+dest_files=["res://.godot/imported/Apple-black.png-2683a78c6bec0279ffe09eb79b6ad3dc.ctex"]
 
 [params]
 
