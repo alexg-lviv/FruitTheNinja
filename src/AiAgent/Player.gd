@@ -20,7 +20,7 @@ const ENCLOSURE_MUL: int = 10
 @onready var DashTimer: Timer = get_node("DashTimer") as Timer
 @onready var DashCooldown: Timer = get_node("DashCooldown") as Timer
 @onready var StunCoolDown: Timer = get_node("StunCooldown") as Timer
-@onready var Progress: ProgressBar = get_node("ProgressBar")
+@onready var Progress: TextureProgressBar = get_node("ProgressBar")
 
 var current_trail: Trail
 
