@@ -1,8 +1,37 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcjb1fl863ih7"]
+[gd_scene load_steps=12 format=3 uid="uid://bcjb1fl863ih7"]
 
 [ext_resource type="Texture2D" uid="uid://sb1xs8vby8pl" path="res://assets/menu/Interface-1.png.png" id="1_iwhsx"]
 [ext_resource type="Script" path="res://src/UI/StartMenu.gd" id="1_vcxsx"]
+[ext_resource type="Texture2D" uid="uid://cdclfbsj1vlv7" path="res://assets/butts/CGB02-orange_M_btn.png" id="3_l02sk"]
 [ext_resource type="FontFile" uid="uid://dy8mn5yl5ls1" path="res://assets/fonts/bellbottom-laser-font/Bellbottomlaser-GKwg.ttf" id="3_x5a42"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ts1ix"]
+font = ExtResource("3_x5a42")
+font_size = 60
+font_color = Color(1, 0.701961, 0.705882, 1)
+outline_size = 20
+outline_color = Color(0.619608, 0.27451, 0.27451, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2llw5"]
+font = ExtResource("3_x5a42")
+font_size = 73
+font_color = Color(0.803922, 0.501961, 0.819608, 1)
+outline_size = 25
+outline_color = Color(0.494118, 0.231373, 0.580392, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_65367"]
+font = ExtResource("3_x5a42")
+font_size = 50
+font_color = Color(0.65098, 0.890196, 0.65098, 1)
+outline_size = 20
+outline_color = Color(0.384314, 0.65098, 0.513726, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kkj6y"]
+font = ExtResource("3_x5a42")
+font_size = 68
+font_color = Color(0.941176, 0.45098, 0.580392, 1)
+outline_size = 20
+outline_color = Color(0.611765, 0.266667, 0.341176, 1)
 
 [sub_resource type="Animation" id="Animation_oc7j2"]
 resource_name = "FUCK"
@@ -42,27 +71,6 @@ _data = {
 "dissapear": SubResource("Animation_e4a12")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_cifo6"]
-font = ExtResource("3_x5a42")
-font_size = 73
-font_color = Color(0.627451, 0.486275, 0.768627, 1)
-outline_size = 25
-outline_color = Color(0.627451, 0.352941, 0.768627, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_8pdlw"]
-font = ExtResource("3_x5a42")
-font_size = 50
-font_color = Color(0.752941, 0.92549, 0.611765, 1)
-outline_size = 20
-outline_color = Color(0.560784, 0.768627, 0.611765, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_dhur0"]
-font = ExtResource("3_x5a42")
-font_size = 68
-font_color = Color(0.909804, 0.392157, 0.423529, 1)
-outline_size = 20
-outline_color = Color(0.760784, 0.333333, 0.423529, 1)
-
 [node name="StartMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -73,7 +81,7 @@ grow_vertical = 2
 script = ExtResource("1_vcxsx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(500, 500)
+self_modulate = Color(0.956863, 0.733333, 1, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -88,83 +96,113 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("1_iwhsx")
-stretch_mode = 4
 
-[node name="Button" type="Button" parent="TextureRect"]
+[node name="Button" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -104.0
-offset_top = -170.0
-offset_right = 109.0
-offset_bottom = -96.0
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 40.0
+offset_right = 100.0
+offset_bottom = 190.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Play"
+grow_vertical = 2
+texture_normal = ExtResource("3_l02sk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="TextureRect/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "START"
+label_settings = SubResource("LabelSettings_ts1ix")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logo" type="Control" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.99997
+offset_top = 102.0
+offset_right = -6.99997
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="Label2" type="Label" parent="TextureRect/Logo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.625133
+anchor_top = 0.269444
+anchor_right = 0.646226
+anchor_bottom = 0.286111
+offset_left = -72.3303
+offset_top = -166.0
+offset_right = 70.6697
+offset_bottom = -95.0003
+grow_horizontal = 2
+pivot_offset = Vector2(58, 27)
+text = "Fruit"
+label_settings = SubResource("LabelSettings_2llw5")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="TextureRect/Logo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.61332
+anchor_top = 0.259907
+anchor_right = 0.61332
+anchor_bottom = 0.272407
+offset_left = -134.67
+offset_top = -111.259
+offset_right = -18.6697
+offset_bottom = -52.2591
+grow_horizontal = 2
+rotation = -0.337692
+pivot_offset = Vector2(58, 27)
+text = "The"
+label_settings = SubResource("LabelSettings_65367")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label4" type="Label" parent="TextureRect/Logo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.639346
+anchor_top = 0.30979
+anchor_right = 0.672159
+anchor_bottom = 0.319512
+offset_left = -42.0
+offset_top = -120.0
+offset_right = 116.0
+offset_bottom = -54.0
+grow_horizontal = 2
+pivot_offset = Vector2(58, 27)
+text = "Ninja"
+label_settings = SubResource("LabelSettings_kkj6y")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FUCK"
 libraries = {
 "": SubResource("AnimationLibrary_ld24k")
 }
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.623047
-anchor_top = 0.336111
-anchor_right = 0.644141
-anchor_bottom = 0.352778
-offset_left = -232.5
-offset_right = -116.5
-offset_bottom = 59.0
-grow_horizontal = 2
-pivot_offset = Vector2(58, 27)
-text = "Fruit"
-label_settings = SubResource("LabelSettings_cifo6")
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.565234
-anchor_top = 0.418056
-anchor_right = 0.565234
-anchor_bottom = 0.430556
-offset_left = -232.5
-offset_right = -116.5
-offset_bottom = 59.0
-grow_horizontal = 2
-rotation = -0.337692
-pivot_offset = Vector2(58, 27)
-text = "The"
-label_settings = SubResource("LabelSettings_8pdlw")
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Label3" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.652734
-anchor_top = 0.454167
-anchor_right = 0.685547
-anchor_bottom = 0.463889
-offset_left = -232.5
-offset_right = -116.5
-offset_bottom = 59.0
-grow_horizontal = 2
-rotation = 0.00124937
-pivot_offset = Vector2(58, 27)
-text = "Ninja"
-label_settings = SubResource("LabelSettings_dhur0")
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

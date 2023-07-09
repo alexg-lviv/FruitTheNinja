@@ -54,6 +54,10 @@ func _ready():
 
 
 func _start():
+	for i in range(4):
+		if $VBoxLeft.get_child(i).get_child(0):
+			$VBoxLeft.get_child(i).get_child(0).queue_free()
+	
 	Combos.score = 0
 	time_scalar = 10
 	$LifetimeProgress.value = 500
