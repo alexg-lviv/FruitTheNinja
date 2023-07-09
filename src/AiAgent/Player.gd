@@ -32,11 +32,15 @@ var dash_direction: Vector2 = Vector2.ZERO
 @export var dash_time = 0.12
 @export var dash_cooldown: float = 3.
 
+var prev_pos: Vector2 = Vector2.ZERO
+
+var curr_direction = Vector2.ZERO
+
 func _ready():
 	Progress.max_value = dash_cooldown
 
 func _process(delta):
-	if (DashCooldown.time_left - 1.) == 0.:
+	if (DashCooldown.time_left - 1.) <= 0.:
 		Progress.visible = false
 	else:
 		Progress.visible = true
@@ -44,6 +48,8 @@ func _process(delta):
 	if(handle_dash() && !is_stunned):
 		position += dash_direction * dash_speed * delta
 		position = clamp(position, enclosure_zone.position, enclosure_zone.position + enclosure_zone.size)
+		$Sprite2D.rotation = dash_direction.angle() + deg_to_rad(270)
+		curr_direction = dash_direction
 	elif (!is_stunned):
 		velocity = Vector2.ZERO
 		velocity += avoid_fruits_steering() * AVOID_MULTIPLIER
@@ -53,8 +59,9 @@ func _process(delta):
 			velocity = enclosure_steer_direction
 		velocity += wander_steering() 
 		velocity = velocity.normalized() * delta * _speed
-
+#		$Sprite2D.rotation = velocity.angle() + deg_to_rad(270)
 		position += velocity
+		curr_direction = velocity
 
 
 func is_in_left(a: Vector2, b: Vector2, c: Vector2) -> bool:
@@ -153,6 +160,7 @@ func _on_dash_cooldown_timeout():
 	can_dash = true
 
 func _on_dash_timer_timeout():
+	$Sprite2D.rotation = 0
 	in_dash = false
 	current_trail.stop()
 	current_trail = null
@@ -171,3 +179,10 @@ func stun():
 
 func _on_stun_cooldown_timeout():
 	is_stunned = false
+
+
+func _on_timer_timeout():
+	tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property($Sprite2D, "rotation", curr_direction.angle() + deg_to_rad(270), 0.5)
+	prev_pos = global_position
