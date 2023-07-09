@@ -187,18 +187,17 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 	var tween = create_tween()
 	tween.tween_property($LifetimeProgress, "value", $LifetimeProgress.value + damage * combo, 0.5)
 	time_scalar -= damage * combo / 50.
-
-	$Score.text = str(Combos.score)
+	
+	$ScoreLabel.set_label(str(Combos.score))
 	
 	var popup = _combo_text.instantiate()
 	$CanvasLayer.add_child(popup)
-	popup.position = impact_position + Vector2(20 - randi() % 40, 20 - randi() % 40)
+	popup.position = impact_position + Vector2(50 - randi() % 100, 50 - randi() % 100)
 	if combo == 1:
 		popup.get_node("Label").text = "HIT"
 	else:
 		popup.get_node("Label").text = "COMBO x" + str(combo)
-	popup.modulate = _combo_colors[randi() % len(_combo_colors)]
-#	popup.modulate = Color.from_hsv((randi() % 12) / 12.0, 1, 1)
+	popup.modulate = Projectiles.colors[randi() % len(Projectiles.colors)]
 	
 	var popup_tween = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	popup_tween.tween_property(popup, "scale", Vector2.ONE + 0.1 * (combo-1+randf_range(1,5)) * Vector2.ONE, 0.5).from(Vector2.ZERO)
@@ -212,8 +211,6 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 	await popup_tween.finished
 	
 	popup.queue_free()
-	
-	$ScoreLabel.set_label(str(Combos.score)).animate()
 
 func _on_populate_timer_timeout():
 	_populate()
