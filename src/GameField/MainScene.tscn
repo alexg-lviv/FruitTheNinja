@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 [ext_resource type="AudioStream" uid="uid://ivt3wq4v43hr" path="res://assets/sound/whoosh.mp3" id="14_dq7sr"]
-[ext_resource type="PackedScene" uid="uid://tx554f4cglch" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
+[ext_resource type="PackedScene" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -355,6 +355,13 @@ position = Vector2(1178, 43)
 stream = ExtResource("13_i32sq")
 volume_db = -15.0
 autoplay = true
+
+[node name="Score" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1170.0
+offset_top = 21.0
+offset_right = 1210.0
+offset_bottom = 61.0
 
 [node name="ThrowSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_dq7sr")
