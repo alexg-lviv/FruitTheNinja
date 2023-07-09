@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba30w5qatdkrv"]
+
+[ext_resource type="FontFile" uid="uid://dy8mn5yl5ls1" path="res://assets/fonts/bellbottom-laser-font/Bellbottomlaser-GKwg.ttf" id="1_6rw4e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uc25d"]
+font = ExtResource("1_6rw4e")
+font_size = 32
+
+[node name="ComboText" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Combo x3"
+label_settings = SubResource("LabelSettings_uc25d")
+horizontal_alignment = 1
+vertical_alignment = 1
