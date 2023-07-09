@@ -14,6 +14,7 @@ var is_finished_dying: bool = false;
 var on_field = false
 var bounce_count = 0
 
+@onready var MainSprite: Sprite2D = get_node("Sprite2D")
 @onready var AnimPlayer: AnimationPlayer = get_node("AnimationPlayer")
 @onready var DeathTimer: Timer = get_node("DeathTimer")
 
@@ -23,7 +24,8 @@ var elapsed_time = 0
 func _ready():
 	size = $CollisionShape2D.shape.radius
 	$DeathParticles.emitting = false
-	$DeathTimer.wait_time = $DeathParticles.lifetime
+#	$DeathTimer.wait_time = $DeathParticles.lifetime
+	$SplitPieces.visible = false
 
 func _process(delta):
 	elapsed_time += delta
@@ -42,13 +44,13 @@ func update_position(delta):
 	position += direction * speed * delta
 	
 func update_rotation(delta):
-	rotation += rotation_speed * delta
+	MainSprite.rotation += rotation_speed * delta
 
 func handle_logic():
 	if bounce_count >= 1 and !is_dead:
 		$HitPlayer.play()
 		Signals.emit_signal("camera_shake_requested", size / 1.5, 0.3)
-		die()
+		crash()
 
 func handle_death():
 	pass
@@ -57,12 +59,24 @@ func die():
 	if is_dead:
 		return
 	
-	$DeathSound.play()
 	is_dead = true
-	AnimPlayer.play("simple_death")
 	DeathTimer.start()
-	$DeathParticles.emitting = true
+	$DeathSound.play()
+	$DeathParticles.restart()
 	DecalSystem.add_decals(global_position, color, size)
+
+func slice():
+	if is_dead:
+		return
+	$SplitPieces.visible = true
+	$SliceAnimationPlayer.play("split")
+	die()
+
+func crash():
+	if is_dead:
+		return
+	AnimPlayer.play("simple_death")
+	die()
 
 func _on_death_timer_timeout():
 	queue_free()

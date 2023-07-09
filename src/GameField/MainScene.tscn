@@ -1,4 +1,6 @@
-[gd_scene load_steps=32 format=3 uid="uid://d1eme8vjjcd34"]
+
+[gd_scene load_steps=33 format=3 uid="uid://d1eme8vjjcd34"]
+
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -18,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
 [ext_resource type="AudioStream" uid="uid://ivt3wq4v43hr" path="res://assets/sound/whoosh.mp3" id="14_dq7sr"]
+[ext_resource type="PackedScene" uid="uid://tx554f4cglch" path="res://src/UI/ScoreLabel.tscn" id="17_7xhf0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -345,6 +348,10 @@ shape = SubResource("RectangleShape2D_2hwli")
 one_shot = true
 
 [node name="PopulateTimer" type="Timer" parent="."]
+
+[node name="ScoreLabel" parent="." instance=ExtResource("17_7xhf0")]
+z_index = 7
+position = Vector2(1178, 43)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_i32sq")

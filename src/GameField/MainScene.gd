@@ -186,6 +186,7 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 	var tween = create_tween()
 	tween.tween_property($LifetimeProgress, "value", $LifetimeProgress.value + damage * combo, 0.5)
 	time_scalar -= damage * combo / 50.
+
 	$Score.text = str(Combos.score)
 	
 	var popup = _combo_text.instantiate()
@@ -210,6 +211,7 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 	
 	popup.queue_free()
 	
+	$ScoreLabel.set_label(str(Combos.score)).animate()
 
 func _on_populate_timer_timeout():
 	_populate()

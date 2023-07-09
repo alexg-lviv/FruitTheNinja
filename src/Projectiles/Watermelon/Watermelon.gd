@@ -14,7 +14,7 @@ func _ready():
 func handle_logic():
 	if bounce_count >= MAX_BOUNCE_COUNT:
 		$DeathSound.play()
-		die()
+		crash()
 
 func _on_area_entered(area: Area2D):
 	super._on_area_entered(area)
@@ -24,12 +24,14 @@ func _on_area_entered(area: Area2D):
 			"Top", "Bottom":
 				$HitPlayer.play()
 				Signals.emit_signal("camera_shake_requested", 12.0, 0.5)
+				DecalSystem.add_decal(global_position, color, size)
 				direction.y *= -1
 				if bounce_count < MAX_BOUNCE_COUNT:
 					CrashParticles.restart()
 			"Left", "Right":
 				$HitPlayer.play()				
 				Signals.emit_signal("camera_shake_requested", 12.0, 0.5)
+				DecalSystem.add_decal(global_position, color, size)
 				direction.x *= -1
 				rotation_speed *= -1
 				if bounce_count < MAX_BOUNCE_COUNT:
