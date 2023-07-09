@@ -34,6 +34,8 @@ var _slowmo_tween
 var _slowmo_inter_tween
 var time_scalar: float = 10
 
+var _combo_text = preload("res://src/UI/ComboText.tscn")
+
 
 func _ready():
 	$PopulateTimer.wait_time = populate_time
@@ -53,6 +55,7 @@ func _ready():
 		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
 		
 	$PopulateTimer.start()
+
 
 func _process(delta):
 	$LifetimeProgress.value = $LifetimeProgress.value - delta * time_scalar
@@ -184,6 +187,29 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 	tween.tween_property($LifetimeProgress, "value", $LifetimeProgress.value + damage * combo, 0.5)
 	time_scalar -= damage * combo / 50.
 	$Score.text = str(Combos.score)
+	
+	var popup = _combo_text.instantiate()
+	$CanvasLayer.add_child(popup)
+	popup.position = impact_position + Vector2(20 - randi() % 40, 20 - randi() % 40)
+	if combo == 1:
+		popup.get_node("Label").text = "HIT"
+	else:
+		popup.get_node("Label").text = "COMBO x" + str(combo)
+	popup.modulate = Color.from_hsv((randi() % 12) / 12.0, 1, 1)
+	
+	var popup_tween = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	popup_tween.tween_property(popup, "scale", Vector2.ONE + 0.1 * (combo-1+randf_range(1,5)) * Vector2.ONE, 0.5).from(Vector2.ZERO)
+	popup_tween.tween_property(popup, "rotation_degrees", 20 - randi() % 40, 0.5).from(90)
+	
+	await get_tree().create_timer(1 + 0.2 * (1-combo)).timeout
+	
+	popup_tween = get_tree().create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
+	popup_tween.tween_property(popup, "scale", Vector2.ZERO, 0.3)
+	popup_tween.tween_property(popup, "rotation_degrees", 180, 0.3)
+	await popup_tween.finished
+	
+	popup.queue_free()
+	
 
 func _on_populate_timer_timeout():
 	_populate()

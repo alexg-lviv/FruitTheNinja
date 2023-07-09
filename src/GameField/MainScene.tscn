@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=32 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -357,6 +357,7 @@ offset_left = 1170.0
 offset_top = 21.0
 offset_right = 1210.0
 offset_bottom = 61.0
+
 [node name="ThrowSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_dq7sr")
 volume_db = 5.0
