@@ -5,7 +5,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8jdw0"]
 shader = ExtResource("1_rxccq")
-shader_parameter/alpha = null
+shader_parameter/alpha = 0.0
 
 [node name="SlowMoEffect" type="ColorRect"]
 material = SubResource("ShaderMaterial_8jdw0")
