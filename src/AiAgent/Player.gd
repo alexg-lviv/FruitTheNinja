@@ -41,7 +41,7 @@ func _process(delta):
 	else:
 		Progress.visible = true
 		Progress.value = DashCooldown.time_left - 1.
-	if(handle_dash()):
+	if(handle_dash() && !is_stunned):
 		position += dash_direction * dash_speed * delta
 		position = clamp(position, enclosure_zone.position, enclosure_zone.position + enclosure_zone.size)
 	elif (!is_stunned):
