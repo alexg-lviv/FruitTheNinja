@@ -59,7 +59,7 @@ base_damage = 15
 shape = SubResource("CircleShape2D_i3fqu")
 
 [node name="Sprite2D" parent="." index="1"]
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 texture = ExtResource("3_yds8g")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]
@@ -78,9 +78,9 @@ pitch_scale = 1.11
 
 [node name="LeftPiece" parent="SplitPieces" index="0"]
 material = SubResource("ShaderMaterial_c6nh2")
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 texture = ExtResource("3_yds8g")
 
 [node name="RightPiece" parent="SplitPieces" index="1"]
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 texture = ExtResource("3_yds8g")

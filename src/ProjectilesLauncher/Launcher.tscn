@@ -13,6 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2ceaw")
 
+[node name="ProjectileTrajectory" parent="." instance=ExtResource("3_vywmd")]
+
 [node name="Position" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
@@ -52,7 +54,5 @@ pivot_offset = Vector2(30, 30)
 mouse_filter = 2
 ignore_texture_size = true
 stretch_mode = 5
-
-[node name="ProjectileTrajectory" parent="." instance=ExtResource("3_vywmd")]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
