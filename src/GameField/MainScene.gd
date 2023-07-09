@@ -161,11 +161,10 @@ func _hide_bars():
 	_left_bar_tween = get_tree().create_tween()
 	_left_bar_tween.tween_property($VBoxLeft, "position", Vector2(-50, 100), 0.3)
 
-func _on_fruit_hit(damage: int):
+func _on_fruit_hit(damage: int, impact_position: Vector2):
 	Combos.handle_hit()
 	var combo = Combos.combo
 	$LifetimePlayer.play("add_hp")
-#	$LifetimeProgress.value += damage * combo
 	var tween = create_tween()
 	tween.tween_property($LifetimeProgress, "value", $LifetimeProgress.value + damage * combo, 0.5)
 	time_scalar -= damage * combo / 50.
