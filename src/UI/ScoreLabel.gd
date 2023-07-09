@@ -14,24 +14,37 @@ var value: int
 
 @onready var _label = $Label
 
+var _combo = preload("res://src/UI/ComboText.tscn")
+
+var _tween
+
+
 func set_label(text: String):
+	var delta = int(text) - value
+	var p = _combo.instantiate()
+	$Marker2D.add_child(p)
+	p.position += Vector2(20 - randi() % 40, 20 - randi() % 40)
+	p.get_node("Label").text = str("+") + str(delta)
+	p.modulate = Projectiles.colors[randi() % len(Projectiles.colors)]
+	
+	var t = get_tree().create_tween().set_parallel()
+	t.tween_property(p, "scale", Vector2.ZERO, 1).from(randf_range(0.5, 3) * Vector2.ONE)
+	t.tween_property(p, "position", p.position + Vector2(100 - randi() % 200, 100 - randi() % 200), 1)
+	
 	_label.text = text
 	value = int(text)
+	
+	animate()
+	
+	await t.finished
+	
 	return self
-
-func set_color(color: Color):
-	_label.set("custom_colors/font_color", color)
-	return self
-
-func set_time(first_time, second_time):
-	_first_time = first_time
-	_second_time = second_time
 
 
 func animate():
-	var _tween = get_tree().create_tween()
-	_velocity *= _peak_scale.length()
-	scale = _init_scale
-	_tween.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	_tween.tween_property(self, "scale", _peak_scale, _first_time)
-	_tween.tween_property(self, "scale", Vector2(_init_scale.x + value / 1000., _init_scale.y + value / 1000.), _second_time)
+	if _tween and _tween.is_running():
+		_tween.kill()
+	
+	_tween = get_tree().create_tween()
+	_tween.tween_property($Label, "scale", 1.2 * Vector2.ONE, 0.1)
+	_tween.tween_property($Label, "scale", Vector2.ONE, 0.2)
