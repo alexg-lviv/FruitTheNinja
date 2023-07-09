@@ -37,6 +37,8 @@ var time_scalar: float = 10
 var _combo_text = preload("res://src/UI/ComboText.tscn")
 var _combo_colors := [Color("00ffff"), Color("5482ff"), Color("d09aff"), Color("9bff70"), Color("afff5e"), Color("ff9c6b"), Color("c387ff")]
 
+var _pulse_count = 0
+
 
 func _ready():
 	$PopulateTimer.wait_time = populate_time
@@ -56,6 +58,7 @@ func _ready():
 		t.tween_property(b, "rotation_degrees", 0, 0.8).from(90)
 		
 	$PopulateTimer.start()
+	$PulseTimer.start()
 
 
 func _process(delta):
@@ -216,3 +219,16 @@ func _on_fruit_hit(damage: int, impact_position: Vector2):
 
 func _on_populate_timer_timeout():
 	_populate()
+
+
+func _on_pulse_timer_timeout():
+	_pulse_count += 1
+	if _pulse_count >= 3:
+		return
+
+	for i in range(2):
+		var _tween = get_tree().create_tween()
+		_tween.tween_property($Pulse, "modulate:a", 0.4, 0.4).from(0.).set_ease(Tween.EASE_OUT)
+		_tween.tween_property($Pulse, "modulate:a", 0., 0.4).set_ease(Tween.EASE_IN)
+		await _tween.finished
+	$PulseTimer.start()

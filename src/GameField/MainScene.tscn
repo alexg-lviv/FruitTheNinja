@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=38 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -30,6 +30,16 @@ shader = ExtResource("4_7j0s5")
 shader_parameter/deform = Vector2(2.08165e-12, 2.08165e-12)
 shader_parameter/offset = Vector2(3, 3)
 shader_parameter/modulate = Color(0, 0.329412, 0, 0.196078)
+
+[sub_resource type="Gradient" id="Gradient_5ha7n"]
+offsets = PackedFloat32Array(0, 0.783871, 1)
+colors = PackedColorArray(0.254902, 1, 0.141176, 1, 0.470588, 1, 0.866667, 1, 0.160784, 0.8, 0.439216, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yt6wi"]
+gradient = SubResource("Gradient_5ha7n")
+width = 1600
+height = 1000
+fill_to = Vector2(0.793578, 0.755963)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cig82"]
 shader = ExtResource("4_7j0s5")
@@ -177,6 +187,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Pulse" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yt6wi")
+stretch_mode = 1
 
 [node name="Table" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_cig82")
@@ -403,5 +424,11 @@ stream = ExtResource("20_ch82q")
 volume_db = -20.0
 pitch_scale = 1.24
 
+[node name="PulseTimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
 [connection signal="timeout" from="PopulateTimer" to="." method="_on_populate_timer_timeout"]
+[connection signal="timeout" from="PulseTimer" to="." method="_on_pulse_timer_timeout"]
