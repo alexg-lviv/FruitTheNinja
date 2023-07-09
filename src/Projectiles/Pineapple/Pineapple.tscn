@@ -22,6 +22,7 @@ curve = SubResource("Curve_51us0")
 emission_shape = 1
 emission_sphere_radius = 9.08
 particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
 spread = 81.47
 gravity = Vector3(0, -98, 0)
 initial_velocity_min = 52.63
@@ -50,28 +51,30 @@ shape = SubResource("CircleShape2D_oilpu")
 scale = Vector2(3.375, 3.375)
 texture = ExtResource("3_tqjlg")
 
+[node name="TrailParticles" type="GPUParticles2D" parent="Sprite2D" index="0"]
+z_index = -1
+position = Vector2(0, -5.92593)
+scale = Vector2(0.296296, 0.296296)
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_llvc5")
+
 [node name="VisibleOnScreenNotifier2D" parent="." index="4"]
 scale = Vector2(6.4, 6.4)
 
 [node name="DeathParticles" parent="." index="5"]
 modulate = Color(1, 0.960784, 0.25098, 1)
 
-[node name="TrailParticles" type="GPUParticles2D" parent="." index="6"]
-position = Vector2(1, -20)
-amount = 256
-process_material = SubResource("ParticleProcessMaterial_llvc5")
-
-[node name="HitPlayer" parent="." index="7"]
+[node name="HitPlayer" parent="." index="6"]
 stream = ExtResource("4_od2mm")
 volume_db = -3.0
 pitch_scale = 0.7
 
-[node name="DeathSound" parent="." index="8"]
+[node name="DeathSound" parent="." index="7"]
 stream = ExtResource("4_jynp1")
 volume_db = -6.0
 pitch_scale = 2.0
 
-[node name="LaunchSound" type="AudioStreamPlayer2D" parent="." index="9"]
+[node name="LaunchSound" type="AudioStreamPlayer2D" parent="." index="8"]
 stream = ExtResource("5_lfrls")
 volume_db = -10.0
 pitch_scale = 0.86

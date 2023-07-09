@@ -59,6 +59,8 @@ func die(play_sound=true):
 	if is_dead:
 		return
 	
+	set_physics_process(false) 
+	
 	is_dead = true
 	DeathTimer.start()
 	if play_sound:

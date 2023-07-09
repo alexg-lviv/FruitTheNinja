@@ -17,6 +17,7 @@ func update_position(delta):
 
 func update_rotation(delta):
 	MainSprite.rotation = direction.angle() + deg_to_rad(-90)
+	$Sprite2D/TrailParticles.rotation = direction.angle() + deg_to_rad(-90)
 
 func handle_logic():
 	damage = base_damage + current_speed * DAMAGE_COEFFICIENT
@@ -29,7 +30,7 @@ func handle_logic():
 
 func die(play_sound=true):
 	super.die(false)
-	$TrailParticles.emitting = false
+	$Sprite2D/TrailParticles.emitting = false
 	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
 
 
