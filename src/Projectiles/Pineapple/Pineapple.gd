@@ -10,6 +10,7 @@ func _ready():
 	super._ready()
 	color = Color(0.837, 1.00, 0.0200)
 	Signals.emit_signal("camera_shake_requested", 1.5, time_til_mach10 * 8)
+	$LaunchSound.play()
 
 func update_position(delta):
 	position += direction * current_speed * delta
@@ -29,6 +30,7 @@ func handle_logic():
 func die():
 	super.die()
 	$TrailParticles.emitting = false
+	$LaunchSound.playing = false
 	Signals.emit_signal("camera_shake_requested", 10.0, 0.7)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
