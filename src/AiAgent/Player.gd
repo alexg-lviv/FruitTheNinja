@@ -63,8 +63,10 @@ func is_in_left(a: Vector2, b: Vector2, c: Vector2) -> bool:
 func handle_dash() -> bool:
 	if(!can_dash and !in_dash): return false
 	if(in_dash): return true
+	
 	for fruit in Projectiles.spawned:
 		if(!is_instance_valid(fruit) or fruit.is_dead or global_position.distance_to(fruit.global_position) > 150): continue
+		$DashSound.play()
 		in_dash = true
 		can_dash = false
 		dash_direction = position.direction_to(fruit.position)
@@ -138,9 +140,13 @@ func _on_area_entered(area: Area2D):
 		if area.name == "Coconut":
 			stun()
 	if in_dash:
+		$SlashSound.play()
 		Signals.emit_signal("camera_shake_requested", 8.0, 0.4)
 		Signals.emit_signal("frame_freeze_requested", 20)
-	area.die()
+	if area.name == "Pineapple":
+		area.die_from_slash()
+	else:
+		area.die()
 
 func _on_dash_cooldown_timeout():
 	can_dash = true
