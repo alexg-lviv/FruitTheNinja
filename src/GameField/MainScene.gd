@@ -31,6 +31,7 @@ var _butt = preload("res://src/UI/ProjectileButt.tscn")
 var _is_slowmo := false
 @onready var _slowmo_timer = $SlowmoTimer
 var _slowmo_tween
+var _slowmo_inter_tween
 var time_scalar: float = 10
 
 
@@ -99,8 +100,15 @@ func _input(event):
 		else:
 			if _slowmo_tween and _slowmo_tween.is_running():
 				_slowmo_tween.kill()
+				
+			if _slowmo_inter_tween and _slowmo_inter_tween.is_running():
+				_slowmo_inter_tween.kill()
+			_slowmo_inter_tween = get_tree().create_tween().set_parallel()
+			_slowmo_inter_tween.tween_property(Engine, "time_scale", slowmo_slow, 0.1).from(0.7)
+			_slowmo_inter_tween.tween_property($AudioStreamPlayer, "pitch_scale", 0.8, 0.5)
+				
 			$CanvasLayer/SlowMoEffect.activate()
-			Engine.time_scale = slowmo_slow
+			
 			_is_slowmo = true
 			set_physics_process(true)
 			_slowmo_timer.start()
@@ -112,7 +120,13 @@ func _on_slowmo_timer_timeout():
 
 func _reset_time_scale():
 	$CanvasLayer/SlowMoEffect.deactivate()
-	Engine.time_scale = 1
+	
+	if _slowmo_inter_tween and _slowmo_inter_tween.is_running():
+		_slowmo_inter_tween.kill()
+	_slowmo_inter_tween = get_tree().create_tween().set_parallel()
+	_slowmo_inter_tween.tween_property(Engine, "time_scale", 1, 0.3)
+	_slowmo_inter_tween.tween_property($AudioStreamPlayer, "pitch_scale", 1, 0.3)
+	
 	_is_slowmo = false
 	set_physics_process(false)
 	
