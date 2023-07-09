@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cv66hdbnwg8tc" path="res://assets/butts/purple_bar_inside.png" id="11_mbdww"]
 [ext_resource type="Texture2D" uid="uid://dmmhuhrc3aeyk" path="res://assets/butts/white_progress.png" id="13_cpx6l"]
 [ext_resource type="AudioStream" uid="uid://nfe4gqc5mmlw" path="res://assets/sound/main_theme.mp3" id="13_i32sq"]
+[ext_resource type="AudioStream" uid="uid://ivt3wq4v43hr" path="res://assets/sound/whoosh.mp3" id="14_dq7sr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -349,6 +350,10 @@ one_shot = true
 stream = ExtResource("13_i32sq")
 volume_db = -15.0
 autoplay = true
+
+[node name="ThrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_dq7sr")
+volume_db = 5.0
 
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
 [connection signal="timeout" from="PopulateTimer" to="." method="_on_populate_timer_timeout"]
