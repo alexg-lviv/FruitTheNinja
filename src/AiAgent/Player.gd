@@ -36,8 +36,12 @@ var prev_pos: Vector2 = Vector2.ZERO
 
 var curr_direction = Vector2.ZERO
 
+
 func _ready():
 	Progress.max_value = dash_cooldown
+	
+func _physics_process(delta):
+	Logger.log_current_frame_object_data(self)
 
 func _process(delta):
 	if (DashCooldown.time_left - 1.) <= 0.:

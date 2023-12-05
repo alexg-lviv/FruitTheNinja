@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bniyy31uwncua"]
+
+[ext_resource type="Script" path="res://src/Singletons/Logger.gd" id="1_b6bcn"]
+
+[node name="Logger" type="Node"]
+script = ExtResource("1_b6bcn")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

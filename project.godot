@@ -10,18 +10,19 @@ config_version=5
 
 [application]
 
-config/name="HoydalkaGaem"
+config/name="Fruit The Ninja!"
 run/main_scene="res://src/GameField/MainScene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon.PNG"
 
 [autoload]
 
 Projectiles="*res://src/Singletons/projectiles.gd"
 DecalSystem="*res://src/Effects/DecalSystem.tscn"
-Signals="*res://src/Singletons/signals.gd"
+Signals="*res://src/UI/signals.gd"
 FrameFreezer="*res://src/Effects/FrameFreezer/FrameFreezer.gd"
 Combos="*res://src/Singletons/combos.gd"
+Logger="*res://src/Singletons/Logger.tscn"
 
 [display]
 

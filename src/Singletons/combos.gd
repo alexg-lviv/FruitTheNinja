@@ -9,6 +9,9 @@ var combo_tolerance = 5.
 
 var score: int = 0
 
+func _physics_process(delta):
+	Logger.log_current_frame_object_data(self)
+
 func handle_hit(damage: int):
 	timer = get_tree().create_timer(combo_tolerance)
 	timer.timeout.connect(_on_combo_timer_timeout)
@@ -17,7 +20,7 @@ func handle_hit(damage: int):
 	
 	score += damage
 	
-	print("COMBO: ", combo)
+	#print("COMBO: ", combo)
 
 func _on_combo_timer_timeout():
 	is_combo_going = false
