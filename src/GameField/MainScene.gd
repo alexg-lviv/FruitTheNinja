@@ -41,6 +41,32 @@ var _pulse_count = 0
 
 var _rrr := true
 
+# Logging vars
+var logical_frames_since_last_slowmo: int = 0
+
+var logical_frames_since_last_buttons_press := {
+	"b1": 0,
+	"b2": 0,
+	"b3": 0,
+	"b4": 0
+}
+var buttons_cooldown_times := {
+	"b1": 0,
+	"b2": 0,
+	"b3": 0,
+	"b4": 0
+}
+
+const BUT_IDX_LOOKUP_TABLE = {
+	0: "b1",
+	1: "b2",
+	2: "b3",
+	3: "b4",
+}
+
+# 0 - None, 1-4 - buttons
+var current_button: int = 0
+
 
 func _ready():
 	Signals.menu_start_button_pressed.connect(_start)
@@ -56,6 +82,8 @@ func _ready():
 
 
 func _start():
+	Logger.enable()
+	
 	for i in range(4):
 		if $VBoxLeft.get_child(i).get_child(0):
 			$VBoxLeft.get_child(i).get_child(0).queue_free()
@@ -82,14 +110,41 @@ func _start():
 
 
 func _stop():
+	Logger.stop()
 	Combos.score = 0
 	set_process_input(false)
 	set_process(false)
+
+func log_data():
+	Logger.log_global_data("time_scalar", time_scalar)
+	Logger.log_global_data("time_left", $LifetimeProgress.value)
+	Logger.log_global_data("time_left_seconds", $LifetimeProgress.value / time_scalar)
+	
+	Logger.log_button_data("is_in_slowmo", _is_slowmo)
+	Logger.log_button_data("slowmo_time_left_half_unit", $SlowmoProgress.value)
+	Logger.log_button_data("logical_frames_since_last_slowmo", logical_frames_since_last_slowmo)
+	Logger.log_button_data("current_button", current_button)
+	Logger.log_button_data("button_cooldown_times", buttons_cooldown_times.duplicate())
+	Logger.log_button_data("logical_frames_since_last_button_press", logical_frames_since_last_buttons_press.duplicate())
 
 
 func _process(delta):
 	$LifetimeProgress.value = $LifetimeProgress.value - delta * time_scalar
 	time_scalar += delta
+	if !_is_slowmo:
+		logical_frames_since_last_slowmo += 1
+	
+	for b in logical_frames_since_last_buttons_press:
+		if b in [0, current_button]:
+			continue
+		logical_frames_since_last_buttons_press[b] += 1
+	
+	for i in range(4):
+		var butt = $VBoxLeft.get_child(i).get_child(0)
+		if butt.butt.disabled:
+			buttons_cooldown_times[BUT_IDX_LOOKUP_TABLE[i]] = $PopulateTimer.time_left
+	
+	log_data()
 	if $LifetimeProgress.value == 0:
 		$CanvasLayer2/ReStartMenu.activate(Combos.score)
 		_stop()
@@ -103,6 +158,7 @@ func _populate():
 	for i in range(4):
 		var butt = $VBoxLeft.get_child(i).get_child(0)
 		if butt.butt.disabled:
+			buttons_cooldown_times[BUT_IDX_LOOKUP_TABLE[i]] = 0
 			_projectiles_butts.erase(butt)
 			var t = get_tree().create_tween().set_parallel(true).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 			t.tween_property(butt, "scale", Vector2.ZERO, 0.5)
@@ -125,6 +181,9 @@ func _input(event):
 		for action in _actions:
 			if event.is_action_pressed(action) and _actions[action] <= len(_projectiles) - 1:
 				if $VBoxLeft.get_child(_actions[action]).get_child_count() > 0 and not $VBoxLeft.get_child(_actions[action]).get_child(0).butt.disabled:
+					if (current_button != _actions[action] + 1):
+						logical_frames_since_last_buttons_press[BUT_IDX_LOOKUP_TABLE[_actions[action]]] = 0
+						current_button = _actions[action] + 1
 					if _preview != null:
 						$ChooseSound.play()
 						_preview.queue_free()
@@ -135,12 +194,14 @@ func _input(event):
 					_rrr = true
 	
 	if event.is_action_pressed("ui_cancel") and _preview != null:
+		current_button = 0
 		_preview.queue_free()
 	
 	if event.is_action_pressed("slowmo"):
 		if _is_slowmo:
 			_reset_time_scale()
 		else:
+			logical_frames_since_last_slowmo = 0
 			if _slowmo_tween and _slowmo_tween.is_running():
 				_slowmo_tween.kill()
 				

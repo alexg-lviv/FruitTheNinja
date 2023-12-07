@@ -36,12 +36,31 @@ var prev_pos: Vector2 = Vector2.ZERO
 
 var curr_direction = Vector2.ZERO
 
+# Logging data
+var fruits_cut_this_frame: int = 0
+var got_bonked_this_frame: int = 0
+var is_on_board: bool = true
+
 
 func _ready():
 	Progress.max_value = dash_cooldown
-	
+
+func log_data():
+	Logger.log_ninja_data("speed", _speed)
+	Logger.log_ninja_data("velocity", [velocity.x, velocity.y])
+	Logger.log_ninja_data("global_position", [global_position.x, global_position.y])
+	Logger.log_ninja_data("in_dash", in_dash)
+	Logger.log_ninja_data("can_dash", can_dash)
+	Logger.log_ninja_data("is_stunned", is_stunned)
+	Logger.log_ninja_data("dash_cooldown_time", $DashCooldown.time_left)
+	Logger.log_ninja_data("fruits_cut_this_frame", fruits_cut_this_frame)
+	Logger.log_ninja_data("got_bonked_this_frame", got_bonked_this_frame)
+	Logger.log_ninja_data("is_on_board", is_on_board)
+
 func _physics_process(delta):
-	Logger.log_current_frame_object_data(self)
+	log_data()
+	fruits_cut_this_frame = 0
+	got_bonked_this_frame = 0
 
 func _process(delta):
 	if (DashCooldown.time_left - 1.) <= 0.:
@@ -124,6 +143,13 @@ func enclosure_steering() -> Vector2:
 	elif position.y > enclosure_zone.position.y + enclosure_zone.size.y - ENCLOSURE_ZONE_PADDING:
 		steer_direction.y -= 1
 	
+	# Loggog data
+	if (position.x < enclosure_zone.position.x - ENCLOSURE_ZONE_PADDING) || \
+		(position.x > enclosure_zone.position.x + enclosure_zone.size.x + ENCLOSURE_ZONE_PADDING) || \
+		(position.y < enclosure_zone.position.y - ENCLOSURE_ZONE_PADDING) || \
+		(position.y > enclosure_zone.position.y + enclosure_zone.size.y + ENCLOSURE_ZONE_PADDING):
+		is_on_board = false
+	
 	steer_direction = steer_direction.normalized()
 	
 	if steer_direction != Vector2.ZERO:
@@ -137,6 +163,7 @@ func enclosure_steering() -> Vector2:
 func _on_enclosure_timer_timeout():
 	enclosure_steer_direction = Vector2.ZERO
 	do_enclosure_steer = false
+	is_on_board = true
 
 func get_damaged(damage: int, fruit):
 	Signals.emit_signal("camera_shake_requested", 8.0, 0.7)
@@ -147,11 +174,12 @@ func get_damaged(damage: int, fruit):
 func _on_area_entered(area: Area2D):
 	if area.is_dead: return
 	if(!in_dash): 
+		fruits_cut_this_frame += 1
 		get_damaged(area.damage, area)
 		if area.name == "Coconut":
 			stun()
 	if in_dash:
-
+		got_bonked_this_frame += 1
 		$SlashSound.play()
 		Signals.emit_signal("camera_shake_requested", 8.0, 0.4)
 		Signals.emit_signal("frame_freeze_requested", 20)

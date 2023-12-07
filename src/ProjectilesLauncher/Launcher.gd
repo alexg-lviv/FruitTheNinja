@@ -18,6 +18,8 @@ var _ai_rect: Rect2
 
 @onready var _base_tint = $Position/Speed.tint_progress.g
 
+func log_data():
+	Logger.log_global_data("global_mouse_position", [get_global_mouse_position().x, get_global_mouse_position().y])
 
 func _physics_process(delta):
 	var _pos = get_global_mouse_position()
@@ -27,6 +29,8 @@ func _physics_process(delta):
 		_draw_speed(_pos, delta)
 	else:
 		_draw_icon(_pos)
+	
+	log_data()
 
 func _ready():
 	visible = false
