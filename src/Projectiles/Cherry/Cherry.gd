@@ -7,14 +7,17 @@ const MAX_EXPLOSION_INCREASE = 3
 var exploding = false
 var explosion_frame_counter = 0
 
+func get_p_name():
+	return "Cherry"
+
 func _ready():
 	super._ready()
 	$DetonateAnimationPlayer.play("detonating")
 	color = Color("#d51e5a")
 
-func crash():
+func crash(by_player = false):
 	$DetonateAnimationPlayer.stop()
-	super.crash()
+	super.crash(by_player)
 
 func slice():
 	super.slice()

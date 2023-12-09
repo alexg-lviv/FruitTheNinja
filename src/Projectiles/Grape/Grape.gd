@@ -11,6 +11,9 @@ var GrapeChild = preload("res://src/Projectiles/Grape/GrapeChild.tscn")
 
 var rng = RandomNumberGenerator.new()
 
+func get_p_name():
+	return "Grape"
+
 func _ready():
 	super._ready()
 	speed = 350

@@ -2,6 +2,9 @@ extends "res://src/Projectiles/Projectile.gd"
 
 var rng = RandomNumberGenerator.new()
 
+func get_p_name():
+	return "GrapePiece"
+
 func _ready():
 	super._ready()
 	color = Color(0.445, 0.195, 0.750)

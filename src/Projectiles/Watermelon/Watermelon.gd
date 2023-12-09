@@ -6,6 +6,9 @@ const MAX_BOUNCE_COUNT = 5
 
 @onready var CrashParticles = $CrashParticles
 
+func get_p_name():
+	return "Watermelon"
+
 func _ready():
 	super._ready()
 	CrashParticles.emitting = false

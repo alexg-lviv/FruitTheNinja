@@ -23,6 +23,9 @@ var animation_list
 # For calculating trajectory based on elapsed time
 var elapsed_time = 0
 
+func get_p_name():
+	return "Projectile"
+
 func _ready():
 	size = $CollisionShape2D.shape.radius
 	$DeathParticles.emitting = false
@@ -30,6 +33,17 @@ func _ready():
 	$SplitPieces.visible = false
 	animation_list = $SliceAnimationPlayer.get_animation_list()
 	animation_list.remove_at(0)
+
+func get_fruit_metadata():
+	return {
+		"uid": get_instance_id(),
+		"name": get_p_name(),
+		"global_position": global_position,
+		"speed": speed,
+		"damage": damage,
+		"is_on_board": on_field,
+		"direction": [direction.x, direction.y]
+	}
 
 func _process(delta):
 	elapsed_time += delta
@@ -40,6 +54,7 @@ func _physics_process(delta):
 		update_position(delta)
 		update_rotation(delta)
 		handle_logic()
+		Logger.fruits_on_screen_this_frame_list.append(get_fruit_metadata().duplicate())
 	handle_death()
 
 func set_direction(dir: Vector2):
@@ -81,9 +96,12 @@ func slice():
 	$SliceAnimationPlayer.play(random_animation)
 	die()
 
-func crash():
+func crash(by_player = false):
 	if is_dead:
 		return
+	if !by_player:
+		Logger.stupid_fucking_fruits_that_died_this_frame_list.append(get_fruit_metadata().duplicate())
+	
 	AnimPlayer.play("simple_death")
 	die()
 
@@ -91,6 +109,7 @@ func _on_death_timer_timeout():
 	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	Logger.stupid_fucking_fruits_that_died_this_frame_list.append(get_fruit_metadata().duplicate())
 	queue_free()
 
 func _on_area_entered(area: Area2D):

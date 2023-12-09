@@ -6,6 +6,9 @@ const TIME_TO_RETURN = 2.0
 
 var current_velocity = Vector2.ZERO
 
+func get_p_name():
+	return "Banana"
+
 func _ready():
 	super._ready()
 	color = Color(1.00, 0.951, 0.0200)

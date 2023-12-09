@@ -173,19 +173,21 @@ func get_damaged(damage: int, fruit):
 	
 func _on_area_entered(area: Area2D):
 	if area.is_dead: return
-	if(!in_dash): 
+	if(!in_dash):
 		fruits_cut_this_frame += 1
 		get_damaged(area.damage, area)
 		if area.name == "Coconut":
 			stun()
-	if in_dash:
+		area.crash(true)
+		Logger.fruits_hit_ninjas_ass_this_frame_list.append(area.get_fruit_metadata().duplicate())
+	elif in_dash:
 		got_bonked_this_frame += 1
 		$SlashSound.play()
 		Signals.emit_signal("camera_shake_requested", 8.0, 0.4)
 		Signals.emit_signal("frame_freeze_requested", 20)
 		area.slice()
-	else:
-		area.crash()
+		Logger.fruits_cut_this_frame_list.append(area.get_fruit_metadata().duplicate())
+
 
 
 func _on_dash_cooldown_timeout():

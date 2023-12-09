@@ -6,6 +6,10 @@ var current_speed = 0
 
 var time_til_mach10 = 0.7
 
+func get_p_name():
+	return "Pineapple"
+
+
 func _ready():
 	super._ready()
 	color = Color(0.837, 1.00, 0.0200)
@@ -42,7 +46,7 @@ func slice():
 	$HitPlayer.play()
 	die()
 
-func crash():
+func crash(by_player = false):
 	if is_dead:
 		return
 	AnimPlayer.play("simple_death")
@@ -50,4 +54,5 @@ func crash():
 	die()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	Logger.stupid_fucking_fruits_that_died_this_frame_list.append(get_fruit_metadata().duplicate())
 	crash()

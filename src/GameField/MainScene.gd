@@ -265,6 +265,8 @@ func _spawn_projectile(projectile, pos, direction, speed_coef, butt):
 	projectile.set_direction(direction)
 	Projectiles.spawned.append(projectile)
 	butt.butt.disabled = true
+	
+	Logger.fruits_spawned_this_frame_list.append(projectile.get_fruit_metadata().duplicate())
 
 
 func _show_bars():

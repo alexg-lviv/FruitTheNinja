@@ -20,6 +20,7 @@ var _ai_rect: Rect2
 
 func log_data():
 	Logger.log_global_data("global_mouse_position", [get_global_mouse_position().x, get_global_mouse_position().y])
+	Logger.log_lists_data("is_aiming", _is_locked)
 
 func _physics_process(delta):
 	var _pos = get_global_mouse_position()
@@ -34,6 +35,8 @@ func _physics_process(delta):
 
 func _ready():
 	visible = false
+
+
 
 func init_set(butt, aim_rect, ai_rect):
 	_butt = butt.butt

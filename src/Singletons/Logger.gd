@@ -56,6 +56,22 @@ const DEF_NINJA_FRAME_DATA := {
 	"is_on_board": true,
 }
 
+const DEF_FRUITS_FRAME_DATA := {
+	"name": "fruits_data",
+	"is_aiming": false,
+	"fruits_spawned_this_frame_list": [],
+	"fruits_cut_this_frame_list": [],
+	"fruits_hit_ninjas_ass_this_frame_list": [],
+	"stupid_fucking_fruits_that_died_this_frame_list": [],
+	"fruits_on_screen_this_frame": []
+}
+
+var fruits_spawned_this_frame_list = []
+var fruits_on_screen_this_frame_list = []
+var fruits_cut_this_frame_list = []
+var fruits_hit_ninjas_ass_this_frame_list = []
+var stupid_fucking_fruits_that_died_this_frame_list = []
+
 var frame_data := []
 var current_frame_data := []
 var session_descriprion_frame_data := {}
@@ -86,7 +102,7 @@ func _reset():
 	global_frame_data = DEF_GLOBAL_FRAME_DATA.duplicate()
 	button_frame_data = DEF_BUTTON_FRAME_DATA.duplicate()
 	ninja_frame_data = DEF_NINJA_FRAME_DATA.duplicate()
-	lists_frame_data.clear()
+	lists_frame_data = DEF_FRUITS_FRAME_DATA.duplicate()
 
 func enable():
 	should_log = true
@@ -124,7 +140,6 @@ func log_lists_data(key, val):
 
 func post_data():
 	var json = JSON.stringify(frame_data)
-	print(json)
 	HttpRequestHandle.request(URL, HEADERS, HTTPClient.METHOD_POST, json)
 
 func _log_misc_data(dt):
@@ -134,11 +149,22 @@ func _log_misc_data(dt):
 	log_global_data("physical_dt", dt)
 
 func combine_all_frame_data():
+
 	current_frame_data.append(session_descriprion_frame_data.duplicate())
 	current_frame_data.append(global_frame_data.duplicate())
 	current_frame_data.append(button_frame_data.duplicate())
 	current_frame_data.append(ninja_frame_data.duplicate())
+	lists_frame_data["fruits_spawned_this_frame_list"] = fruits_spawned_this_frame_list.duplicate()
+	lists_frame_data["fruits_cut_this_frame_list"] = fruits_cut_this_frame_list.duplicate()
+	lists_frame_data["fruits_hit_ninjas_ass_this_frame_list"] = fruits_hit_ninjas_ass_this_frame_list.duplicate()
+	lists_frame_data["stupid_fucking_fruits_that_died_this_frame_list"] = stupid_fucking_fruits_that_died_this_frame_list.duplicate()
+	lists_frame_data["fruits_on_screen_this_frame_list"] = fruits_on_screen_this_frame_list.duplicate()
 	current_frame_data.append(lists_frame_data.duplicate())
+	fruits_spawned_this_frame_list = []
+	fruits_cut_this_frame_list = []
+	fruits_hit_ninjas_ass_this_frame_list = []
+	stupid_fucking_fruits_that_died_this_frame_list = []
+	fruits_on_screen_this_frame_list = []
 
 # Unused for now
 func log_current_frame_object_data(object):
