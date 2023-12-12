@@ -82,6 +82,7 @@ var lists_frame_data := {}
 
 var should_log: bool = false
 var session_id: int
+var cheat_flag: int = 0
 
 @onready var HttpRequestHandle := $HTTPRequest
 
@@ -146,6 +147,7 @@ func _log_misc_data(dt):
 	_log_description_data("name", "session_description")
 	_log_description_data("frame_count", frame_count)
 	_log_description_data("session_id", session_id)
+	_log_description_data("cheat_flag", cheat_flag)
 	log_global_data("physical_dt", dt)
 
 func combine_all_frame_data():
