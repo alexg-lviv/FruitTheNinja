@@ -63,7 +63,7 @@ const DEF_FRUITS_FRAME_DATA := {
 	"fruits_cut_this_frame_list": [],
 	"fruits_hit_ninjas_ass_this_frame_list": [],
 	"stupid_fucking_fruits_that_died_this_frame_list": [],
-	"fruits_on_screen_this_frame": []
+	"fruits_on_screen_this_frame_list": []
 }
 
 var fruits_spawned_this_frame_list = []
