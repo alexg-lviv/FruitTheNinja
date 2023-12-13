@@ -23,6 +23,7 @@ Signals="*res://src/UI/signals.gd"
 FrameFreezer="*res://src/Effects/FrameFreezer/FrameFreezer.gd"
 Combos="*res://src/Singletons/combos.gd"
 Logger="*res://src/Singletons/Logger.tscn"
+Cheats="*res://src/Singletons/cheats.gd"
 
 [display]
 
