@@ -5,6 +5,7 @@ import os
 import json
 import csv
 import pandas as pd
+import random
 
 app = FastAPI()
 
@@ -47,9 +48,10 @@ async def data_save(request: Request):
 
 
 @app.post("/post_endpoint")
-async def post_endpoint(request: Request):
+async def post_endpoint(request: Request) -> int:
     # Get the raw JSON data as a string
     raw_data = await request.body()
+    return random.choice([0, 1])
     
     json_data = json.loads(raw_data.decode("utf-8"))
 

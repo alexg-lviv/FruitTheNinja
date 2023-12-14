@@ -143,6 +143,10 @@ func post_data():
 	var json = JSON.stringify(frame_data)
 	HttpRequestHandle.request(URL, HEADERS, HTTPClient.METHOD_POST, json)
 
+func _on_http_request_request_completed(result, response_code, headers, body):
+	var res = int(char(body[0]))
+	Signals.cheater.emit(res)
+
 func _log_misc_data(dt):
 	_log_description_data("name", "session_description")
 	_log_description_data("frame_count", frame_count)
@@ -208,3 +212,5 @@ func _physics_process(delta):
 func _process(delta):
 	if should_log:
 		log_global_data("logical_dt", delta)
+
+

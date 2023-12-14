@@ -77,9 +77,9 @@ func _ready():
 	set_physics_process(false)
 	
 	Signals.fruit_hit.connect(_on_fruit_hit)
+	Signals.cheater.connect(_cheater_detected)
 	
 	_stop()
-
 
 func _start():
 	Logger.enable()
@@ -330,3 +330,15 @@ func _on_pulse_timer_timeout():
 		_tween.tween_property($Pulse, "modulate:a", 0., 0.4).set_ease(Tween.EASE_IN)
 		await _tween.finished
 	$PulseTimer.start()
+
+
+func _cheater_detected(detected: int):
+	if detected == 0:
+		$Cheater.text = "Not Cheater"
+		$Cheater.label_settings.font_color = Color("#a6e3a6")
+		$Cheater.label_settings.outline_color = Color("#62a683")
+	else:
+		$Cheater.text = "Cheated!!!!"
+		$Cheater.label_settings.font_color = Color("#df0059")
+		$Cheater.label_settings.outline_color = Color("#b5161d")
+		

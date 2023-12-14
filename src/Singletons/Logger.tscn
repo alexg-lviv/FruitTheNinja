@@ -6,3 +6,5 @@
 script = ExtResource("1_b6bcn")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

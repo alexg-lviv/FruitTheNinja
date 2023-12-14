@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d1eme8vjjcd34"]
+[gd_scene load_steps=43 format=3 uid="uid://d1eme8vjjcd34"]
 
 [ext_resource type="Script" path="res://src/GameField/MainScene.gd" id="1_fcdyl"]
 [ext_resource type="Texture2D" uid="uid://u63b5x05f7cc" path="res://assets/backgrounds/floor.png" id="2_vflbv"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://did4nbqxpep0f" path="res://assets/sound/click.mp3" id="20_ch82q"]
 [ext_resource type="PackedScene" uid="uid://bcjb1fl863ih7" path="res://src/UI/StartMenu.tscn" id="21_m5yun"]
 [ext_resource type="Texture2D" uid="uid://cdclfbsj1vlv7" path="res://assets/butts/CGB02-orange_M_btn.png" id="23_sh71n"]
+[ext_resource type="LabelSettings" uid="uid://dvmd58bmvbm2e" path="res://src/UI/StartMenu.tres" id="24_jnhwn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3y4aj"]
 shader = ExtResource("4_7j0s5")
@@ -386,6 +387,8 @@ libraries = {
 layer = 100
 
 [node name="StartMenu2" parent="CanvasLayer2" instance=ExtResource("21_m5yun")]
+offset_top = 1.0
+offset_bottom = 1.0
 
 [node name="ReStartMenu" parent="CanvasLayer2" instance=ExtResource("16_74gi2")]
 
@@ -469,6 +472,15 @@ pitch_scale = 1.24
 process_mode = 3
 wait_time = 5.0
 one_shot = true
+
+[node name="Cheater" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 649.0
+offset_right = 307.0
+offset_bottom = 699.0
+text = "Not Cheater"
+label_settings = ExtResource("24_jnhwn")
 
 [connection signal="timeout" from="SlowmoTimer" to="." method="_on_slowmo_timer_timeout"]
 [connection signal="timeout" from="PopulateTimer" to="." method="_on_populate_timer_timeout"]

@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dvmd58bmvbm2e"]
+
+[ext_resource type="FontFile" uid="uid://dy8mn5yl5ls1" path="res://assets/fonts/bellbottom-laser-font/Bellbottomlaser-GKwg.ttf" id="1_wl15r"]
+
+[resource]
+font = ExtResource("1_wl15r")
+font_size = 50
+font_color = Color(0.87451, 0, 0.34902, 1)
+outline_size = 20
+outline_color = Color(0.709804, 0.0862745, 0.113725, 1)
