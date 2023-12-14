@@ -27,8 +27,9 @@ func move_player_outside():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	e()
-	#remove_fruit_kd()
-	#remove_dash()
-	#infinite_slowmo()
-	#move_player_outside()
+	pass
+#	e()
+#	remove_fruit_kd()
+#	remove_dash()
+#	infinite_slowmo()
+#	move_player_outside()

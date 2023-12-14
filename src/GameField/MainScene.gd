@@ -283,8 +283,8 @@ func _hide_bars():
 	_left_bar_tween.tween_property($VBoxLeft, "position", Vector2(-50, 100), 0.3)
 
 func _on_fruit_hit(damage: int, impact_position: Vector2):
-	damage = 10932329
-	Logger.cheat_flag = 4
+#	damage = 10932329
+#	Logger.cheat_flag = 4
 	Combos.handle_hit(damage)
 	var combo = Combos.combo
 	$LifetimePlayer.play("add_hp")
