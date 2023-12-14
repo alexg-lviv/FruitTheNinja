@@ -4,17 +4,13 @@ from fastapi import FastAPI,  HTTPException, Request
 import os
 import json
 import csv
+import pandas as pd
 
 app = FastAPI()
 
 
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
-
-
-@app.post("/post_endpoint")
-async def post_endpoint(request: Request):
+@app.post("/data_save")
+async def data_save(request: Request):
     # Get the raw JSON data as a string
     raw_data = await request.body()
     
@@ -48,3 +44,29 @@ async def post_endpoint(request: Request):
 
     
     return json_data
+
+
+@app.post("/post_endpoint")
+async def post_endpoint(request: Request):
+    # Get the raw JSON data as a string
+    raw_data = await request.body()
+    
+    json_data = json.loads(raw_data.decode("utf-8"))
+
+    df = None
+    for frame in json_data:
+        row_dict = {}
+
+        for obj in frame:
+            for key, value in obj.items():
+                if key == "name":
+                    continue
+
+                row_dict[key] = value
+
+        columns = list(row_dict.keys())
+        if df is None:
+            df = pd.DataFrame(columns=columns)
+        df = pd.concat([df, pd.DataFrame([row_dict], columns=columns)], ignore_index=True)
+    
+    
