@@ -8,7 +8,7 @@
 
 Play the fast-paced rounds of crazy fruit assassination. Throw the most terrifying and dangerously exploding fruits directly into the ninja's head! Distract the stupid ninja with innocent apple, stun him with a heavy coconut, surprise him with an unexpected back attack with banana boomerang, play dangerous ping-pong with a bouncy watermelon, and finish him with the deadly pineapple missile launched right into his arse!
 
-<p align="center"><img src="assets/readme/full_2.gif" width=400 align="center"></p>
+<p align="center"><img src="assets/readme/full_2.gif" width=600 align="center"></p>
 
 ---
 
