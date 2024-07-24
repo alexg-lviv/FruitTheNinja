@@ -35,6 +35,10 @@ Please, be extremely careful with those bad boys:
 
 <p align="center"><a href="https://ade0n.itch.io/fruit-the-ninja">itch.io</a></p>
 
+<h2 align="center">YouTube Video</h2>
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/BBn0XWxWlZs?si=yxiTqSAk2RhgQ4mT)](https://youtu.be/BBn0XWxWlZs?si=yxiTqSAk2RhgQ4mT)
+
 <h2 align="center">Contributors</h2>
 
 Team **«Hoydalka»**:
