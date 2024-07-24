@@ -2,7 +2,7 @@
 
 <img src="icon.PNG" width=70 align="left"> **Fruit the Ninja** is a _2D action top-down arcade game_ written during the 48 hours GMTK Game Jam 2023. The jam main theme to implement was **Roles Reversed**, so the main concept of the game was to _reverse_ the gameplay of the famous game. Now the ninja doesn't slash the fruits, but the fruits slash the ninja!
 
-<br>
+---
 
 <img src="assets/readme/explosion.jpg" width=100 align="right">
 
