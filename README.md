@@ -53,3 +53,7 @@ Code:
 
 Music and sound effects:
 * [Mykhailo Sobko](https://github.com/myrimur)
+
+---
+
+<p align="center"><img src="https://github.com/user-attachments/assets/ff076bfb-abdd-43d1-975d-2ea7385ad158" width=600 align="center"></p>
